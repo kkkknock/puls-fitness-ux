@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Каталог тарифов</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.hero{position:relative;height:320px;overflow:hidden;}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero .ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(11,13,12,.92) 0%,rgba(11,13,12,.35) 70%);}
+.hero .in{position:relative;padding:72px 40px;display:flex;flex-direction:column;gap:12px;max-width:720px;}
+.trow{display:flex;gap:20px;padding:40px;align-items:stretch;}
+.tariff{width:388px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a class="on" href="#">Тарифы</a><a href="#">Расписание</a><a href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="hero">
+    <img src="https://www.figma.com/api/mcp/asset/79791970-47f3-4870-9374-ddca4e87c409.png">
+    <div class="ov"></div>
+    <div class="in">
+      <div class="chipAnn" style="align-self:flex-start;">C-06 · Каталог тарифов · US-03 · FR-03 · предусловие UC-01</div>
+      <div class="disp2">Тарифы клуба</div>
+      <div class="bl t2" style="max-width:520px;">Публикуемые тарифы (FR-03). После оплаты абонемент активируется автоматически — NFR-03.</div>
+    </div>
+  </div>
+  <div class="trow">
+    <div class="tariff">
+      <div class="h3">Разовый</div>
+      <div class="price"><div class="n">990 ₽</div><div class="bs t2">/ единоразово</div></div>
+      <div class="bs t2">1 день клуба, без лимитов посещений</div>
+      <div class="feat"><div class="f"><span class="chk">✓</span>Все виды занятий (1 день)</div><div class="f"><span class="chk">✓</span>Все зоны клуба</div></div>
+      <div style="height:6px;"></div>
+      <div class="btn btn-l btn-secondary">Выбрать и оплатить</div>
+    </div>
+    <div class="tariff hot">
+      <div class="badge badge-solid">Выбор клиентов</div>
+      <div class="h3">Базовый</div>
+      <div class="price"><div class="n">2 990 ₽</div><div class="bs t2">/ 30 дней</div></div>
+      <div class="bs t2">12 посещений в месяц, гибкая заморозка</div>
+      <div class="feat"><div class="f"><span class="chk">✓</span>12 посещений в месяц</div><div class="f"><span class="chk">✓</span>Все виды занятий</div><div class="f"><span class="chk">✓</span>Заморозка 7 дней</div></div>
+      <div style="height:6px;"></div>
+      <div class="btn btn-l btn-primary">Выбрать и оплатить</div>
+    </div>
+    <div class="tariff">
+      <div class="h3">Безлимит</div>
+      <div class="price"><div class="n">5 990 ₽</div><div class="bs t2">/ 30 дней</div></div>
+      <div class="bs t2">Максимальный доступ, все направления</div>
+      <div class="feat"><div class="f"><span class="chk">✓</span>Безлимит посещений</div><div class="f"><span class="chk">✓</span>Все виды занятий</div><div class="f"><span class="chk">✓</span>Заморозка 14 дней</div></div>
+      <div style="height:6px;"></div>
+      <div class="btn btn-l btn-secondary">Выбрать и оплатить</div>
+    </div>
+  </div>
+  <div class="sec" style="padding-top:8px;">
+    <div class="panel" style="flex-direction:row;gap:16px;align-items:center;">
+      <div class="bs t2" style="flex:1;">Все тарифы публикуются администратором (A-03). Лимит посещений и срок действия задаются в карточке тарифа (словарь БД: tariff).</div>
+      <div class="badge badge-neutral">Оплата: картой через платёжного провайдера</div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Личный кабинет</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.wrap{display:flex;gap:32px;padding:40px;align-items:flex-start;}
+.main{flex:1;display:flex;flex-direction:column;gap:24px;}
+.list{display:flex;flex-direction:column;gap:12px;}
+.headrow{display:flex;align-items:center;}
+.next{display:flex;gap:16px;align-items:center;padding:18px 20px;border-radius:16px;background:linear-gradient(90deg,#223312 0%,var(--card) 60%);border:1px solid var(--border);}
+.next .ic{width:52px;height:52px;border-radius:14px;background:var(--lime);display:flex;align-items:center;justify-content:center;color:var(--ondark);font-size:22px;flex:none;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a href="#">Тарифы</a><a href="#">Расписание</a><a class="on" href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="wrap">
+    <div class="main">
+      <div class="row" style="align-items:center;gap:14px;">
+        <div class="chipAnn">C-04 · Личный кабинет · US-02 · US-04 · US-05</div>
+      </div>
+      <div class="h1">Привет, Анна!</div>
+      <div class="next">
+        <div class="ic">▸</div>
+        <div class="mid" style="display:flex;flex-direction:column;gap:4px;flex:1;">
+          <div class="bm-med">Ближайшее занятие</div>
+          <div class="bs t2">Сайклинг · пятница, 27 ноября · 19:00–20:00 · Зал 1</div>
+        </div>
+        <div class="badge badge-green">Вы записаны</div>
+        <div class="btn btn-m btn-secondary">Открыть расписание</div>
+      </div>
+      <div class="grid3">
+        <div class="stat"><div class="l">Абонемент</div><div class="v t-lime">Активен</div><div class="d">до 30.11.2026</div></div>
+        <div class="stat"><div class="l">Осталось посещений</div><div class="v">9 из 12</div><div class="d">тариф «Базовый»</div></div>
+        <div class="stat"><div class="l">Посещений за месяц</div><div class="v">6</div><div class="d">+2 к прошлому месяцу</div></div>
+      </div>
+      <div class="panel">
+        <div class="headrow"><div class="h3">Мои записи</div><div class="sp"></div><a class="bs-med" href="#">Все записи ›</a></div>
+        <div class="list">
+          <div class="brow">
+            <div class="dchip"><div class="dd">24</div><div class="mm">НОЯ</div></div>
+            <div class="mid"><div class="bm-med">Йога · Соколова Анна</div><div class="bs t2">Пт · 18:00–19:00 · Зал 2</div></div>
+            <div class="badge badge-neutral">Запланировано</div>
+            <div class="btn btn-m btn-ghost">Отменить</div>
+            <div class="chev">›</div>
+          </div>
+          <div class="brow">
+            <div class="dchip"><div class="dd">27</div><div class="mm">НОЯ</div></div>
+            <div class="mid"><div class="bm-med">Сайклинг · Ким Сергей</div><div class="bs t2">Пт · 19:00–20:00 · Зал 1</div></div>
+            <div class="badge badge-neutral">Запланировано</div>
+            <div class="btn btn-m btn-ghost">Отменить</div>
+            <div class="chev">›</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="headrow"><div class="h3">Последние посещения</div><div class="sp"></div><a class="bs-med" href="#">История посещений ›</a></div>
+        <div class="list">
+          <div class="brow">
+            <div class="dchip"><div class="dd">20</div><div class="mm">НОЯ</div></div>
+            <div class="mid"><div class="bm-med">Пилатес · Орлова Мария</div><div class="bs t2">Ср · 10:00–11:00 · Зал 3</div></div>
+            <div class="badge badge-green">Пришёл</div>
+            <div class="chev">›</div>
+          </div>
+          <div class="brow">
+            <div class="dchip"><div class="dd">17</div><div class="mm">НОЯ</div></div>
+            <div class="mid"><div class="bm-med">HIIT · Иванов Дмитрий</div><div class="bs t2">Вс · 09:30–10:30 · Зал 2</div></div>
+            <div class="badge badge-danger">Не пришёл</div>
+            <div class="chev">›</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="width:320px;display:flex;flex-direction:column;gap:16px;">
+      <div class="chipAnn">Быстрые действия</div>
+      <div class="btn btn-l btn-primary" style="width:100%;">Купить абонемент</div>
+      <div class="btn btn-l btn-secondary" style="width:100%;">Записаться на занятие</div>
+      <div class="btn btn-l btn-secondary" style="width:100%;">История посещений</div>
+      <div class="panel" style="gap:10px;">
+        <div class="bs-med">Абонемент «Базовый»</div>
+        <div class="bar"><i style="width:75%;"></i></div>
+        <div class="bs t3">9 из 12 посещений · действует до 30.11.2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

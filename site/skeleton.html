@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ПУЛЬС — скелет сайта (структура и связи)</title>
+<style>
+/* ===== СКЕЛЕТ: статичная схема. Ноль JS, ноль интерактивности ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#141414;color:#ccc;font-size:13px;padding:24px}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:20px;color:#eee;margin-bottom:6px}
+.sub{color:#888;font-size:12px;margin-bottom:24px}
+h2{font-size:14px;color:#eee;margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid #333}
+/* роль-бейдж */
+.role{display:inline-block;padding:3px 10px;border:1px solid #666;background:#242424;color:#ddd;font-weight:bold;font-size:12px}
+/* ряд скелета: экраны в цепочке */
+.row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:10px 0}
+/* блок-экран */
+.scr{border:1px solid #777;background:#1e1e1e;padding:10px 14px;min-width:130px}
+.scr b{display:block;color:#eee;font-size:13px}
+.scr i{display:block;color:#909090;font-size:10px;font-style:normal;margin-top:4px;line-height:1.5}
+/* заглушка контента внутри скелета */
+.scr .ph{height:10px;background:#333;border-radius:2px;margin-top:8px}
+.scr .ph.s{width:60%}
+/* состояние/альтернатива */
+.alt{border:1px dashed #555;background:#191919;padding:8px 12px;min-width:110px;color:#aaa}
+.alt b{color:#bbb;font-size:12px}
+/* стрелка между блоками */
+.arr{display:flex;align-items:center;padding:0 10px;color:#888;font-size:16px}
+.arr:after{content:"→"}
+.arr.branch:after{content:"⇢"}
+.arr.back:after{content:"⇠"}
+/* дерево (отступы) */
+.tree{border-left:2px solid #444;margin:8px 0 8px 10px;padding-left:18px}
+.tree .lbl{color:#909090;font-size:11px;margin:6px 0}
+/* легенда */
+.legend{display:flex;gap:18px;margin-top:8px;flex-wrap:wrap}
+.legend .it{display:flex;align-items:center;gap:6px;color:#999;font-size:11px}
+.lg{width:26px;height:14px;display:inline-block}
+.lg.a{border:1px solid #777;background:#1e1e1e}
+.lg.b{border:1px dashed #555;background:#191919}
+.lg.c{width:14px;height:1px;background:#888;position:relative}
+/* колонки ролей */
+.cols{display:flex;gap:16px;flex-wrap:wrap}
+.col{flex:1;min-width:240px;border:1px solid #444;padding:14px;background:#181818}
+/* футер */
+.foot{margin-top:32px;color:#777;font-size:11px;border-top:1px dashed #333;padding-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Фитнес-клуб «ПУЛЬС» — скелет сайта</h1>
+  <div class="sub">Статичная структурная схема: экраны, цепочки переходов, связи по ролям. Без интерактивности — только структура.</div>
+
+  <div class="legend">
+    <span class="it"><span class="lg a"></span> экран</span>
+    <span class="it"><span class="lg b"></span> состояние / альтернатива</span>
+    <span class="it"><span class="lg c"></span> переход по кнопке</span>
+  </div>
+
+  <!-- ===== ТОЧКА ВХОДА ===== -->
+  <h2><span class="role">Гость</span> Вход в систему</h2>
+  <div class="row">
+    <div class="scr"><b>Главная</b><i>обзор клуба</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Вход</b><i>email + пароль</i><div class="ph s"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Регистрация</b><i>уникальный email</i><div class="ph s"></div></div>
+    <div class="arr branch"></div>
+    <div class="scr"><b>Кабинет</b><i>по роли входа</i><div class="ph"></div></div>
+  </div>
+
+  <!-- ===== КЛИЕНТ ===== -->
+  <h2><span class="role">Клиент</span> Покупка абонемента</h2>
+  <div class="row">
+    <div class="scr"><b>Тарифы</b><i>каталог, 3 тарифа</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Оплата</b><i>форма карты</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Результат</b><i>итог платежа</i><div class="ph"></div></div>
+  </div>
+  <div class="tree">
+    <div class="row">
+      <div class="alt"><b>успех</b><br>абонемент активен</div>
+      <div class="arr"></div>
+      <div class="alt"><b>ожидание</b><br>платёж обрабатывается</div>
+      <div class="arr"></div>
+      <div class="alt"><b>отказ</b><br>возврат к тарифам</div>
+    </div>
+  </div>
+
+  <h2><span class="role">Клиент</span> Запись на занятие</h2>
+  <div class="row">
+    <div class="scr"><b>Расписание</b><i>7 дней, фильтр направлений</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Карточка занятия</b><i>места, тренер, зал</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Запись подтверждена</b><i>списание 1 посещения</i><div class="ph"></div></div>
+  </div>
+  <div class="tree">
+    <div class="lbl">проверки перед записью (правило клуба):</div>
+    <div class="row">
+      <div class="alt"><b>нет мест</b><br>кнопка недоступна</div>
+      <div class="arr"></div>
+      <div class="alt"><b>нет абонемента</b><br>→ к тарифам</div>
+      <div class="arr"></div>
+      <div class="alt"><b>уже записан</b><br>→ мои записи</div>
+    </div>
+  </div>
+
+  <h2><span class="role">Клиент</span> Отмена записи</h2>
+  <div class="row">
+    <div class="scr"><b>Мои записи</b><i>список активных</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Отмена записи</b><i>подтверждение</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Запись отменена</b><i>посещение возвращено</i><div class="ph"></div></div>
+  </div>
+  <div class="tree">
+    <div class="lbl">правило отмены:</div>
+    <div class="row">
+      <div class="alt"><b>≥ 2 часов</b><br>отмена доступна</div>
+      <div class="arr"></div>
+      <div class="alt"><b>&lt; 2 часов / началось</b><br>отмена блокирована</div>
+    </div>
+  </div>
+
+  <h2><span class="role">Клиент</span> Личный кабинет и история</h2>
+  <div class="row">
+    <div class="scr"><b>Кабинет</b><i>профиль, абонемент</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>История посещений</b><i>был / не был</i><div class="ph"></div></div>
+    <div class="arr branch"></div>
+    <div class="alt">наполняется отметками тренера</div>
+  </div>
+
+  <!-- ===== ТРЕНЕР ===== -->
+  <h2><span class="role">Тренер</span> Отметка посещения</h2>
+  <div class="row">
+    <div class="scr"><b>Мои занятия</b><i>расписание тренера</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Клиенты занятия</b><i>список записанных</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="scr"><b>Отметка посещения</b><i>был / не был</i><div class="ph"></div></div>
+    <div class="arr"></div>
+    <div class="alt">→ история клиента</div>
+  </div>
+
+  <!-- ===== АДМИН ===== -->
+  <h2><span class="role">Администратор</span> Управление</h2>
+  <div class="cols">
+    <div class="col">
+      <div class="scr" style="border:none;background:none;padding:0"><b>Обзор</b></div>
+      <div class="ph" style="height:10px;margin-top:10px;background:#333"></div>
+      <div class="ph" style="height:10px;margin-top:6px;background:#333"></div>
+      <i style="color:#909090;font-size:10px;display:block;margin-top:8px">клиенты · абонементы · выручка · платежи</i>
+    </div>
+    <div class="col">
+      <div class="scr" style="border:none;background:none;padding:0"><b>Расписание</b></div>
+      <div class="ph" style="height:10px;margin-top:10px;background:#333"></div>
+      <div class="ph" style="height:10px;margin-top:6px;background:#333"></div>
+      <i style="color:#909090;font-size:10px;display:block;margin-top:8px">добавление и удаление занятий</i>
+    </div>
+    <div class="col">
+      <div class="scr" style="border:none;background:none;padding:0"><b>Тарифы</b></div>
+      <div class="ph" style="height:10px;margin-top:10px;background:#333"></div>
+      <div class="ph" style="height:10px;margin-top:6px;background:#333"></div>
+      <i style="color:#909090;font-size:10px;display:block;margin-top:8px">публикация в каталог</i>
+    </div>
+  </div>
+
+  <!-- ===== СВОДКА ===== -->
+  <h2>Сводка связей</h2>
+  <div class="tree">
+    <div class="lbl">Главная → Тарифы → Оплата → Результат · Главная → Расписание → Карточка → Подтверждение</div>
+    <div class="lbl">Мои записи → Отмена (правило 2 часов) → возврат посещения</div>
+    <div class="lbl">Кабинет → История ← Отметка тренера · Расписание (места) ← записанные клиенты</div>
+    <div class="lbl">Админ: тарифы → клиентский каталог · расписание → общее расписание</div>
+  </div>
+
+  <div class="foot">Скелет сайта · ИС фитнес-клуба «ПУЛЬС» · статичная структура · lofi.html — вайрфреймы · index.html — рабочая версия</div>
+</div>
+</body>
+</html>

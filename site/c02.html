@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Регистрация</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.top{display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 40px;border-bottom:1px solid var(--border);}
+.split{display:flex;height:880px;}
+.left{width:600px;position:relative;}
+.left .ph{position:absolute;inset:0;background:linear-gradient(160deg,#1A2E0A 0%,#0B0D0C 70%);}
+.left .q{position:absolute;left:48px;bottom:48px;right:48px;}
+.right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 96px;gap:20px;background:var(--bg);}
+.logo{display:flex;align-items:center;gap:8px;}
+.logo .dot{width:10px;height:10px;border-radius:50%;background:var(--lime);}
+.form{display:flex;flex-direction:column;gap:14px;}
+.env{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(11,13,12,.85) 0%,rgba(11,13,12,0) 60%);}
+</style></head>
+<body>
+<div class="top">
+  <div class="logo"><div class="dot"></div><div class="h3 t-white">ПУЛЬС</div></div>
+  <div class="bm t2">Уже есть аккаунт? &nbsp;<a class="bm-med" href="#">Войти</a></div>
+</div>
+<div class="split">
+  <div class="left">
+    <div class="ph" id="ph-strength"></div>
+    <div class="env"></div>
+    <div class="q col" style="gap:10px;">
+      <div class="h2 t-white">Тренировки начинаются<br>с одного шага</div>
+      <div class="bm t2">Аккаунт есть у каждого посетителя клуба.<br>Всё занимает меньше двух минут.</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="chipAnn" style="align-self:flex-start;">C-02 · Регистрация · US-01 · FR-01 · CON-02</div>
+    <div class="h1 t-white">Создать аккаунт</div>
+    <div class="bm t2" style="margin-top:-12px;">Заполните обязательные поля — и доступ к онлайн-сервисам клуба открыт</div>
+    <form class="form" style="margin-top:10px;">
+      <div class="field"><label>ФИО</label><div class="input active">Анна Петрова</div></div>
+      <div class="field"><label>Email</label><div class="input">anna@pulse.fit</div></div>
+      <div class="field"><label>Телефон</label><div class="input">+7 (900) 000-00-00</div></div>
+      <div class="field"><label>Пароль</label><div class="input">••••••••••••</div></div>
+      <div class="row" style="gap:10px;align-items:flex-start;margin-top:2px;">
+        <div style="width:20px;height:20px;border-radius:6px;background:var(--lime);color:var(--ondark);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">✓</div>
+        <div class="bs t2">Я даю согласие на обработку персональных данных (CON-02)</div>
+      </div>
+      <div style="height:10px;"></div>
+      <div class="btn btn-l btn-primary">Зарегистрироваться</div>
+      <div style="height:2px;"></div>
+      <div class="btn btn-l btn-ghost" style="align-self:center;">У меня уже есть аккаунт — войти</div>
+    </form>
+  </div>
+</div>
+</body></html>

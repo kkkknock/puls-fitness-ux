@@ -1,0 +1,804 @@
+﻿=== xl/worksheets/sheet1.xml ===
+A1=S0
+B1=S1
+C1=S2
+D1=S3
+E1=S4
+A2=S5
+B2=S6
+C2=S7
+D2=S8
+E2=S9
+A3=S5
+B3=S10
+C3=S11
+D3=S12
+E3=S13
+A4=S5
+B4=S14
+C4=S15
+D4=S16
+E4=S17
+A5=S18
+B5=S19
+C5=S7
+D5=S8
+E5=S20
+A6=S18
+B6=S6
+C6=S7
+D6=S21
+E6=S22
+A7=S18
+B7=S23
+C7=S24
+D7=S12
+E7=S25
+A8=S18
+B8=S26
+C8=S27
+D8=S16
+E8=S28
+A9=S18
+B9=S29
+C9=S24
+D9=S16
+E9=S30
+A10=S18
+B10=S31
+C10=S11
+E10=S32
+A11=S18
+B11=S33
+C11=S34
+D11=S16
+E11=S35
+A12=S18
+B12=S36
+C12=S37
+D12=S16
+E12=S38
+A13=S39
+B13=S40
+C13=S7
+D13=S41
+E13=S42
+A14=S39
+B14=S43
+C14=S44
+E14=S45
+A15=S39
+B15=S46
+C15=S34
+D15=S16
+E15=S47
+A16=S39
+B16=S48
+C16=S37
+E16=S49
+A17=S50
+B17=S51
+C17=S7
+D17=S41
+E17=S52
+A18=S50
+B18=S53
+C18=S24
+E18=S54
+A19=S55
+B19=S56
+C19=S57
+D19=S8
+E19=S58
+A20=S55
+B20=S59
+C20=S57
+D20=S16
+E20=S60
+A21=S55
+B21=S61
+C21=S27
+D21=S16
+E21=S4
+A22=S55
+B22=S62
+C22=S34
+D22=S16
+E22=S63
+A23=S64
+B23=S65
+C23=S7
+D23=S8
+E23=S66
+A24=S64
+B24=S67
+C24=S68
+D24=S12
+E24=S69
+A25=S64
+B25=S70
+C25=S71
+D25=S72
+E25=S73
+A26=S64
+B26=S74
+C26=S7
+D26=S75
+E26=S76
+A27=S64
+B27=S77
+C27=S7
+D27=S78
+E27=S79
+A28=S64
+B28=S80
+C28=S34
+D28=S16
+E28=S81
+A29=S82
+B29=S83
+C29=S7
+D29=S8
+E29=S84
+A30=S82
+B30=S40
+C30=S7
+D30=S85
+E30=S86
+A31=S82
+B31=S65
+C31=S7
+D31=S87
+E31=S88
+A32=S82
+B32=S89
+C32=S71
+D32=S16
+E32=S90
+A33=S82
+B33=S91
+C33=S92
+D33=S93
+E33=S94
+A34=S82
+B34=S95
+C34=S68
+E34=S96
+A35=S82
+B35=S36
+C35=S37
+D35=S16
+E35=S97
+A36=S82
+B36=S98
+C36=S37
+E36=S99
+A37=S100
+B37=S101
+C37=S7
+D37=S8
+E37=S102
+A38=S100
+B38=S40
+C38=S7
+D38=S85
+E38=S103
+A39=S100
+B39=S65
+C39=S7
+D39=S87
+E39=S104
+A40=S100
+B40=S83
+C40=S7
+D40=S105
+E40=S106
+A41=S100
+B41=S107
+C41=S92
+D41=S108
+E41=S109
+A42=S100
+B42=S110
+C42=S44
+D42=S16
+E42=S111
+A43=S100
+B43=S112
+C43=S7
+D43=S113
+E43=S114
+A44=S100
+B44=S91
+C44=S115
+D44=S116
+E44=S117
+A45=S118
+B45=S119
+C45=S7
+D45=S8
+E45=S120
+A46=S118
+B46=S67
+C46=S15
+D46=S121
+E46=S122
+A47=S118
+B47=S123
+C47=S7
+D47=S75
+E47=S124
+A48=S125
+B48=S126
+C48=S7
+D48=S8
+E48=S127
+A49=S125
+B49=S67
+C49=S68
+D49=S121
+E49=S128
+A50=S125
+B50=S61
+C50=S27
+E50=S4
+A51=S129
+B51=S130
+C51=S7
+D51=S8
+E51=S131
+A52=S129
+B52=S126
+C52=S7
+D52=S132
+E52=S127
+A53=S129
+B53=S51
+C53=S7
+D53=S133
+E53=S134
+A54=S129
+B54=S119
+C54=S7
+D54=S135
+E54=S136
+A55=S129
+B55=S137
+C55=S37
+D55=S138
+E55=S139
+A56=S129
+B56=S140
+C56=S7
+D56=S75
+E56=S141
+A57=S129
+B57=S91
+C57=S115
+D57=S142
+E57=S143
+A58=S144
+B58=S145
+C58=S7
+D58=S8
+E58=S146
+A59=S144
+B59=S130
+C59=S7
+D59=S147
+E59=S148
+A60=S144
+B60=S40
+C60=S7
+D60=S85
+E60=S149
+A61=S144
+B61=S101
+C61=S7
+D61=S150
+E61=S151
+A62=S144
+B62=S91
+C62=S115
+D62=S152
+E62=S153
+A63=S144
+B63=S154
+C63=S37
+E63=S155
+A64=S156
+B64=S157
+C64=S7
+D64=S8
+E64=S158
+A65=S156
+B65=S145
+C65=S7
+D65=S159
+E65=S160
+A66=S156
+B66=S161
+C66=S7
+D66=S133
+E66=S162
+A67=S156
+B67=S163
+C67=S37
+D67=S16
+E67=S164
+A68=S156
+B68=S165
+C68=S115
+D68=S166
+E68=S167
+A69=S168
+B69=S169
+C69=S115
+D69=S8
+E69=S170
+A70=S168
+B70=S171
+C70=S172
+D70=S16
+E70=S173
+A71=S168
+B71=S174
+C71=S175
+D71=S176
+E71=S177
+A72=S178
+B72=S179
+C72=S115
+D72=S8
+E72=S180
+A73=S178
+B73=S181
+C73=S11
+D73=S182
+E73=S183
+A74=S178
+B74=S184
+C74=S185
+D74=S16
+E74=S186
+A75=S178
+B75=S187
+C75=S172
+E75=S188
+A76=S178
+B76=S169
+C76=S115
+D76=S189
+E76=S190
+A77=S191
+B77=S192
+C77=S7
+D77=S8
+E77=S193
+A78=S191
+B78=S179
+C78=S115
+D78=S194
+E78=S195
+A79=S191
+B79=S196
+C79=S27
+E79=S197
+=== xl/worksheets/sheet2.xml ===
+A1=S198
+B1=S199
+C1=S200
+D1=S201
+E1=S202
+F1=S203
+A2=S204
+B2=S205
+C2=S206
+D2=S207
+E2=S208
+F2=S209
+A3=S210
+B3=S211
+C3=S212
+D3=S213
+E3=S214
+F3=S215
+A4=S216
+B4=S217
+C4=S218
+D4=S219
+E4=S220
+F4=S221
+A5=S222
+B5=S223
+C5=S214
+D5=S224
+E5=S225
+F5=S214
+A6=S226
+B6=S227
+C6=S228
+D6=S229
+E6=S225
+F6=S230
+A7=S231
+B7=S232
+C7=S233
+D7=S234
+E7=S235
+F7=S236
+A8=S237
+B8=S238
+C8=S239
+D8=S240
+E8=S241
+F8=S214
+A9=S242
+B9=S243
+C9=S228
+D9=S244
+E9=S225
+F9=S230
+A10=S245
+B10=S246
+C10=S214
+D10=S247
+E10=S214
+F10=S214
+A11=S248
+B11=S249
+C11=S214
+D11=S250
+E11=S214
+F11=S214
+A12=S251
+B12=S252
+C12=S214
+D12=S253
+E12=S214
+F12=S214
+A13=S254
+B13=S255
+C13=S214
+D13=S256
+E13=S220
+F13=S221
+A14=S257
+B14=S258
+C14=S214
+D14=S259
+E14=S225
+F14=S214
+A15=S260
+B15=S261
+C15=S214
+D15=S262
+E15=S214
+F15=S214
+A16=S263
+B16=S264
+C16=S214
+D16=S265
+E16=S214
+F16=S214
+A17=S266
+B17=S267
+C17=S214
+D17=S268
+E17=S214
+F17=S214
+A19=S269
+=== xl/worksheets/sheet3.xml ===
+A1=S270
+B1=S271
+C1=S200
+D1=S272
+A2=S206
+B2=S209
+C2=S273
+D2=S274
+A3=S212
+B3=S215
+C3=S275
+D3=S274
+A4=S218
+B4=S221
+C4=S276
+D4=S274
+A5=S228
+B5=S230
+C5=S277
+D5=S274
+A6=S233
+B6=S236
+C6=S278
+D6=S279
+A7=S239
+B7=S280
+C7=S281
+D7=S282
+=== SHARED ===
+Таблица
+Поле
+Тип
+Ключ / ограничение
+Описание
+role
+role_id
+INTEGER
+PK
+Идентификатор роли
+code
+VARCHAR(20)
+UQ, NOT NULL
+client / trainer / admin
+title
+VARCHAR(60)
+NOT NULL
+Название роли
+app_user
+user_id
+Идентификатор учётной записи
+FK→role
+Роль (NFR-02: права зависят от роли)
+email
+VARCHAR(120)
+Логин; уникален (US-01)
+password_hash
+VARCHAR(255)
+Хеш пароля
+full_name
+ФИО
+phone
+Телефон
+is_active
+BOOLEAN
+Признак активной учётной записи
+created_at
+TIMESTAMP
+Дата регистрации
+client
+client_id
+PK, FK→app_user
+Профиль клиента
+birth_date
+DATE
+Дата рождения
+pd_consent
+Согласие на обработку ПДн (CON-02)
+pd_consent_date
+Дата согласия
+trainer
+trainer_id
+Профиль тренера
+specialization
+Специализация
+club_rule
+rule_code
+VARCHAR(40)
+Код правила клуба
+rule_value
+Значение правила
+description
+is_agreed
+Значение согласовано с заказчиком
+tariff
+tariff_id
+Идентификатор тарифа
+name
+VARCHAR(80)
+Название тарифа
+price
+NUMERIC(10,2)
+NOT NULL, ≥0
+Цена
+duration_days
+NOT NULL, &gt;0
+Срок действия, дней
+visits_limit
+NULL = безлимит
+Лимит посещений
+is_published
+Тариф опубликован (предусловие UC-01)
+payment
+payment_id
+Идентификатор платежа
+FK→client
+Плательщик
+FK→tariff
+Оплачиваемый тариф
+amount
+Сумма
+status
+VARCHAR(12)
+pending/succeeded/failed
+Статус платежа (UC-01)
+provider_txn_id
+Номер операции у платёжного провайдера
+Создан
+paid_at
+Оплачен
+membership
+membership_id
+Идентификатор абонемента
+Владелец
+Тариф
+UQ, FK→payment
+Платёж-основание; составной FK с payment_status гарантирует статус succeeded (NFR-03)
+payment_status
+CHECK = succeeded
+Служебное поле для составного ключа
+start_date / end_date
+Срок действия (FR-02)
+visits_left
+≥0, NULL = безлимит
+Остаток посещений
+VARCHAR(10)
+active/frozen/expired
+Статус (FR-02)
+hall
+hall_id
+Идентификатор зала
+UQ
+Название зала
+capacity
+Вместимость зала
+class_type
+class_type_id
+Вид занятия
+Название (йога, пилатес…)
+class_session
+session_id
+Занятие в расписании (FR-04)
+FK→class_type
+FK→trainer
+Тренер
+FK→hall
+Зал
+starts_at / ends_at
+CHECK ends&gt;starts
+Время проведения
+seats_total
+Всего мест
+scheduled/cancelled/done
+Статус занятия
+booking
+booking_id
+Запись (FR-05)
+FK→class_session
+Занятие
+Клиент
+FK→membership
+Абонемент, по которому идёт запись (BR-01)
+booked/cancelled/attended/no_show
+Статус записи (FR-06)
+created_at / cancelled_at
+Время создания / отмены
+attendance
+attendance_id
+Отметка посещения
+UQ, FK→booking
+Запись, по которой отмечено
+marked_by
+Кто отметил (UC-04)
+marked_at
+Когда отмечено
+result
+attended/no_show
+Результат
+user_story
+story_code
+US-01…US-06
+actor_role / action / value_text
+VARCHAR
+Роль — действие — ценность
+moscow
+VARCHAR(6)
+Must/Should/Could/Won&apos;t
+Приоритет MoSCoW
+requirement
+req_code
+FR-/NFR-/BR-/CON-
+req_class
+CHECK
+Класс требования
+statement
+VARCHAR(500)
+Формулировка
+priority / status
+Приоритет и статус согласования
+FK→user_story
+Источник (трассируемость, ISO 29148)
+acceptance_criterion
+criterion_id
+Критерий приёмки
+FK→requirement
+Проверяемое требование
+given_text / when_text / then_text
+Дано — Когда — Тогда
+Требование
+Суть
+User Story
+Объекты БД
+Сценарий (UC)
+Критерий приёмки (слайд)
+FR-01
+Регистрация и авторизация
+US-01
+app_user, role, client
+UC (регистрация)
+Регистрация
+FR-02
+Статус и срок абонемента
+US-02
+membership, tariff
+—
+Абонемент
+FR-03
+Просмотр тарифов и покупка
+US-03
+tariff, payment, membership
+UC-01
+Покупка
+FR-04
+Актуальное расписание
+class_session, class_type, hall, trainer, v_session_free_seats
+UC-02
+FR-05
+Запись на занятие
+US-04
+booking, class_session, membership
+Запись
+FR-06
+Отмена записи по правилам клуба
+US-05
+booking, club_rule
+UC-03
+Отмена
+US-06 / FR-06*
+История посещений
+US-06
+booking, attendance, v_client_history
+UC-04
+BR-01
+Запись при свободном месте и условиях абонемента
+v_session_free_seats, booking.membership_id, ux_booking_active
+CON-01
+Нет интеграции с умными часами в MVP
+(в схеме не отражается)
+NFR-01
+Производительность при согласованной нагрузке
+ix_session_starts, ix_booking_client, ix_membership_client
+NFR-02
+Разграничение доступа по ролям
+role, app_user.role_id
+NFR-03
+Нет активации без подтверждённого платежа
+payment.status, составной FK membership→payment
+NFR-04
+Форма записи показывает дату, время, занятие, результат
+class_session, class_type, booking.status
+NFR-05
+Совместимость браузеров и мобильного экрана
+(уровень интерфейса, не БД)
+CON-02
+Обработка персональных данных
+client.pd_consent, pd_consent_date
+CON-03
+Сроки, бюджет, команда
+(управление проектом, не БД)
+* История посещений в исходном реестре задана как US-06 (Could); отдельного FR для неё нет — рекомендуем добавить FR-07.
+ID
+Название
+MoSCoW
+Как потенциальный клиент, я хочу создать аккаунт, чтобы пользоваться онлайн-сервисами клуба.
+Must
+Как клиент, я хочу видеть статус и срок действия абонемента, чтобы знать доступность услуг.
+Как клиент, я хочу выбрать и оплатить тариф, чтобы получить доступ к тренировкам.
+Как клиент, я хочу записаться на занятие, чтобы зарезервировать место.
+Как клиент, я хочу отменить запись по правилам клуба, чтобы освободить место.
+Should
+История
+Как клиент, я хочу видеть историю посещений, чтобы отслеживать регулярность тренировок.
+Could
+

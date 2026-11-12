@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Результат оплаты</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.wrap{display:flex;flex-direction:column;gap:20px;padding:40px 40px 48px;}
+.states{display:flex;gap:16px;align-items:stretch;}
+.st{flex:1;display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:20px;background:var(--surface);border:1px solid var(--border);}
+.st.ok{border-color:rgba(200,245,58,.4);}
+.sect{display:flex;align-items:center;gap:14px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a class="on" href="#">Тарифы</a><a href="#">Расписание</a><a href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="wrap">
+    <div class="row" style="display:flex;align-items:center;gap:14px;">
+      <div class="chipAnn">C-08 · Результат оплаты · UC-01 · NFR-03 · 3 состояния экрана</div>
+    </div>
+    <div class="sect"><div class="chipAnn" style="background:#2A3A0E;">Состояние 1 — Успешная оплата</div><div class="bs t3">payment.status = succeeded → membership активирован</div></div>
+    <div class="st ok">
+      <div class="banner banner-ok" style="background:transparent;padding:0;"><div class="ic">✓</div><div><div class="h3">Оплата подтверждена</div><div class="sb">Банк подтвердил транзакцию</div></div></div>
+      <div class="bm t2">Абонемент «Безлимит» активирован автоматически. Действует до 30.11.2026, без лимита посещений.</div>
+      <div class="row" style="display:flex;gap:12px;align-items:center;">
+        <div class="btn btn-m btn-primary">В личный кабинет</div>
+        <div class="btn btn-m btn-ghost">К расписанию</div>
+      </div>
+    </div>
+    <div class="states" style="margin-top:16px;">
+      <div class="st">
+        <div class="sect"><div class="chipAnn" style="background:#3A1410;">Состояние 2 — Отклонён</div></div>
+        <div class="banner banner-err" style="background:transparent;padding:0;"><div class="ic">✕</div><div><div class="h3">Платёж отклонён</div><div class="sb">Банк отклонил операцию</div></div></div>
+        <div class="bm t2">Абонемент не активирован (NFR-03). Попробуйте другую карту или способ оплаты.</div>
+        <div class="row" style="display:flex;gap:12px;align-items:center;">
+          <div class="btn btn-m btn-secondary">Повторить оплату</div>
+          <div class="btn btn-m btn-ghost">К тарифам</div>
+        </div>
+      </div>
+      <div class="st">
+        <div class="sect"><div class="chipAnn" style="background:#3A2C08;">Состояние 3 — Ожидание</div></div>
+        <div class="banner banner-pend" style="background:transparent;padding:0;"><div class="ic">…</div><div><div class="h3">Ожидание подтверждения</div><div class="sb">Нет ответа провайдера</div></div></div>
+        <div class="bm t2">Заказ сохранён в статусе «ожидание». Статус оплаты можно проверить позже — абонемент активируется после подтверждения.</div>
+        <div class="row" style="display:flex;gap:12px;align-items:center;">
+          <div class="btn btn-m btn-secondary">Проверить статус</div>
+          <div class="btn btn-m btn-ghost">В личный кабинет</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

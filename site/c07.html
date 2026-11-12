@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Оформление покупки</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.wrap{display:flex;gap:32px;padding:40px;align-items:flex-start;}
+.sum{width:460px;display:flex;flex-direction:column;gap:16px;}
+.ord{display:flex;flex-direction:column;gap:14px;padding:28px;border-radius:24px;background:linear-gradient(135deg,#223312 0%,var(--elev) 70%);border:1px solid var(--border2);}
+.oline{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed var(--border2);}
+.oline:last-of-type{border-bottom:none;}
+.pay{flex:1;display:flex;flex-direction:column;gap:18px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.note{display:flex;gap:10px;align-items:center;background:rgba(90,169,248,.12);border:1px solid rgba(90,169,248,.35);border-radius:14px;padding:12px 16px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a class="on" href="#">Тарифы</a><a href="#">Расписание</a><a href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="wrap">
+    <div class="sum">
+      <div class="chipAnn" style="align-self:flex-start;">C-07 · Оформление заказа · UC-01 · FR-03 · US-03</div>
+      <div class="h1">Оформление заказа</div>
+      <div class="ord">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="h3">Тариф «Безлимит»</div>
+          <div class="badge badge-neutral">опубликован</div>
+        </div>
+        <div class="oline"><div class="bs t2">Период действия</div><div class="bs-med">30 дней · 01.11–30.11.2026</div></div>
+        <div class="oline"><div class="bs t2">Лимит посещений</div><div class="bs-med">Без ограничений</div></div>
+        <div class="oline"><div class="bs t2">Тариф</div><div class="bs-med">5 990 ₽</div></div>
+        <div class="oline" style="border-bottom:none;"><div class="bm-med">Итого к оплате</div><div class="h2 t-lime">5 990 ₽</div></div>
+      </div>
+      <div class="bs t3">Предусловие UC-01: клиент авторизован; тарифы опубликованы. После подтверждения оплаты абонемент активируется автоматически (NFR-03).</div>
+    </div>
+    <div class="pay">
+      <div class="h2">Способ оплаты</div>
+      <div class="panel">
+        <div class="row chips" style="display:flex;gap:10px;">
+          <div class="pill on">Карта · платёжный провайдер</div>
+          <div class="pill">СБП</div>
+          <div class="pill">Приложение банка</div>
+        </div>
+        <div class="grid2">
+          <div class="field" style="grid-column:1/-1;"><label>Номер карты</label><div class="input active">4111 •••• •••• 1234</div></div>
+          <div class="field"><label>Срок действия</label><div class="input">11/28</div></div>
+          <div class="field"><label>CVC</label><div class="input">•••</div></div>
+        </div>
+        <div class="note"><div class="badge badge-info" style="flex:none;">UC-01</div><div class="bs">Система направит запрос платёжному провайдеру. Абонемент активируется только после подтверждения платежа.</div></div>
+        <div style="height:6px;"></div>
+        <div class="btn btn-l btn-primary">Оплатить 5 990 ₽</div>
+        <div class="bs t3" style="text-align:center;">Возврат и правила обмена — по правилам клуба (salon ofclub)</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Абонемент</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.wrap{display:flex;flex-direction:column;gap:24px;padding:40px;}
+.member{display:flex;gap:32px;align-items:stretch;}
+.card{flex:1;border-radius:24px;background:linear-gradient(135deg,#223312 0%,var(--elev) 65%);border:1px solid var(--border2);padding:32px;display:flex;flex-direction:column;gap:18px;}
+.states{display:flex;gap:16px;}
+.state{flex:1;display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:16px;background:var(--card);border:1px solid var(--border);opacity:.95;}
+.state .hd{display:flex;justify-content:space-between;align-items:center;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a href="#">Тарифы</a><a href="#">Расписание</a><a class="on" href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="wrap">
+    <div class="row" style="align-items:center;gap:14px;display:flex;">
+      <div class="chipAnn">C-05 · Абонемент · US-02 · FR-02 · NFR-03</div>
+    </div>
+    <div class="row" style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="h1">Мой абонемент</div>
+      <div class="btn btn-m btn-primary">Продлить или сменить тариф</div>
+    </div>
+    <div class="member">
+      <div class="card">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="h2">Тариф «Базовый»</div>
+          <div class="badge badge-solid">Активен</div>
+        </div>
+        <div class="grid3" style="gap:12px;">
+          <div class="stat" style="background:rgba(11,13,12,.4);"><div class="l">Начало действия</div><div class="v" style="font-size:22px;">01.11.2026</div></div>
+          <div class="stat" style="background:rgba(11,13,12,.4);"><div class="l">Срок действия до</div><div class="v" style="font-size:22px;">30.11.2026</div><div class="d">осталось 25 дней</div></div>
+          <div class="stat" style="background:rgba(11,13,12,.4);"><div class="l">Осталось посещений</div><div class="v" style="font-size:22px;">9 из 12</div></div>
+        </div>
+        <div class="bar" style="height:10px;"><i style="width:75%;"></i></div>
+        <div class="row" style="display:flex;justify-content:space-between;" >
+          <div class="bs t2">Платёж №	PAY-2411-0912 · 2 990 ₽ · подтверждён провайдером</div>
+          <div class="bs t3">Согласие на блокировку лимита не требуется</div>
+        </div>
+      </div>
+      <div class="col" style="width:320px;gap:14px;display:flex;flex-direction:column;">
+        <div class="panel">
+          <div class="bs-med t2">Условия тарифа</div>
+          <div class="feat"><div class="f"><span class="chk">✓</span>12 посещений в месяц</div><div class="f"><span class="chk">✓</span>Все виды занятий</div><div class="f"><span class="chk">✓</span>Заморозка 7 дней</div></div>
+        </div>
+        <div class="banner banner-ok"><div class="ic">✓</div><div><div class="tt">Абонемент активен</div><div class="sb">Оплата подтверждена NFR-03</div></div></div>
+      </div>
+    </div>
+    <div class="states">
+      <div class="state">
+        <div class="hd"><div class="bs-med">Состояние: ожидание</div><div class="badge badge-warn">Ожидание</div></div>
+        <div class="bs t2">Платёж обрабатывается. Абонемент активируется после подтверждения провайдера.</div>
+        <div class="bar"><i style="width:45%;"></i></div>
+      </div>
+      <div class="state">
+        <div class="hd"><div class="bs-med">Состояние: истёк</div><div class="badge badge-danger">Истёк</div></div>
+        <div class="bs t2">Срок действия закончился. Продлите абонемент, чтобы снова записываться на занятия.</div>
+        <div class="btn btn-m btn-secondary" style="align-self:flex-start;">Продлить</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

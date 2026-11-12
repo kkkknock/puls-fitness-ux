@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Авторизация</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.top{display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 40px;border-bottom:1px solid var(--border);}
+.split{display:flex;height:880px;}
+.left{width:600px;position:relative;}
+.left img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.env{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(11,13,12,.88) 0%,rgba(11,13,12,.05) 60%);}
+.left .q{position:absolute;left:48px;bottom:48px;right:48px;}
+.right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 96px;gap:18px;}
+.form{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+</style></head>
+<body>
+<div class="top">
+  <div class="logo"><div class="dot" style="width:10px;height:10px;border-radius:50%;background:var(--lime);"></div><div class="h3">ПУЛЬС</div></div>
+  <div class="bm t2">Нет аккаунта? <a class="bm-med" href="#">Создать аккаунт</a></div>
+</div>
+<div class="split">
+  <div class="left">
+    <img src="https://www.figma.com/api/mcp/asset/79791970-47f3-4870-9374-ddca4e87c409.png">
+    <div class="env"></div>
+    <div class="q col" style="display:flex;flex-direction:column;gap:10px;">
+      <div class="h2">С возвращением</div>
+      <div class="bm t2">Ваше расписание и записи ждут вас</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="chipAnn" style="align-self:flex-start;">C-03 · Авторизация · FR-01 · NFR-02</div>
+    <div class="h1">Вход в аккаунт</div>
+    <form class="form">
+      <div class="field"><label>Email</label><div class="input">anna@pulse.fit</div></div>
+      <div class="field"><label>Пароль</label><div class="input">••••••••••••</div></div>
+      <div class="row" style="justify-content:space-between;align-items:center;gap:10px;">
+        <div class="row" style="gap:10px;align-items:center;"><div class="cbtn cb-off"></div><div class="bs t2">Запомнить меня</div></div>
+        <a class="bs-med" href="#">Забыли пароль?</a>
+      </div>
+      <div style="height:8px;"></div>
+      <div class="btn btn-l btn-primary">Войти</div>
+      <div style="height:2px;"></div>
+      <div class="bs t3" style="text-align:center;">Нажимая «Войти», вы соглашаетесь с обработкой персональных данных</div>
+    </form>
+  </div>
+</div>
+</body></html>

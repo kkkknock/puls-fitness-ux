@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Фитнес-клуб «ПУЛЬС» — единая система</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="ui2.css">
+<style>
+  body{padding:0}
+  .daytabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+  .dt{width:64px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 0;border-radius:14px;background:var(--card);border:1px solid var(--border);cursor:pointer}
+  .dt .dd{font-size:20px;font-weight:600}
+  .dt .mm{font-size:12px;color:var(--text3)}
+  .dt.on{background:var(--lime);border-color:var(--lime)}
+  .dt.on .dd,.dt.on .mm{color:var(--ondark)}
+  .prog{display:flex;flex-direction:column;gap:6px}
+  .ph2{height:150px;border-radius:14px;display:flex;align-items:flex-end;padding:14px;position:relative;overflow:hidden}
+  .ph2 .em{position:absolute;right:10px;top:6px;font-size:56px;opacity:.35}
+  .ph2 .nm{font-size:16px;font-weight:600;color:#fff}
+  .g-Yoga{background:linear-gradient(135deg,#2E3B25,#5A7142)} .g-HIIT{background:linear-gradient(135deg,#3E4A12,#8FA52A)}
+  .g-Pilates{background:linear-gradient(135deg,#22303A,#3E5A6B)} .g-Cycling{background:linear-gradient(135deg,#2A1A22,#6B3550)}
+  .g-Stretch{background:linear-gradient(135deg,#2A2A3A,#55557A)} .g-Str{background:linear-gradient(135deg,#3A2A14,#8A6430)}
+  .heroMini{padding:0 40px;margin-top:36px;display:flex;align-items:center;gap:14px}
+  .dlgWrap{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:50}
+  .krow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+  .krow:last-child{border-bottom:none}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--text2);font-size:14px;cursor:pointer;margin-bottom:18px}
+  .back:hover{color:var(--lime)}
+  .mk{display:flex;align-items:center;gap:10px}
+  .mk .mbtn{padding:8px 14px;border-radius:10px;border:1.5px solid var(--border2);background:var(--card);color:var(--text2);font-size:13px;font-weight:600;cursor:pointer}
+  .mk .mbtn.on-p{background:var(--lime);border-color:var(--lime);color:var(--ondark)}
+  .mk .mbtn.on-a{background:#3A1410;border-color:var(--danger);color:var(--danger)}
+  .demo-hint{background:rgba(200,245,58,.07);border:1px dashed rgba(200,245,58,.35);border-radius:12px;padding:10px 14px;font-size:12px;color:var(--text2);line-height:1.7}
+  .toasts{position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:99}
+  .toast{padding:14px 18px;border-radius:12px;background:var(--elev);border:1px solid var(--border2);font-size:14px;max-width:360px;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tin .2s ease}
+  .toast.ok{border-color:var(--lime)} .toast.err{border-color:var(--danger)}
+  @keyframes tin{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  .loginBox{max-width:480px;margin:48px auto}
+  .center{max-width:640px;margin:0 auto}
+  a.navlnk{cursor:pointer}
+  .demo-hint{display:none!important}
+</style>
+</head>
+<body>
+<div class="scr" style="min-height:100vh;display:flex;flex-direction:column;">
+  <div id="topbar"></div>
+  <div id="view" style="flex:1;padding-bottom:48px;"></div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+<div id="modal"></div>
+<div class="toasts" id="toasts"></div>
+
+<script>
+/* ============ УТИЛИТЫ ============ */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const DAYN=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+const MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const dkey=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const fmtD=d=>DAYN[d.getDay()]+', '+d.getDate()+' '+MON[d.getMonth()];
+const fmtS=d=>pad(d.getDate())+'.'+pad(d.getMonth()+1)+'.'+d.getFullYear();
+const fmtHM=d=>pad(d.getHours())+':'+pad(d.getMinutes());
+function toast(msg,kind){const t=document.createElement('div');t.className='toast '+(kind||'');t.textContent=msg;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),4200);}
+function sessStart(s){const [y,m,d]=s.date.split('-').map(Number);const [hh,mm]=s.time.split(':').map(Number);return new Date(y,m-1,d,hh,mm);}
+function sessEnd(s){const t=sessStart(s);return new Date(t.getTime()+(s.dur||60)*60000);}
+
+/* ============ ДАННЫЕ ============ */
+const TARIFFS_DEF=[
+ {id:'raz',name:'Разовый',price:990,days:1,visits:1,hot:false,feats:['Все виды занятий (1 день)','Все зоны клуба']},
+ {id:'base',name:'Базовый',price:2990,days:30,visits:12,hot:true,feats:['12 посещений в месяц','Все виды занятий','Заморозка 7 дней']},
+ {id:'unlim',name:'Безлимит',price:5990,days:30,visits:999,hot:false,feats:['Безлимит посещений','Все виды занятий','Заморозка 14 дней']}
+];
+const TRAINERS_DEF=[
+ {id:'tr1',name:'Иванов Д.',spec:'HIIT, силовая'},
+ {id:'tr2',name:'Соколова А.',spec:'Йога, стретчинг'},
+ {id:'tr3',name:'Орлова М.',spec:'Пилатес'},
+ {id:'tr4',name:'Ким С.',spec:'Сайклинг'}
+];
+const DIRS=['Йога','HIIT','Пилатес','Сайклинг','Стретчинг','Силовая'];
+const GRAD={'Йога':'g-Yoga','HIIT':'g-HIIT','Пилатес':'g-Pilates','Сайклинг':'g-Cycling','Стретчинг':'g-Stretch','Силовая':'g-Str'};
+const EMOJI={'Йога':'🧘','HIIT':'⚡','Пилатес':'🤸','Сайклинг':'🚴','Стретчинг':'🤸‍♀️','Силовая':'🏋️'};
+// недельный шаблон расписания: [направление, время, зал, тренерIdx, вместимость]
+const TMPL={
+ 1:[['Йога','18:00','Зал 2',1,20],['HIIT','18:30','Зал 2',0,20],['Пилатес','19:00','Зал 3',2,20],['Силовая','17:30','Зал 4',0,20]],
+ 2:[['Йога','10:00','Зал 2',1,20],['Сайклинг','19:00','Зал 1',3,20],['HIIT','20:00','Зал 2',0,20]],
+ 3:[['Йога','18:00','Зал 2',1,20],['HIIT','18:30','Зал 2',0,20],['Пилатес','19:00','Зал 3',2,20]],
+ 4:[['Стретчинг','19:00','Зал 3',1,20],['Сайклинг','18:00','Зал 1',3,20],['Силовая','20:00','Зал 4',0,20]],
+ 5:[['Силовая','17:30','Зал 4',0,20],['Йога','18:00','Зал 2',1,20],['HIIT','18:30','Зал 2',0,20],['Пилатес','19:00','Зал 3',2,20],['Сайклинг','19:00','Зал 1',3,20],['Стретчинг','20:00','Зал 3',1,20]],
+ 6:[['Йога','11:00','Зал 2',1,20],['HIIT','12:00','Зал 2',0,20],['Сайклинг','13:00','Зал 1',3,20]],
+ 0:[['Пилатес','11:00','Зал 3',2,20],['Сайклинг','12:00','Зал 1',3,20],['Стретчинг','13:00','Зал 3',1,20]]
+};
+function seedDB(){
+  const today=new Date(); today.setHours(0,0,0,0);
+  const db={users:[],subs:[],sessions:[],bookings:[],att:{},history:[],payments:[],seq:{u:0,s:0,b:0,p:0,t:0}};
+  const nid=(k,p)=>p+(++db.seq[k]);
+  // пользователи (FR-02: уникальный email)
+  const client={id:nid('u','u'),name:'Алия Умарова',email:'client@puls.ru',pass:'demo',role:'client',initials:'АУ',trainerId:null};
+  const trainer={id:nid('u','u'),name:'Дмитрий Иванов',email:'trainer@puls.ru',pass:'demo',role:'trainer',initials:'ДИ',trainerId:'tr1'};
+  const admin={id:nid('u','u'),name:'Администратор',email:'admin@puls.ru',pass:'demo',role:'admin',initials:'АД',trainerId:null};
+  db.users=[client,trainer,admin];
+  // расписание на 7 дней от сегодня
+  for(let i=0;i<7;i++){
+    const d=new Date(today); d.setDate(today.getDate()+i);
+    (TMPL[d.getDay()]||[]).forEach(t=>{
+      db.sessions.push({id:nid('s','s'),name:t[0],dir:t[0],date:dkey(d),time:t[1],dur:60,hall:t[2],trainerId:TRAINERS_DEF[t[3]].id,cap:t[4]});
+    });
+  }
+  // демо-занятия «сегодня» для проверки правил (UC-03: 2 часа)
+  const s1=new Date(Date.now()+1*3600000), s3=new Date(Date.now()+3*3600000);
+  db.sessions.push({id:nid('s','s'),name:'Стретчинг',dir:'Стретчинг',date:dkey(s1),time:pad(s1.getHours())+':'+pad(s1.getMinutes()),dur:60,hall:'Зал 3',trainerId:'tr2',cap:20});
+  db.sessions.push({id:nid('s','s'),name:'Сайклинг',dir:'Сайклинг',date:dkey(s3),time:pad(s3.getHours())+':'+pad(s3.getMinutes()),dur:60,hall:'Зал 1',trainerId:'tr4',cap:20});
+  const soon=db.sessions[db.sessions.length-2], later=db.sessions[db.sessions.length-1];
+  // абонемент клиента (US-02): активен, 10 из 12
+  const st=new Date(today); st.setDate(today.getDate()-20);
+  const en=new Date(today); en.setDate(today.getDate()+10);
+  db.subs.push({id:nid('t','t'),userId:client.id,tariffId:'base',start:dkey(st),end:dkey(en),visitsLeft:10,visitsTotal:12});
+  // записи клиента (US-04): на «сегодня +3ч» и на завтра
+  const tomorrow=new Date(today); tomorrow.setDate(today.getDate()+1);
+  const tomSess=db.sessions.find(s=>s.date===dkey(tomorrow));
+  db.bookings.push({id:nid('b','b'),sessId:later.id,userId:client.id,created:Date.now()-86400000,status:'active'});
+  if(tomSess) db.bookings.push({id:nid('b','b'),sessId:tomSess.id,userId:client.id,created:Date.now()-86400000,status:'active'});
+  // история посещений (US-06, FR-06): прошедшие занятия
+  [[-3,'present'],[-5,'present'],[-8,'absent'],[-10,'present']].forEach(([off,st2],ix)=>{
+    const d=new Date(today); d.setDate(today.getDate()+off);
+    db.history.push({userId:client.id,date:dkey(d),time:'18:30',name:ix%2?'HIIT':'Йога',trainer:'Соколова А.',status:st2});
+  });
+  // платёж (US-02, A-01 выручка)
+  db.payments.push({id:nid('p','p'),userId:client.id,tariffId:'base',amount:2990,status:'paid',date:dkey(st)});
+  return db;
+}
+let DB=null;
+try{ DB=JSON.parse(localStorage.getItem('puls_db')); }catch(e){}
+if(!DB||!DB.users){ DB=seedDB(); save(); }
+function save(){ localStorage.setItem('puls_db',JSON.stringify(DB)); }
+function resetDB(){ DB=seedDB(); save(); location.hash='#/home'; route(); toast('Демо-данные сброшены','ok'); }
+
+/* ============ СЕССИЯ ============ */
+let USER=null;
+try{ USER=JSON.parse(localStorage.getItem('puls_user')); }catch(e){}
+function setUser(u){ USER=u; localStorage.setItem('puls_user',JSON.stringify(u)); }
+function getSub(uid){ const s=DB.subs.find(x=>x.userId===uid&&x.status!=='cancelled'); if(!s)return null; const end=new Date(s.end+'T23:59:59'); s.status=(end>=new Date()&&s.visitsLeft>0)?'active':'expired'; return s; }
+function getTariff(id){ return TARIFFS_DEF.find(t=>t.id===id)||DB.tariffsCustom?.find(t=>t.id===id); }
+function trainerName(id){ const t=TRAINERS_DEF.find(x=>x.id===id); return t?t.name:'—'; }
+function activeBookings(sid){ return DB.bookings.filter(b=>b.sessId===sid&&b.status==='active'); }
+
+/* ============ БИЗНЕС-ПРАВИЛА ============ */
+function canBook(sess){
+  if(!USER||USER.role!=='client') return {ok:false,msg:'Войдите как клиент, чтобы записаться на занятие'};
+  const sub=getSub(USER.id);
+  if(!sub||sub.status!=='active') return {ok:false,msg:'Нет активного абонемента — оформите тариф (UC-01)'};
+  if(sub.visitsLeft<1) return {ok:false,msg:'Посещения абонемента исчерпаны — продлите тариф'};
+  if(activeBookings(sess.id).some(b=>b.userId===USER.id)) return {ok:false,msg:'Вы уже записаны на это занятие (BR-01)'};
+  if(activeBookings(sess.id).length>=sess.cap) return {ok:false,msg:'Свободных мест нет — запись закрыта (BR-01)'};
+  return {ok:true};
+}
+function cancelCheck(sess){
+  const diff=(sessStart(sess)-Date.now())/3600000;
+  if(diff<=0) return {ok:false,msg:'Занятие уже началось — отмена недоступна'};
+  if(diff<2) return {ok:false,msg:'До начала занятия менее 2 часов — отмена недоступна (правило клуба · UC-03)'};
+  return {ok:true};
+}
+
+/* ============ ТОПБАР ============ */
+function renderTopbar(){
+  let nav='',right='';
+  if(!USER){
+    nav=`<a data-go="#/home" class="navlnk ${route0()==='home'?'on':''}">Главная</a>
+         <a data-go="#/tariffs" class="navlnk ${route0()==='tariffs'?'on':''}">Тарифы</a>
+         <a data-go="#/schedule" class="navlnk ${route0()==='schedule'||route0()==='session'?'on':''}">Расписание</a>`;
+    right=`<div class="btn btn-m btn-primary" data-go="#/login">Войти</div>`;
+  }else if(USER.role==='client'){
+    nav=`<a data-go="#/home" class="navlnk ${route0()==='home'?'on':''}">Главная</a>
+         <a data-go="#/tariffs" class="navlnk ${route0()==='tariffs'?'on':''}">Тарифы</a>
+         <a data-go="#/schedule" class="navlnk ${route0()==='schedule'||route0()==='session'?'on':''}">Расписание</a>
+         <a data-go="#/bookings" class="navlnk ${route0()==='bookings'?'on':''}">Мои записи</a>`;
+    right=`<div class="badge badge-green">Клиент · ${esc(USER.name.split(' ')[0])}</div><div class="avatar" data-go="#/cabinet" style="cursor:pointer">${esc(USER.initials)}</div>`;
+  }else if(USER.role==='trainer'){
+    nav=`<a data-go="#/t1" class="navlnk ${route0().startsWith('t')?'on':''}">Мои занятия</a>`;
+    right=`<div class="badge badge-info">Тренер · ${esc(USER.name.split(' ')[0])}</div><div class="avatar" data-go="#/t1" style="cursor:pointer">${esc(USER.initials)}</div>`;
+  }else{
+    nav=`<a data-go="#/a1" class="navlnk ${route0()==='a1'?'on':''}">Обзор</a>
+         <a data-go="#/a2" class="navlnk ${route0()==='a2'?'on':''}">Расписание</a>
+         <a data-go="#/a3" class="navlnk ${route0()==='a3'?'on':''}">Тарифы</a>`;
+    right=`<div class="badge badge-warn">Администратор</div><div class="avatar" data-go="#/a1" style="cursor:pointer">${esc(USER.initials)}</div>`;
+  }
+  $('#topbar').innerHTML=`<div class="topbar">
+    <div class="logo" data-go="#/home" style="cursor:pointer"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav">${nav}</nav><div class="sp"></div>${right}</div>`;
+}
+function route0(){ return (location.hash||'#/home').slice(2).split('/')[0]; }
+
+/* ============ РОУТЕР ============ */
+window.addEventListener('hashchange',route);
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');
+  if(g){ e.preventDefault(); location.hash=g.getAttribute('data-go'); return; }
+  const a=e.target.closest('[data-act]');
+  if(a){ ACT[a.getAttribute('data-act')](a); }
+});
+function route(){
+  renderTopbar(); closeModal();
+  const h=(location.hash||'#/home').slice(2);
+  const p=h.split('/');
+  const views={
+    'home':vHome,'tariffs':vTariffs,'schedule':vSchedule,'session':vSession,
+    'login':vLogin,'register':vRegister,'pay':vPay,'payres':vPayRes,
+    'cabinet':vCabinet,'bookings':vBookings,'cancel':vCancel,'history':vHistory,
+    'booked':vBooked,'t1':vT1,'t2':vT2,'t3':vT3,'a1':vA1,'a2':vA2,'a3':vA3
+  };
+  const roleGuard={cabinet:'client',bookings:'client',cancel:'client',history:'client',pay:'client',payres:'client',booked:'client',t1:'trainer',t2:'trainer',t3:'trainer',a1:'admin',a2:'admin',a3:'admin'};
+  const need=roleGuard[p[0]];
+  if(need&&(!USER||USER.role!==need)){ toast('Требуется вход: '+({client:'клиент',trainer:'тренер',admin:'администратор'}[need]),'err'); setUser(null); location.hash='#/login'; return; }
+  const fn=views[p[0]]||v404;
+  $('#view').innerHTML=fn(p[1]);
+  if(p[0]==='schedule') renderScheduleGrid();
+  window.scrollTo(0,0);
+}
+
+/* ============ ОБЩИЕ БЛОКИ ============ */
+function chip(code){ return ''; }
+function phBlock(dir,big){ return `<div class="ph2 ${GRAD[dir]||'g-Yoga'}" ${big?'style="height:260px;border-radius:20px"':''}><div class="em">${EMOJI[dir]||'🏋️'}</div><div class="nm">${esc(dir)}</div></div>`; }
+function seatsBar(sess){
+  const left=sess.cap-activeBookings(sess.id).length, pct=Math.min(100,Math.round(activeBookings(sess.id).length/sess.cap*100));
+  const full=left<1;
+  return `<div class="prog"><div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="bs ${full?'t-danger':'t2'}">${full?'Мест нет':('Осталось '+left+' из '+sess.cap+' мест')}</div></div>`;
+}
+function subCard(){
+  const sub=getSub(USER.id);
+  if(!sub) return `<div class="panel"><div class="h3">Абонемент</div><div class="bs t2">Активного абонемента нет.</div><div class="btn btn-m btn-primary" data-go="#/tariffs">Выбрать тариф</div></div>`;
+  const t=getTariff(sub.tariffId)||{name:'Тариф'};
+  const pct=Math.round(sub.visitsLeft/sub.visitsTotal*100);
+  const daysLeft=Math.max(0,Math.round((new Date(sub.end+'T23:59:59')-new Date())/86400000));
+  return `<div class="panel"><div style="display:flex;align-items:center;gap:12px;"><div class="h3" style="flex:1">Абонемент · ${esc(t.name)}</div><div class="badge ${sub.status==='active'?'badge-green':'badge-danger'}">${sub.status==='active'?'Активен':'Истёк'}</div></div>
+    <div class="krow"><span class="bs t2">Посещения</span><span class="bs-med">${sub.visitsLeft>=999?'∞':sub.visitsLeft} из ${sub.visitsTotal>=999?'∞':sub.visitsTotal}</span></div>
+    <div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="krow"><span class="bs t2">Действует до</span><span class="bs-med">${sub.end}</span></div>
+    <div class="krow"><span class="bs t2">Осталось дней</span><span class="bs-med">${daysLeft}</span></div></div>`;
+}
+function banner(kind,tt,sb){ return `<div class="banner banner-${kind}"><div class="ic">${kind==='ok'?'✓':kind==='err'?'✕':'!'}</div><div class="col"><div class="tt">${tt}</div>${sb?`<div class="sb">${sb}</div>`:''}</div></div>`; }
+function modal(html){ $('#modal').innerHTML=`<div class="dlgWrap" data-act="closeModal">${html}</div>`; }
+function closeModal(){ $('#modal').innerHTML=''; }
+
+/* ============ ЭКРАН: ГЛАВНАЯ (US-01) ============ */
+function vHome(){
+  const stats=DB.sessions.filter(s=>s.date===dkey(new Date())).length;
+  return `
+  <div class="hero" style="display:flex;gap:60px;padding:64px 40px;align-items:center;">
+    <div style="display:flex;flex-direction:column;gap:22px;max-width:600px;">
+      ${chip('US-01 · FR-01 · Гость → клиент')}
+      <div class="disp" style="font-size:52px;line-height:58px;">Сила начинается здесь</div>
+      <div class="bl t2">Расписание, абонементы и записи — в единой системе клуба «ПУЛЬС». Выбирайте тариф и записывайтесь на занятия онлайн.</div>
+      <div style="display:flex;gap:14px;">
+        <div class="btn btn-l btn-primary" data-go="#/tariffs">Выбрать тариф</div>
+        <div class="btn btn-l btn-secondary" data-go="#/schedule">Смотреть расписание</div>
+      </div>
+      <div style="display:flex;gap:16px;">
+        <div class="stat" style="width:190px"><div class="l">Занятий сегодня</div><div class="v">${stats}</div><div class="d">в залах клуба</div></div>
+        <div class="stat" style="width:190px"><div class="l">Направлений</div><div class="v">${DIRS.length}</div><div class="d">йога · HIIT · сайклинг…</div></div>
+        <div class="stat" style="width:190px"><div class="l">Тренеров</div><div class="v">${TRAINERS_DEF.length}</div><div class="d">у каждого специализация</div></div>
+      </div>
+    </div>
+    ${phBlock('HIIT',true)}
+  </div>
+  <div class="sec">
+    <div style="display:flex;align-items:center;margin-bottom:18px;"><div class="h2">Направления</div><div class="sp"></div><a class="bm-med" data-go="#/schedule" style="cursor:pointer">Все виды занятий ›</a></div>
+    <div class="grid4">${DIRS.map(d=>`
+      <div class="cc" style="cursor:pointer" data-go="#/schedule">${phBlock(d)}<div class="h3">${d}</div><div class="bs t2">${DB.sessions.filter(s=>s.dir===d).length} занятий на этой неделе</div></div>`).join('')}
+    </div>
+  </div>
+  <div class="cta" style="display:flex;align-items:center;gap:24px;margin:48px 40px 0;padding:36px 48px;border-radius:24px;background:var(--lime);">
+    <div class="t" style="font-size:26px;font-weight:700;color:var(--ondark);flex:1;">Присоединяйтесь — выберите тариф и начните тренировки</div>
+    <div class="btn btn-l btn-dark" data-go="#/tariffs">Выбрать тариф</div>
+  </div>
+  <div class="sec" style="margin-top:24px;"><div class="demo-hint">Демо-доступы: клиент <b>client@puls.ru / demo</b> · тренер <b>trainer@puls.ru / demo</b> · админ <b>admin@puls.ru / demo</b></div></div>`;
+}
+
+/* ============ ТАРИФЫ (UC-01, FR-03) ============ */
+function allTariffs(){ return TARIFFS_DEF.concat(DB.tariffsCustom||[]); }
+function vTariffs(){
+  const ts=allTariffs();
+  return `
+  <div class="hero" style="position:relative;height:300px;overflow:hidden;background:linear-gradient(120deg,#1A2413,#2E3B25);">
+    <div style="position:relative;padding:64px 40px;display:flex;flex-direction:column;gap:12px;max-width:760px;">
+      ${chip('UC-01 · US-02 · FR-03 · предусловие: клиент зарегистрирован')}
+      <div class="disp2">Тарифы клуба</div>
+      <div class="bl t2" style="max-width:560px;">После оплаты абонемент активируется автоматически. Оплата — картой через платёжного провайдера.</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:20px;padding:40px;flex-wrap:wrap;">
+    ${ts.map(t=>`
+    <div class="tariff ${t.hot?'hot':''}" style="width:360px;flex:1;min-width:300px;">
+      ${t.hot?'<div class="badge badge-solid">Выбор клиентов</div>':''}
+      <div class="h3">${esc(t.name)}</div>
+      <div class="price"><div class="n">${t.price} ₽</div><div class="bs t2">/ ${t.days} дн.</div></div>
+      <div class="bs t2">${t.visits>=999?'Безлимит посещений':(t.visits+' посещение(й)')} на ${t.days} дней</div>
+      <div class="feat">${(t.feats||['Доступ в клуб']).map(f=>`<div class="f"><span class="chk">✓</span>${esc(f)}</div>`).join('')}</div>
+      <div style="height:6px"></div>
+      <div class="btn btn-l ${t.hot?'btn-primary':'btn-secondary'}" data-act="chooseTariff" data-id="${t.id}" style="width:100%">Выбрать и оплатить</div>
+    </div>`).join('')}
+  </div>`;
+}
+const ACT={
+  closeModal(){ closeModal(); },
+  chooseTariff(el){ if(!USER){ toast('Сначала войдите или зарегистрируйтесь','err'); location.hash='#/login'; return; } location.hash='#/pay/'+el.getAttribute('data-id'); },
+  logout(){ setUser(null); toast('Вы вышли из системы'); location.hash='#/home'; },
+  quickLogin(el){ doLogin(el.getAttribute('data-email')); },
+  fillCard(el){ const c=el.getAttribute('data-card'); $('#cardnum').value=c; },
+  doBook(el){ doBook(el.getAttribute('data-id')); },
+  askCancel(el){ location.hash='#/cancel/'+el.getAttribute('data-id'); },
+  confirmCancel(el){ doCancel(el.getAttribute('data-id')); },
+  setMark(el){ setMark(el.getAttribute('data-sid'),el.getAttribute('data-uid'),el.getAttribute('data-v')); },
+  saveMarks(el){ saveMarks(el.getAttribute('data-id')); },
+  delSession(el){ delSession(el.getAttribute('data-id')); },
+  delTariff(el){ delTariff(el.getAttribute('data-id')); },
+  pickDay(el){ $('#a2day').value=el.getAttribute('data-v'); document.querySelectorAll('#a2days .dt').forEach(x=>x.classList.remove('on')); el.classList.add('on'); },
+  filterDir(el){ const v=el.getAttribute('data-v'); state.dir=v; document.querySelectorAll('#dirchips .pill').forEach(x=>x.classList.remove('on')); el.classList.add('on'); renderScheduleGrid(); },
+  pickDayTab(el){ const v=el.getAttribute('data-v'); state.day=v; document.querySelectorAll('#daytabs .dt').forEach(x=>x.classList.toggle('on',x.getAttribute('data-v')===v)); renderScheduleGrid(); }
+};
+
+/* ============ ОПЛАТА (UC-01, C-07/C-08) ============ */
+function vPay(tariffId){
+  const t=getTariff(tariffId); if(!t) return v404();
+  return `<div class="center" style="max-width:820px;padding:48px 40px;">
+    <div class="back" data-go="#/tariffs">‹ К тарифам</div>
+    ${chip('C-07 · UC-01 · Оформление оплаты · FR-03')}
+    <div style="display:flex;gap:24px;margin-top:16px;">
+      <div class="panel" style="flex:1">
+        <div class="h3">Оформление оплаты</div>
+        <div class="krow"><span class="bs t2">Тариф</span><span class="bs-med">${esc(t.name)}</span></div>
+        <div class="krow"><span class="bs t2">Период</span><span class="bs-med">${t.days} дн. · ${t.visits>=999?'∞':t.visits} посещений</span></div>
+        <div class="krow"><span class="bs t2">К оплате</span><span class="bs-med t-lime" style="font-size:20px;font-weight:700">${t.price} ₽</span></div>
+        <div class="demo-hint">Демо-шлюз: номер на <b>4</b> — успех · на <b>9</b> — ожидание · на <b>0</b> — отказ</div>
+        <form onsubmit="return paySubmit(event,'${t.id}')">
+          <div class="field"><label>Номер карты</label><input class="input" id="cardnum" placeholder="0000 0000 0000 0000" maxlength="19" required></div>
+          <div style="display:flex;gap:12px">
+            <div class="field" style="flex:1"><label>Срок</label><input class="input" placeholder="MM/ГГ" maxlength="5" required></div>
+            <div class="field" style="flex:1"><label>CVC</label><input class="input" placeholder="•••" maxlength="3" required></div>
+          </div>
+          <div class="field"><label>Держатель карты</label><input class="input" placeholder="IVAN IVANOV" required></div>
+          <button class="btn btn-l btn-primary" style="width:100%" type="submit">Оплатить ${t.price} ₽</button>
+        </form>
+      </div>
+      <div style="width:320px;display:flex;flex-direction:column;gap:14px;">
+        ${subCard()}
+        <div class="panel"><div class="bs t2">Проверка карты не требует реальных данных — это демонстрация UC-01. После успешной оплаты абонемент активируется автоматически (NFR-03).</div></div>
+      </div>
+    </div>
+  </div>`;
+}
+function paySubmit(e,tariffId){
+  e.preventDefault();
+  const num=$('#cardnum').value.replace(/\D/g,'');
+  if(num.length<12){ toast('Введите номер карты','err'); return false; }
+  const t=getTariff(tariffId);
+  const status=num.startsWith('9')?'pending':num.startsWith('0')?'declined':'paid';
+  const p={id:'p'+(++DB.seq.p),userId:USER.id,tariffId,amount:t.price,status,date:dkey(new Date())};
+  DB.payments.push(p);
+  if(status==='paid') applySub(USER.id,t);
+  save();
+  location.hash='#/payres/'+p.id;
+  return false;
+}
+function applySub(uid,t){
+  const old=DB.subs.find(x=>x.userId===uid);
+  if(old){ old.tariffId=t.id; old.visitsTotal=t.visits; old.visitsLeft=t.visits; old.start=dkey(new Date());
+    const e=new Date(); e.setDate(e.getDate()+t.days); old.end=dkey(e); old.status='active'; }
+  else{ const e=new Date(); e.setDate(e.getDate()+t.days);
+    DB.subs.push({id:'t'+(++DB.seq.t),userId:uid,tariffId:t.id,start:dkey(new Date()),end:dkey(e),visitsLeft:t.visits,visitsTotal:t.visits}); }
+}
+function vPayRes(pid){
+  const p=DB.payments.find(x=>x.id===pid); if(!p) return v404();
+  const t=getTariff(p.tariffId)||{name:'Тариф'};
+  const st=p.status==='paid'?['ok','Оплата прошла успешно','Абонемент активирован автоматически (NFR-03)']
+        :p.status==='pending'?['pend','Ожидание подтверждения','Платёж обрабатывается банком — статус обновится']
+        :['err','Платёж отклонён','Попробуйте другую карту или обратитесь в клуб'];
+  return `<div class="center" style="padding:64px 40px;">
+    ${chip('C-08 · UC-01 · Результат оплаты · альтернативы: успех / ожидание / отказ')}
+    ${banner(st[0],st[1],st[2])}
+    <div class="panel" style="margin-top:18px">
+      <div class="krow"><span class="bs t2">Тариф</span><span class="bs-med">${esc(t.name)}</span></div>
+      <div class="krow"><span class="bs t2">Сумма</span><span class="bs-med">${p.amount} ₽</span></div>
+      <div class="krow"><span class="bs t2">Дата</span><span class="bs-med">${p.date}</span></div>
+      <div class="krow"><span class="bs t2">Статус</span><span class="bs-med">${p.status==='paid'?'Оплачен':p.status==='pending'?'Ожидание':'Отклонён'}</span></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:18px">
+      <div class="btn btn-m btn-primary" data-go="#/schedule">К расписанию</div>
+      <div class="btn btn-m btn-secondary" data-go="#/cabinet">Личный кабинет</div>
+      ${p.status!=='paid'?`<div class="btn btn-m btn-ghost" data-go="#/tariffs">Выбрать другой тариф</div>`:''}
+    </div>
+  </div>`;
+}
+
+/* ============ РАСПИСАНИЕ (UC-02, FR-04, BR-01) ============ */
+let state={day:null,dir:'Все'};
+function weekList(){
+  const out=[],t=new Date(); t.setHours(0,0,0,0);
+  for(let i=0;i<7;i++){ const d=new Date(t); d.setDate(t.getDate()+i); out.push(d); }
+  return out;
+}
+function vSchedule(){
+  const days=weekList(); if(!state.day) state.day=dkey(days[0]);
+  return `<div class="sec" style="padding-top:36px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('C-09 · UC-02 · US-04 · FR-04 · BR-01')}
+      <div class="sp"></div>
+    </div>
+    <div class="daytabs" id="daytabs">${days.map(d=>`
+      <div class="dt ${dkey(d)===state.day?'on':''}" data-v="${dkey(d)}" data-act="pickDayTab"><div class="dd">${DAYN[d.getDay()]}</div><div class="mm">${fmtS(d).slice(0,5)}</div></div>`).join('')}</div>
+    <div class="chips" id="dirchips" style="margin-bottom:20px;">
+      ${['Все'].concat(DIRS).map(x=>`<div class="pill ${state.dir===x?'on':''}" data-v="${x}" data-act="filterDir" style="cursor:pointer">${x}</div>`).join('')}
+    </div>
+    <div class="grid3" id="schedGrid"></div>
+  </div>`;
+}
+function renderScheduleGrid(){
+  const list=DB.sessions.filter(s=>s.date===state.day&&(state.dir==='Все'||s.dir===state.dir)).sort((a,b)=>a.time<b.time?-1:1);
+  $('#schedGrid').innerHTML=list.length?list.map(s=>{
+    const bk=canBook(s), started=sessStart(s)<=new Date();
+    return `<div class="cc">
+      <div data-go="#/session/${s.id}" style="cursor:pointer">${phBlock(s.dir)}<div class="h3" style="margin-top:14px">${esc(s.name)}</div></div>
+      <div class="meta"><div>${DAYN[new Date(s.date+'T00:00').getDay()]} · ${s.time}–${fmtHM(sessEnd(s))}</div><div>${esc(s.hall)}</div><div>${esc(trainerName(s.trainerId))}</div></div>
+      ${seatsBar(s)}
+      ${started?'<div class="btn btn-m btn-secondary" style="width:100%;opacity:.5">Началось</div>'
+        :USER&&USER.role==='client'&&activeBookings(s.id).some(b=>b.userId===USER.id)
+          ?`<div class="btn btn-m btn-secondary" style="width:100%" data-go="#/bookings">Вы записаны ✓</div>`
+          :`<div class="btn btn-m ${bk.ok?'btn-primary':'btn-secondary'}" style="width:100%;${bk.ok?'':'opacity:.6'}" data-act="doBook" data-id="${s.id}">${bk.ok?'Записаться':'Недоступно'}</div>`}
+    </div>`;
+  }).join(''):`<div class="panel">В этот день занятий направления нет — выберите другой день или фильтр.</div>`;
+}
+function doBook(sid){
+  const s=DB.sessions.find(x=>x.id===sid); if(!s) return;
+  const chk=canBook(s);
+  if(!chk.ok){
+    if(!USER||USER.role!=='client'){ toast(chk.msg,'err'); location.hash='#/login'; return; }
+    modal(`<div class="dialog">${banner('err',chk.msg,'BR-01 · предусловия UC-02')}
+      <div class="btns"><div class="btn btn-m btn-secondary" data-act="closeModal" style="flex:1">Понятно</div>
+      <div class="btn btn-m btn-primary" data-go="#/tariffs" style="flex:1">К тарифам</div></div></div>`);
+    return;
+  }
+  const left=s.cap-activeBookings(s.id).length;
+  modal(`<div class="dialog">
+    <div class="h3">Запись на занятие</div>
+    ${banner('ok',esc(s.name)+' · '+s.time,esc(s.hall)+' · '+esc(trainerName(s.trainerId))+' · осталось мест: '+left)}
+    <div class="bs t2">При записи спишется 1 посещение абонемента. Отмена — не позднее чем за 2 часа до начала (UC-03).</div>
+    <div class="btns"><div class="btn btn-m btn-secondary" data-act="closeModal" style="flex:1">Отмена</div>
+    <div class="btn btn-m btn-primary" data-act="confirmBook" data-id="${s.id}" style="flex:1">Записаться</div></div></div>`);
+}
+ACT.confirmBook=el=>{
+  const s=DB.sessions.find(x=>x.id===el.getAttribute('data-id'));
+  const chk=canBook(s); if(!chk.ok){ closeModal(); doBook(s.id); return; }
+  DB.bookings.push({id:'b'+(++DB.seq.b),sessId:s.id,userId:USER.id,created:Date.now(),status:'active'});
+  const sub=getSub(USER.id); sub.visitsLeft--; save(); closeModal();
+  location.hash='#/booked/'+DB.bookings[DB.bookings.length-1].id;
+};
+function vBooked(bid){
+  const b=DB.bookings.find(x=>x.id===bid); if(!b) return v404();
+  const s=DB.sessions.find(x=>x.id===b.sessId), sub=getSub(USER.id);
+  return `<div class="center" style="padding:64px 40px">
+    ${chip('C-11 · UC-02 · Запись подтверждена · FR-05')}
+    ${banner('ok','Вы записаны на занятие',esc(s.name)+' · '+fmtD(new Date(s.date+'T00:00'))+' · '+s.time+' · '+esc(s.hall))}
+    <div class="panel" style="margin-top:18px">
+      <div class="krow"><span class="bs t2">Тренер</span><span class="bs-med">${esc(trainerName(s.trainerId))}</span></div>
+      <div class="krow"><span class="bs t2">Списано посещений</span><span class="bs-med">1 (осталось ${sub.visitsLeft>=999?'∞':sub.visitsLeft})</span></div>
+      <div class="krow"><span class="bs t2">Напоминание</span><span class="bs-med">Отмена — не позднее чем за 2 часа</span></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:18px">
+      <div class="btn btn-m btn-primary" data-go="#/schedule">Ещё занятие</div>
+      <div class="btn btn-m btn-secondary" data-go="#/bookings">Мои записи</div>
+    </div></div>`;
+}
+
+/* ============ КАРТОЧКА ЗАНЯТИЯ (UC-02, C-10, BR-01) ============ */
+function vSession(sid){
+  const s=DB.sessions.find(x=>x.id===sid); if(!s) return v404();
+  const started=sessStart(s)<=new Date();
+  const already=USER&&USER.role==='client'&&activeBookings(s.id).some(b=>b.userId===USER.id);
+  const chk=USER&&USER.role==='client'?canBook(s):null;
+  const sub=USER?getSub(USER.id):null;
+  let stateHtml='';
+  if(started) stateHtml=banner('pend','Занятие началось','Запись закрыта');
+  else if(already) stateHtml=banner('ok','Вы уже записаны','Управление записью — в разделе «Мои записи» (UC-03)');
+  else if(chk&&!chk.ok){
+    const needSub=/абонемент|исчерпаны/.test(chk.msg);
+    stateHtml=banner('err',chk.msg,needSub?'BR-01 · предусловие UC-02: активный абонемент':'BR-01 · вместимость группы');
+  } else if(!USER) stateHtml=`<div class="banner banner-pend"><div class="ic">!</div><div class="col"><div class="tt">Для записи войдите как клиент</div><div class="sb">Регистрация занимает минуту (US-01)</div></div></div>`;
+  return `<div class="sec" style="padding-top:36px;max-width:1020px;">
+    <div class="back" data-go="#/schedule">‹ К расписанию</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:420px">${phBlock(s.dir,true)}</div>
+      <div style="flex:1;min-width:340px;display:flex;flex-direction:column;gap:16px">
+        ${chip('C-10 · UC-02 · Карточка занятия · BR-01 · альтернативы: нет мест / нет абонемента / уже записан')}
+        <div class="h2">${esc(s.name)}</div>
+        <div class="meta"><div>${fmtD(new Date(s.date+'T00:00'))}</div><div>${s.time}–${fmtHM(sessEnd(s))}</div><div>${esc(s.hall)}</div><div>${esc(trainerName(s.trainerId))}</div></div>
+        ${seatsBar(s)}
+        ${stateHtml}
+        <div class="panel">
+          <div class="krow"><span class="bs t2">Стоимость</span><span class="bs-med">1 посещение абонемента</span></div>
+          <div class="krow"><span class="bs t2">Ваш абонемент</span><span class="bs-med">${sub?(getTariff(sub.tariffId)||{name:'—'}).name+' · '+(sub.visitsLeft>=999?'∞':sub.visitsLeft)+' посещений':'нет (оформите тариф)'}</span></div>
+          <div class="krow"><span class="bs t2">Правило отмены</span><span class="bs-med">не позднее 2 часов до начала</span></div>
+        </div>
+        ${(!started&&!already)?
+          `<div style="display:flex;gap:12px">
+            ${USER&&chk&&chk.ok?`<div class="btn btn-l btn-primary" data-act="doBook" data-id="${s.id}">Записаться</div>`
+              :USER?'':'<div class="btn btn-l btn-primary" data-go="#/login">Войти и записаться</div>'}
+            ${USER&&(!chk||!chk.ok)&&/абонемент|исчерпаны/.test(chk?chk.msg:'')?`<div class="btn btn-l btn-secondary" data-go="#/tariffs">Выбрать тариф</div>`:''}
+          </div>`:''}
+      </div>
+    </div></div>`;
+}
+
+/* ============ МОИ ЗАПИСИ + ОТМЕНА (UC-03, US-05) ============ */
+function vBookings(){
+  const mine=DB.bookings.filter(b=>b.userId===USER.id&&b.status==='active')
+    .map(b=>({b,s:DB.sessions.find(x=>x.id===b.sessId)})).filter(x=>x.s)
+    .sort((a,b)=>sessStart(a.s)<sessStart(b.s)?-1:1);
+  return `<div class="sec" style="padding-top:36px;max-width:980px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('C-12 · UC-03 · US-05 · Мои записи')}
+      <div class="sp"></div><div class="btn btn-m btn-ghost" data-go="#/history">История посещений</div>
+    </div>
+    ${mine.length?mine.map(({b,s})=>{
+      const ck=cancelCheck(s);
+      return `<div class="brow">
+        <div class="dchip"><div class="dd">${pad(new Date(s.date+'T00:00').getDate())}</div><div class="mm">${MON[new Date(s.date+'T00:00').getMonth()].slice(0,3)}</div></div>
+        <div class="mid"><div class="bs-med">${esc(s.name)} · ${s.time}–${fmtHM(sessEnd(s))}</div><div class="cap t3">${esc(s.hall)} · ${esc(trainerName(s.trainerId))}</div></div>
+        ${sessStart(s)<=new Date()?'<div class="badge badge-neutral">Идёт / прошло</div>'
+          :`<div class="btn btn-m ${ck.ok?'btn-secondary':'btn-ghost'}" style="${ck.ok?'':'opacity:.55'}" data-act="askCancel" data-id="${b.id}">Отменить</div>`}
+      </div>`;
+    }).join(''):`<div class="panel">Активных записей нет. <span class="t-lime" style="cursor:pointer" data-go="#/schedule">Выбрать занятие ›</span></div>`}
+    <div class="demo-hint" style="margin-top:18px">Правило отмены: не позднее чем за 2 часа до начала. Занятие «сегодня в течение часа» — для проверки отказа, «через 3 часа» — для проверки успешной отмены.</div>
+  </div>`;
+}
+function vCancel(bid){
+  const b=DB.bookings.find(x=>x.id===bid&&x.userId===USER.id); if(!b) return v404();
+  const s=DB.sessions.find(x=>x.id===b.sessId), ck=cancelCheck(s);
+  return `<div class="center" style="padding:64px 40px">
+    ${chip('C-13 · UC-03 · Отмена записи · BR-01')}
+    <div class="dialog" style="margin:0 auto">
+      <div class="h3">Отмена записи</div>
+      <div class="krow"><span class="bs t2">Занятие</span><span class="bs-med">${esc(s.name)}</span></div>
+      <div class="krow"><span class="bs t2">Когда</span><span class="bs-med">${fmtD(new Date(s.date+'T00:00'))} · ${s.time}</span></div>
+      <div class="krow"><span class="bs t2">До начала</span><span class="bs-med">${Math.max(0,Math.round((sessStart(s)-Date.now())/3600000*10)/10)} ч</span></div>
+      ${ck.ok?banner('pend','Отмена доступна','Посещение вернётся на абонемент')
+             :banner('err','Отмена недоступна',ck.msg)}
+      <div class="btns">
+        <div class="btn btn-m btn-secondary" data-go="#/bookings" style="flex:1">Назад</div>
+        ${ck.ok?`<div class="btn btn-m btn-primary" data-act="confirmCancel" data-id="${b.id}" style="flex:1">Подтвердить отмену</div>`:''}
+      </div></div></div>`;
+}
+function doCancel(bid){
+  const b=DB.bookings.find(x=>x.id===bid); if(!b) return;
+  const s=DB.sessions.find(x=>x.id===b.sessId), ck=cancelCheck(s);
+  if(!ck.ok){ toast(ck.msg,'err'); location.hash='#/bookings'; return; }
+  b.status='cancelled'; const sub=getSub(USER.id); sub.visitsLeft++; save();
+  location.hash='#/bookings'; toast('Запись отменена, посещение возвращено ('+sub.visitsLeft+')','ok');
+}
+
+/* ============ ИСТОРИЯ (US-06, FR-06) ============ */
+function vHistory(){
+  const mine=DB.history.filter(h=>h.userId===USER.id).sort((a,b)=>a.date<b.date?1:-1);
+  return `<div class="sec" style="padding-top:36px;max-width:980px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('C-14 · US-06 · FR-06 · История посещений')}
+      <div class="sp"></div><div class="btn btn-m btn-ghost" data-go="#/bookings">Мои записи</div>
+    </div>
+    <div class="tbl wrap"><table class="tbl"><tr><th>Дата</th><th>Занятие</th><th>Время</th><th>Тренер</th><th>Статус</th></tr>
+    ${mine.length?mine.map(h=>`<tr><td>${h.date}</td><td>${esc(h.name)}</td><td>${h.time}</td><td>${esc(h.trainer)}</td>
+      <td><span class="badge ${h.status==='present'?'badge-green':'badge-danger'}">${h.status==='present'?'Был':'Не был'}</span></td></tr>`).join('')
+      :'<tr><td colspan="5" class="t2">Записей пока нет</td></tr>'}</table></div></div>`;
+}
+
+/* ============ РЕГИСТРАЦИЯ / ВХОД (US-01, FR-02) ============ */
+function vLogin(){
+  if(USER){ location.hash='#/home'; return ''; }
+  return `<div class="loginBox">
+    ${chip('C-03 · US-01 · FR-02 · Авторизация')}
+    <div class="panel" style="margin-top:16px">
+      <div class="h3">Вход в систему</div>
+      <form onsubmit="return loginSubmit(event)">
+        <div class="field"><label>Email</label><input class="input" id="lemail" type="email" placeholder="you@mail.ru" required></div>
+        <div class="field"><label>Пароль</label><input class="input" id="lpass" type="password" placeholder="••••••" required></div>
+        <button class="btn btn-l btn-primary" style="width:100%" type="submit">Войти</button>
+      </form>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        <div class="bs t2" style="flex:1;align-self:center">Нет аккаунта?</div>
+        <div class="btn btn-m btn-secondary" data-go="#/register">Регистрация</div></div>
+      <div class="demo-hint">Быстрый вход:
+        <span class="t-lime" style="cursor:pointer" data-act="quickLogin" data-email="client@puls.ru">клиент</span> ·
+        <span class="t-info" style="cursor:pointer" data-act="quickLogin" data-email="trainer@puls.ru">тренер</span> ·
+        <span class="t-warn" style="cursor:pointer" data-act="quickLogin" data-email="admin@puls.ru">админ</span></div>
+    </div></div>`;
+}
+function doLogin(email){
+  const u=DB.users.find(x=>x.email===email); if(!u) return false;
+  setUser(u); location.hash=u.role==='client'?'#/cabinet':u.role==='trainer'?'#/t1':'#/a1';
+  return true;
+}
+function loginSubmit(e){
+  e.preventDefault();
+  const u=DB.users.find(x=>x.email===$('#lemail').value.trim().toLowerCase()&&x.pass===$('#lpass').value);
+  if(!u){ toast('Неверный email или пароль (FR-02)','err'); return false; }
+  setUser(u); toast('Добро пожаловать, '+u.name.split(' ')[0]+'!','ok');
+  location.hash=u.role==='client'?'#/cabinet':u.role==='trainer'?'#/t1':'#/a1';
+  return false;
+}
+function vRegister(){
+  if(USER){ location.hash='#/home'; return ''; }
+  return `<div class="loginBox">
+    ${chip('C-02 · US-01 · FR-02 · Регистрация')}
+    <div class="panel" style="margin-top:16px">
+      <div class="h3">Создать аккаунт</div>
+      <form onsubmit="return regSubmit(event)">
+        <div class="field"><label>Имя и фамилия</label><input class="input" id="rname" placeholder="Иван Иванов" required></div>
+        <div class="field"><label>Email</label><input class="input" id="remail" type="email" placeholder="you@mail.ru" required></div>
+        <div class="field"><label>Пароль</label><input class="input" id="rpass" type="password" minlength="4" required></div>
+        <div class="field"><label>Повторите пароль</label><input class="input" id="rpass2" type="password" minlength="4" required></div>
+        <button class="btn btn-l btn-primary" style="width:100%" type="submit">Зарегистрироваться</button>
+      </form>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        <div class="bs t2" style="flex:1;align-self:center">Уже есть аккаунт?</div>
+        <div class="btn btn-m btn-secondary" data-go="#/login">Войти</div></div>
+    </div></div>`;
+}
+function regSubmit(e){
+  e.preventDefault();
+  const name=$('#rname').value.trim(), email=$('#remail').value.trim().toLowerCase();
+  const p1=$('#rpass').value, p2=$('#rpass2').value;
+  if(p1!==p2){ toast('Пароли не совпадают','err'); return false; }
+  if(DB.users.some(u=>u.email===email)){ toast('Этот email уже зарегистрирован (FR-02 · уникальность)','err'); return false; }
+  const initials=name.split(/\s+/).map(w=>w[0]||'').join('').slice(0,2).toUpperCase()||'КЛ';
+  const u={id:'u'+(++DB.seq.u),name,email,pass:p1,role:'client',initials,trainerId:null};
+  DB.users.push(u); save(); setUser(u);
+  toast('Аккаунт создан! Выберите тариф.','ok');
+  location.hash='#/tariffs'; return false;
+}
+
+/* ============ ЛИЧНЫЙ КАБИНЕТ (US-02, US-06) ============ */
+function vCabinet(){
+  const sub=getSub(USER.id);
+  const upcoming=DB.bookings.filter(b=>b.userId===USER.id&&b.status==='active').length;
+  const visits=DB.history.filter(h=>h.userId===USER.id&&h.status==='present').length;
+  return `<div class="sec" style="padding-top:36px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('C-04 · US-02 · US-06 · Личный кабинет')}
+      <div class="sp"></div><div class="btn btn-m btn-ghost" data-act="logout">Выйти</div>
+    </div>
+    <div style="display:flex;gap:20px;align-items:stretch;flex-wrap:wrap">
+      <div class="panel" style="width:300px;justify-content:center;align-items:flex-start;gap:10px;">
+        <div class="avatar" style="width:64px;height:64px;font-size:22px">${esc(USER.initials)}</div>
+        <div class="h3">${esc(USER.name)}</div>
+        <div class="bs t2">${esc(USER.email)}</div>
+        <div class="badge badge-green">Клиент</div>
+      </div>
+      <div style="flex:1;min-width:320px;display:flex;flex-direction:column;gap:14px">${subCard()}</div>
+    </div>
+    <div class="grid3" style="margin-top:20px">
+      <div class="stat"><div class="l">Активные записи</div><div class="v">${upcoming}</div><div class="d" data-go="#/bookings" style="cursor:pointer">Мои записи ›</div></div>
+      <div class="stat"><div class="l">Посещений всего</div><div class="v">${visits}</div><div class="d" data-go="#/history" style="cursor:pointer">История ›</div></div>
+      <div class="stat"><div class="l">Текущий тариф</div><div class="v" style="font-size:22px">${esc(sub?(getTariff(sub.tariffId)||{name:'—'}).name:'нет')}</div><div class="d" data-go="#/tariffs" style="cursor:pointer">Сменить тариф ›</div></div>
+    </div>
+  </div>`;
+}
+
+/* ============ ТРЕНЕР (UC-04, US-03) ============ */
+function vT1(){
+  const today=dkey(new Date());
+  const mine=DB.sessions.filter(s=>s.trainerId===USER.trainerId&&s.date>=today).sort((a,b)=>a.date===b.date?(a.time<b.time?-1:1):(a.date<b.date?-1:1));
+  const toMark=mine.filter(s=>s.date===today&&activeBookings(s.id).length>0&&!DB.att[s.id]);
+  return `<div class="sec" style="padding-top:36px;max-width:1020px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('T-01 · UC-04 · US-03 · Кабинет тренера')}
+      <div class="sp"></div><div class="btn btn-m btn-ghost" data-act="logout">Выйти</div>
+    </div>
+    <div class="grid3" style="margin-bottom:20px">
+      <div class="stat"><div class="l">Занятий впереди</div><div class="v">${mine.length}</div><div class="d">на ближайшие дни</div></div>
+      <div class="stat"><div class="l">Нужна отметка</div><div class="v">${toMark.length}</div><div class="d">сегодняшние группы</div></div>
+      <div class="stat"><div class="l">Специализация</div><div class="v" style="font-size:20px">${esc(TRAINERS_DEF.find(t=>t.id===USER.trainerId).spec)}</div><div class="d">профиль тренера</div></div>
+    </div>
+    ${mine.length?mine.map(s=>{
+      const n=activeBookings(s.id).length, marked=!!DB.att[s.id];
+      return `<div class="brow">
+        <div class="dchip"><div class="dd">${pad(new Date(s.date+'T00:00').getDate())}</div><div class="mm">${MON[new Date(s.date+'T00:00').getMonth()].slice(0,3)}</div></div>
+        <div class="mid"><div class="bs-med">${esc(s.name)} · ${s.time}–${fmtHM(sessEnd(s))}</div><div class="cap t3">${esc(s.hall)} · клиентов: ${n} из ${s.cap}</div></div>
+        ${marked?'<div class="badge badge-green">Отмечено</div>':''}
+        <div class="btn btn-m ${n?'btn-primary':'btn-secondary'}" style="${n?'':'opacity:.5'}" data-go="${n?'#/t2/'+s.id:'#'}">Клиенты</div>
+      </div>`;
+    }).join(''):'<div class="panel">Занятий нет</div>'}
+  </div>`;
+}
+function vT2(sid){
+  const s=DB.sessions.find(x=>x.id===sid&&x.trainerId===USER.trainerId); if(!s) return v404();
+  const list=activeBookings(s.id).map(b=>({b,u:DB.users.find(x=>x.id===b.userId)})).filter(x=>x.u);
+  return `<div class="sec" style="padding-top:36px;max-width:1020px;">
+    <div class="back" data-go="#/t1">‹ Мои занятия</div>
+    ${chip('T-02 · UC-04 · Клиенты занятия')}
+    <div class="panel" style="margin-top:16px">
+      <div style="display:flex;align-items:center;gap:12px"><div class="h3" style="flex:1">${esc(s.name)} · ${s.time}</div><div class="badge badge-neutral">${fmtD(new Date(s.date+'T00:00'))} · ${esc(s.hall)}</div></div>
+      <div class="tbl wrap"><table class="tbl"><tr><th>Клиент</th><th>Email</th><th>Записан</th><th></th></tr>
+      ${list.length?list.map(({b,u})=>`<tr><td>${esc(u.name)}</td><td class="t2">${esc(u.email)}</td><td class="t2">${new Date(b.created).toLocaleDateString('ru')}</td>
+        <td><span class="badge ${DB.att[s.id]&&DB.att[s.id][u.id]?'badge-green':'badge-neutral'}">${DB.att[s.id]&&DB.att[s.id][u.id]?'отмечен':'ожидает'}</span></td></tr>`).join('')
+        :'<tr><td colspan="4" class="t2">Клиенты ещё не записаны</td></tr>'}</table></div>
+      ${list.length?`<div class="btn btn-m btn-primary" data-go="#/t3/${s.id}" style="align-self:flex-start">Открыть отметку посещения</div>`:''}
+    </div></div>`;
+}
+let marks={};
+function vT3(sid){
+  const s=DB.sessions.find(x=>x.id===sid&&x.trainerId===USER.trainerId); if(!s) return v404();
+  marks=JSON.parse(JSON.stringify(DB.att[s.id]||{}));
+  const list=activeBookings(s.id).map(b=>DB.users.find(u=>u.id===b.userId)).filter(Boolean);
+  return `<div class="sec" style="padding-top:36px;max-width:900px;">
+    <div class="back" data-go="#/t2/${s.id}">‹ Клиенты занятия</div>
+    ${chip('T-03 · UC-04 · FR-06 · Отметка посещения')}
+    <div class="panel" style="margin-top:16px">
+      <div style="display:flex;align-items:center;gap:12px"><div class="h3" style="flex:1">Отметка: ${esc(s.name)} · ${s.time}</div><div class="badge badge-neutral">${fmtD(new Date(s.date+'T00:00'))}</div></div>
+      ${list.map(u=>`<div class="brow" style="align-items:center">
+        <div class="avatar">${esc(u.initials)}</div>
+        <div class="mid"><div class="bs-med">${esc(u.name)}</div><div class="cap t3">${esc(u.email)}</div></div>
+        <div class="mk">
+          <div class="mbtn ${marks[u.id]==='present'?'on-p':''}" data-act="setMark" data-sid="${s.id}" data-uid="${u.id}" data-v="present">Был</div>
+          <div class="mbtn ${marks[u.id]==='absent'?'on-a':''}" data-act="setMark" data-sid="${s.id}" data-uid="${u.id}" data-v="absent">Не был</div>
+        </div></div>`).join('')}
+      <div class="btn btn-m btn-primary" data-act="saveMarks" data-id="${s.id}" style="align-self:flex-start">Сохранить отметки (FR-06)</div>
+    </div></div>`;
+}
+function setMark(sid,uid,v){ marks[uid]=v; document.querySelectorAll(`[data-uid="${uid}"]`).forEach(b=>{
+  b.classList.toggle('on-p',b.getAttribute('data-v')==='present'&&v==='present');
+  b.classList.toggle('on-a',b.getAttribute('data-v')==='absent'&&v==='absent'); }); }
+function saveMarks(sid){
+  DB.att[sid]=JSON.parse(JSON.stringify(marks)); 
+  const s=DB.sessions.find(x=>x.id===sid);
+  Object.entries(marks).forEach(([uid,st])=>{
+    DB.history.push({userId:uid,date:s.date,time:s.time,name:s.name,trainer:trainerName(s.trainerId),status:st});
+  });
+  save(); toast('Посещаемость сохранена — история клиентов обновлена (FR-06)','ok'); location.hash='#/t1';
+}
+
+/* ============ АДМИН (A-01..A-03) ============ */
+function vA1(){
+  const clients=DB.users.filter(u=>u.role==='client');
+  const revenue=DB.payments.filter(p=>p.status==='paid').reduce((s,p)=>s+p.amount,0);
+  const activeSubs=DB.subs.filter(s=>getSub(s.userId)&&getSub(s.userId).status==='active').length;
+  const todaySess=DB.sessions.filter(s=>s.date===dkey(new Date()));
+  return `<div class="sec" style="padding-top:36px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('A-01 · Панель администратора · FR-01…FR-06')}
+      <div class="sp"></div><div class="btn btn-m btn-ghost" data-act="logout">Выйти</div>
+    </div>
+    <div class="grid4" style="margin-bottom:20px">
+      <div class="stat"><div class="l">Клиентов</div><div class="v">${clients.length}</div><div class="d">зарегистрировано (FR-02)</div></div>
+      <div class="stat"><div class="l">Активных абонементов</div><div class="v">${activeSubs}</div><div class="d">US-02</div></div>
+      <div class="stat"><div class="l">Выручка</div><div class="v">${revenue.toLocaleString('ru')} ₽</div><div class="d">оплаченные тарифы</div></div>
+      <div class="stat"><div class="l">Занятий сегодня</div><div class="v">${todaySess.length}</div><div class="d" data-go="#/a2" style="cursor:pointer">Расписание ›</div></div>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <div class="panel" style="flex:1;min-width:340px">
+        <div class="h3">Последние платежи</div>
+        <div class="tbl wrap"><table class="tbl"><tr><th>Дата</th><th>Клиент</th><th>Сумма</th><th>Статус</th></tr>
+        ${DB.payments.slice(-6).reverse().map(p=>{const u=DB.users.find(x=>x.id===p.userId);return `<tr><td>${p.date}</td><td>${esc(u?u.name:'—')}</td><td>${p.amount} ₽</td>
+          <td><span class="badge ${p.status==='paid'?'badge-green':p.status==='pending'?'badge-warn':'badge-danger'}">${p.status==='paid'?'оплачен':p.status==='pending'?'ожидание':'отказ'}</span></td></tr>`;}).join('')}</table></div>
+      </div>
+      <div class="panel" style="flex:1;min-width:340px">
+        <div class="h3">Занято мест сегодня</div>
+        ${todaySess.length?todaySess.map(s=>{const n=activeBookings(s.id).length,pct=Math.round(n/s.cap*100);
+          return `<div><div class="krow"><span class="bs">${esc(s.name)} · ${s.time}</span><span class="bs t2">${n}/${s.cap}</span></div><div class="bar"><i style="width:${pct}%"></i></div></div>`;}).join('')
+          :'<div class="bs t2">Сегодня занятий нет</div>'}
+      </div>
+    </div>
+  </div>`;
+}
+function vA2(){
+  const days=weekList();
+  const list=DB.sessions.slice().sort((a,b)=>a.date===b.date?(a.time<b.time?-1:1):(a.date<b.date?-1:1));
+  return `<div class="sec" style="padding-top:36px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('A-02 · FR-04 · Управление расписанием')}
+      <div class="sp"></div><div class="btn btn-m btn-ghost" data-go="#/a1">‹ Обзор</div>
+    </div>
+    <div class="panel" style="margin-bottom:20px">
+      <div class="h3">Добавить занятие</div>
+      <form onsubmit="return addSession(event)" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+        <div class="field"><label>День</label><input class="input" id="a2day" value="${dkey(days[0])}" readonly style="width:130px"></div>
+        <div class="chips" id="a2days" style="align-self:center">${days.map(d=>`<div class="dt ${dkey(d)===dkey(days[0])?'on':''}" style="padding:8px 0;width:56px" data-v="${dkey(d)}" data-act="pickDay"><div class="dd" style="font-size:16px">${DAYN[d.getDay()]}</div><div class="mm">${fmtS(d).slice(0,5)}</div></div>`).join('')}</div>
+        <div class="field"><label>Направление</label><select class="input" id="a2dir" style="width:140px">${DIRS.map(d=>`<option>${d}</option>`).join('')}</select></div>
+        <div class="field"><label>Время</label><input class="input" id="a2time" type="time" value="18:00" style="width:110px" required></div>
+        <div class="field"><label>Зал</label><select class="input" id="a2hall" style="width:100px">${[1,2,3,4].map(i=>`<option>Зал ${i}</option>`).join('')}</select></div>
+        <div class="field"><label>Тренер</label><select class="input" id="a2tr" style="width:150px">${TRAINERS_DEF.map(t=>`<option value="${t.id}">${t.name}</option>`).join('')}</select></div>
+        <div class="field"><label>Мест</label><input class="input" id="a2cap" type="number" value="20" min="1" max="40" style="width:90px"></div>
+        <button class="btn btn-m btn-primary" type="submit">Добавить</button>
+      </form>
+    </div>
+    <div class="tbl wrap"><table class="tbl"><tr><th>Дата</th><th>Время</th><th>Направление</th><th>Зал</th><th>Тренер</th><th>Записано</th><th></th></tr>
+    ${list.map(s=>{const n=activeBookings(s.id).length;return `<tr>
+      <td>${s.date}</td><td>${s.time}</td><td>${esc(s.name)}</td><td>${esc(s.hall)}</td><td>${esc(trainerName(s.trainerId))}</td>
+      <td>${n} / ${s.cap}</td>
+      <td><span class="t-danger" style="cursor:pointer" data-act="delSession" data-id="${s.id}">удалить</span></td></tr>`;}).join('')}
+    </table></div></div>`;
+}
+function addSession(e){
+  e.preventDefault();
+  DB.sessions.push({id:'s'+(++DB.seq.s),name:$('#a2dir').value,dir:$('#a2dir').value,date:$('#a2day').value,time:$('#a2time').value,dur:60,hall:$('#a2hall').value,trainerId:$('#a2tr').value,cap:+$('#a2cap').value});
+  save(); toast('Занятие добавлено в расписание (FR-04)','ok'); route();
+  return false;
+}
+function delSession(id){ DB.sessions=DB.sessions.filter(s=>s.id!==id); DB.bookings=DB.bookings.filter(b=>b.sessId!==id); save(); toast('Занятие удалено'); route(); }
+function vA3(){
+  const ts=allTariffs();
+  return `<div class="sec" style="padding-top:36px;max-width:1020px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      ${chip('A-03 · FR-03 · Управление тарифами')}
+      <div class="sp"></div><div class="btn btn-m btn-ghost" data-go="#/a1">‹ Обзор</div>
+    </div>
+    <div class="panel" style="margin-bottom:20px">
+      <div class="h3">Добавить тариф</div>
+      <form onsubmit="return addTariff(event)" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+        <div class="field"><label>Название</label><input class="input" id="a3name" placeholder="Студенческий" style="width:180px" required></div>
+        <div class="field"><label>Цена, ₽</label><input class="input" id="a3price" type="number" value="1990" style="width:110px" required></div>
+        <div class="field"><label>Дней</label><input class="input" id="a3days" type="number" value="30" style="width:90px" required></div>
+        <div class="field"><label>Посещений (∞ = 999)</label><input class="input" id="a3visits" type="number" value="8" style="width:110px" required></div>
+        <button class="btn btn-m btn-primary" type="submit">Опубликовать</button>
+      </form>
+    </div>
+    <div class="tbl wrap"><table class="tbl"><tr><th>Тариф</th><th>Цена</th><th>Период</th><th>Посещений</th><th></th></tr>
+    ${ts.map(t=>`<tr><td>${esc(t.name)} ${t.hot?'<span class="badge badge-solid" style="margin-left:8px">хит</span>':''}</td>
+      <td>${t.price} ₽</td><td>${t.days} дн.</td><td>${t.visits>=999?'∞':t.visits}</td>
+      <td>${TARIFFS_DEF.some(d=>d.id===t.id)?'<span class="cap t3">базовый</span>':`<span class="t-danger" style="cursor:pointer" data-act="delTariff" data-id="${t.id}">снять с публикации</span>`}</td></tr>`).join('')}
+    </table></div></div>`;
+}
+function addTariff(e){
+  e.preventDefault();
+  const t={id:'tar'+Date.now(),name:$('#a3name').value.trim(),price:+$('#a3price').value,days:+$('#a3days').value,visits:+$('#a3visits').value,hot:false,feats:['Доступ в клуб','Все виды занятий']};
+  DB.tariffsCustom=DB.tariffsCustom||[]; DB.tariffsCustom.push(t); save();
+  toast('Тариф опубликован в каталоге (FR-03)','ok'); route(); return false;
+}
+function delTariff(id){ DB.tariffsCustom=(DB.tariffsCustom||[]).filter(t=>t.id!==id); save(); toast('Тариф снят с публикации'); route(); }
+
+/* ============ 404 ============ */
+function v404(){ return `<div class="center" style="padding:80px 40px;text-align:center">
+  <div class="disp2">404</div><div class="bl t2">Страница не найдена</div>
+  <div class="btn btn-m btn-primary" style="margin:20px auto 0" data-go="#/home">На главную</div></div>`; }
+
+/* ============ СТАРТ ============ */
+route();
+</script>
+</body>
+</html>

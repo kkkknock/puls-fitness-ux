@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Трассировка требований</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.hdr{padding:48px 48px 8px;display:flex;flex-direction:column;gap:10px;}
+.mat{padding:24px 48px 56px;}
+.mat .tbl{margin-top:8px;}
+.us{color:var(--lime);font-weight:700;}
+.fr{color:var(--info);font-weight:600;}
+.nv{color:var(--warn);font-weight:600;}
+.uce{color:var(--green);font-weight:600;}
+.leg{display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap;}
+</style></head>
+<body>
+<div class="scr" style="width:2560px;">
+  <div class="hdr">
+    <div class="chipAnn" style="align-self:flex-start;">TRAC · Трассировка · ISO/IEC/IEEE 29148 · соответствует матрице Excel</div>
+    <div class="disp2" style="font-size:44px;">Трассировка требований</div>
+    <div class="bl t2" style="max-width:1200px;">User Story → Экран макета → Use Case → Действие → Результат. Кодировка: <span class="us">US</span> — User Story, <span class="fr">FR</span> — функциональное требование, <span class="nv">NFR/BR</span> — нефункциональные и бизнес-правила, <span class="uce">UC</span> — сценарий использования.</div>
+    <div class="leg">
+      <div><span class="us">US-…</span> <span class="cap t2">Row Story</span></div>
+      <div><span class="fr">FR-…</span> <span class="cap t2">Функциональное</span></div>
+      <div><span class="nv">NFR/BR</span> <span class="cap t2">Нефункциональное</span></div>
+      <div><span class="uce">UC-…</span> <span class="cap t2">Use Case</span></div>
+    </div>
+  </div>
+  <div class="mat">
+    <div class="tbl wrap">
+      <table class="tbl">
+        <tr>
+          <th style="width:90px;">ID</th><th style="width:520px;">Формулировка / сущность</th><th style="width:90px;">MoSCoW</th><th style="width:290px;">Экран(ы) макета</th><th style="width:120px;">Use Case</th><th style="width:420px;">Действие пользователя</th><th style="width:440px;">Результат / критерий приёмки</th>
+        </tr>
+        <tr><td class="us">US-01</td><td>Как клиент, я хочу создать аккаунт, чтобы пользоваться онлайн-сервисами</td><td>Must</td><td>C-01 Главная · C-02 Регистрация · C-03 Авторизация</td><td>—</td><td>Заполняет 5 обязательных полей + согласие ПДн (CON-02)</td><td>Аккаунт создаётся; email уникален (app_user UQ)</td></tr>
+        <tr><td class="fr">FR-01</td><td>Регистрация и авторизация клиента</td><td>Must</td><td>C-02 · C-03</td><td>—</td><td>Регистрируется / входит</td><td>Доступ по роли задаётся (NFR-02), сессия активна</td></tr>
+        <tr><td class="us">US-02</td><td>Как клиент, я хочу видеть статус и срок абонемента</td><td>Must</td><td>C-04 ЛК · C-05 Абонемент</td><td>—</td><td>Открывает раздел абонемента</td><td>Виден статус (active/expired/pending) и срок действия (membership)</td></tr>
+        <tr><td class="fr">FR-02</td><td>Статус и срок действия абонемента</td><td>Must</td><td>C-05 (3 состояния)</td><td>—</td><td>Просматривает карточку абонемента</td><td>Статус и срок отображаются; NFR-03: без платежа статус не станет «active»</td></tr>
+        <tr><td class="us">US-03</td><td>Как клиент, я хочу выбрать и оплатить тариф</td><td>Must</td><td>C-06 Каталог · C-07 Оформление · C-08 Результат</td><td class="uce">UC-01</td><td>Выбирает тариф → подтверждает заказ → оплачивает</td><td>Абонемент активируется после подтверждения оплаты</td></tr>
+        <tr><td class="fr">FR-03</td><td>Просмотр тарифов и покупка абонемента</td><td>Must</td><td>C-06 · C-07 · C-08</td><td class="uce">UC-01</td><td>Просматривает каталог публичных тарифов (tariff)</td><td>Опубликованные тарифы show; оплата через провайдер (payment status)</td></tr>
+        <tr><td class="us">US-04</td><td>Как клиент, я хочу записаться на занятие, чтобы зарезервировать место</td><td>Must</td><td>C-09 Расписание · C-10 Карточка · C-11 Подтверждение</td><td class="uce">UC-02</td><td>Выбирает занятие → подтверждает запись</td><td>Запись сохранена (booking booked), место уменьшается (v_session_free_seats)</td></tr>
+        <tr><td class="fr">FR-04</td><td>Актуальное расписание занятий</td><td>Must</td><td>C-09 · A-02 (изменения админом)</td><td class="uce">UC-02</td><td>Просматривает расписание по дням/видам</td><td>Отображаются занятия (class_session), статусы, тренер, зал, места</td></tr>
+        <tr><td class="fr">FR-05</td><td>Запись на занятие при наличии свободного места</td><td>Must</td><td>C-10 · C-11</td><td class="uce">UC-02</td><td>Нажимает «Записаться»</td><td>BR-01 проверена; уникальный индекс запрещает дубль</td></tr>
+        <tr><td class="us">US-05</td><td>Как клиент, я хочу отменить запись по правилам, чтобы освободить место</td><td>Should</td><td>C-12 Мои записи · C-13 Отмена</td><td class="uce">UC-03</td><td>Выбирает запись → подтверждает отмену</td><td>booking.status = cancelled, cancelled_at фиксируется, место освобождается</td></tr>
+        <tr><td class="fr">FR-06</td><td>Отмена записи по правилам клуба</td><td>Should</td><td>C-13 (+ состояние «срок истёк») </td><td class="uce">UC-03</td><td>Пытается отменить</td><td>club_rule: не позднее 2 ч; иначе отказ с формулировкой правила</td></tr>
+        <tr><td class="us">US-06</td><td>Как клиент, я хочу видеть историю посещений, чтобы отслеживать регулярность</td><td>Could</td><td>C-14 История · T-03 (источник отметок)</td><td class="uce">UC-04</td><td>Открывает историю</td><td>Attendances (attended/no-show) из отметок тренера · v_client_history</td></tr>
+        <tr><td class="nv">BR-01</td><td>Запись возможна при свободном месте и соблюдении условий абонемента</td><td>Must</td><td>C-10 (панель мест) · C-11 (строка проверок)</td><td class="uce">UC-02</td><td>Подтверждает запись</td><td>Записи нет: если места нет или лимит исчерпан — отказ (альтернативы UC-02)</td></tr>
+        <tr><td class="nv">NFR-02</td><td>Разграничение доступа по ролям; видит только свои данные</td><td>Design</td><td>TopBar/Таб-бары 3 ролей · T-01 · A-01</td><td>—</td><td>—</td><td>Клиент/тренер/админ имеют разные экраны; тренер не видит чужие занятия</td></tr>
+        <tr><td class="nv">NFR-03</td><td>Без подтверждения платежа абонемент не активируется</td><td>Design</td><td>C-08 (состояния Success/Error/Pending)</td><td class="uce">UC-01</td><td>Оплачивает</td><td>«failed» → не активируется; «pending» → заказ ожидает; «succeeded» → active</td></tr>
+        <tr><td class="nv">NFR-04</td><td>Форма записи показывает дату, время, занятие и результат</td><td>Design</td><td>C-10 карточка · C-11 модал</td><td class="uce">UC-02</td><td>Просматривает детали</td><td>Все 4 эл. (дата/время/занятие/результат) присутствуют на экране</td></tr>
+        <tr><td class="nv">NFR-05</td><td>Совместимость браузеров и мобильного экрана</td><td>Design</td><td>RES: Desktop 1440 · Tablet 768 · Mobile 390 (res-mob, res-tab)</td><td>—</td><td>—</td><td>Вертикальная компоновка, tab-bar, крупные цели нажатия</td></tr>
+        <tr><td class="uce">UC-01</td><td>Покупка абонемента (основной + 2 альтернативы)</td><td>—</td><td>C-07 → C-08</td><td>—</td><td>Каталог → заказ → оплата → результат</td><td>Отклонён/нет ответа — отражены в C-08 (Error/Pending)</td></tr>
+        <tr><td class="uce">UC-02</td><td>Запись на занятие (основной + 3 альтернативы)</td><td>—</td><td>C-09 → C-10 → C-11</td><td>—</td><td>Расписание → карточка → подтверждение</td><td>Нет мест / истёк / уже записан — состояния C-10</td></tr>
+        <tr><td class="uce">UC-03</td><td>Отмена записи (основной + 3 альтернативы)</td><td>—</td><td>C-12 → C-13</td><td>—</td><td>Мои записи →Dlg подтверждение → границы правил</td><td>Срок истёк / началось / ошибка сохранения — C-13</td></tr>
+        <tr><td class="uce">UC-04</td><td>Отметка посещения тренером</td><td>—</td><td>T-01 → T-02 → T-03</td><td>—</td><td>Кабинет → список → пришёл/не прошёл → сохранение</td><td>История клиентов обновляется (US-06)</td></tr>
+      </table>
+    </div>
+    <div class="panel" style="margin-top:20px;max-width:1800px;">
+      <div class="bs-med">Примечание по US-06 / FR-07</div>
+      <div class="bs t2">В исходном Excel-матрице история посещений задаётся как US-06 с приоритетом <b>Could</b>, отдельного FR для неё в реестре нет (рекомендация в Excel — добавить FR-07). В дизайне она реализована отдельным экраном C-14 и не предъявляет новых бизнес-правил; данные — из отметок UC-04.</div>
+    </div>
+  </div>
+</div>
+</body></html>

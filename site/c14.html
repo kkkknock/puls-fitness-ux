@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>История посещений</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.sec2{padding:36px 40px 48px;display:flex;flex-direction:column;gap:20px;}
+.spark{display:flex;align-items:flex-end;gap:6px;height:64px;}
+.spark i{display:block;width:26px;background:var(--lime);border-radius:4px 4px 0 0;}
+.spark i.off{background:var(--border);}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a href="#">Тарифы</a><a href="#">Расписание</a><a class="on" href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="sec2">
+    <div class="row" style="display:flex;align-items:center;gap:14px;">
+      <div class="chipAnn">C-14 · История посещений · US-06 (Could) · UC-04 · v_client_history</div>
+    </div>
+    <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="h1">История посещений</div>
+      <div class="chips"><div class="pill on">Ноябрь</div><div class="pill">Октябрь</div><div class="pill">Всё время</div></div>
+    </div>
+    <div class="grid3">
+      <div class="stat"><div class="l">Посещений в ноябре</div><div class="v">8</div><div class="d">из 12 по тарифу</div></div>
+      <div class="stat"><div class="l">Пропущено</div><div class="v">1</div><div class="d" style="color:var(--danger);">отметка «не пришёл»</div></div>
+      <div class="stat"><div class="l">Регулярность</div><div class="v">2 раза в неделю</div><div class="d">стабильно последний месяц</div></div>
+    </div>
+    <div class="panel">
+      <div class="bs-med t2" style="margin-bottom:6px;">Регулярность по неделям · ноябрь</div>
+      <div class="spark">
+        <i style="height:100%;"></i><i class="off" style="height:100%;"></i><i style="height:100%;"></i><i style="height:100%;"></i><i style="height:100%;"></i><i class="off" style="height:100%;"></i><i style="height:100%;"></i><i style="height:100%;"></i><i class="off" style="height:100%;"></i><i style="height:100%;"></i><i style="height:100%;"></i><i style="height:100%;"></i>
+      </div>
+    </div>
+    <div class="tbl wrap">
+      <table class="tbl">
+        <tr><th style="width:110px;">Дата</th><th>Занятие</th><th>Тренер</th><th>Зал</th><th style="width:150px;">Статус</th></tr>
+        <tr><td>20.11</td><td>Пилатес · 10:00–11:00</td><td>Орлова Мария</td><td>Зал 3</td><td><span class="badge badge-green">Пришёл</span></td></tr>
+        <tr><td>18.11</td><td>Йога · 18:00–19:00</td><td>Соколова Анна</td><td>Зал 2</td><td><span class="badge badge-green">Пришёл</span></td></tr>
+        <tr><td>17.11</td><td>HIIT · 09:30–10:30</td><td>Иванов Дмитрий</td><td>Зал 2</td><td><span class="badge badge-danger">Не пришёл</span></td></tr>
+        <tr><td>15.11</td><td>Сайклинг · 19:00–20:00</td><td>Ким Сергей</td><td>Зал 1</td><td><span class="badge badge-green">Пришёл</span></td></tr>
+        <tr><td>13.11</td><td>Сайклинг · 20:00–21:00</td><td>Ким Сергей</td><td>Зал 1</td><td><span class="badge badge-danger" style="background:transparent;border:1px solid var(--border2);color:var(--text3);">Отменена клиентом</span></td></tr>
+        <tr><td>10.11</td><td>Стретчинг · 11:00–12:00</td><td>Соколова Анна</td><td>Зал 3</td><td><span class="badge badge-green">Пришёл</span></td></tr>
+        <tr><td>08.11</td><td>Пилатес · 10:00–11:00</td><td>Орлова Мария</td><td>Зал 3</td><td><span class="badge badge-green">Пришёл</span></td></tr>
+        <tr><td>05.11</td><td>Йога · 18:00–19:00</td><td>Соколова Анна</td><td>Зал 2</td><td><span class="badge badge-green">Пришёл</span></td></tr>
+      </table>
+    </div>
+    <div class="bs t3">Примечание: история посещений в исходном реестре требований — US-06 с приоритетом Could; отдельного FR для неё в ТЗ нет (матрица Excel). Данные приходят из отметок тренера (UC-04, таблица attendance, представление v_client_history).</div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

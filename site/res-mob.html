@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Адаптив — Mobile 390</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+body{background:var(--bg);}
+.strip{display:flex;gap:40px;padding:40px;align-items:flex-start;}
+.mob{width:390px;border-radius:28px;background:var(--bg);border:1px solid var(--border2);overflow:hidden;flex:none;display:flex;flex-direction:column;}
+.mob .mhead{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);}
+.mob .content{padding:16px 16px 20px;display:flex;flex-direction:column;gap:12px;}
+.mob .foot-sp{height:68px;}
+.mob .tabbar{position:absolute;}
+.tabwrap{position:relative;}
+.tabwrap .tabbar{position:absolute;left:0;right:0;bottom:0;}
+.mtab{display:flex;height:68px;background:var(--surface);border-top:1px solid var(--border);}
+.mtab .ti{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--text3);font-size:11px;}
+.mtab .ti.on{color:var(--lime);}
+.h-m{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.5px;}
+.disp-m{font-size:34px;line-height:40px;font-weight:800;letter-spacing:-1px;}
+.mcard{display:flex;gap:12px;padding:12px;border-radius:14px;background:var(--card);border:1px solid var(--border);}
+.mcard .dchip{flex:none;padding:10px 12px;}
+.chipsc{display:flex;gap:8px;overflow:hidden;}
+.chipsc .pill{padding:8px 14px;font-size:13px;white-space:nowrap;}
+.mkcard{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border);}
+.mkcard img{width:100%;height:130px;object-fit:cover;}
+.mkcard .in{padding:12px;display:flex;flex-direction:column;gap:8px;}
+</style></head>
+<body>
+<div class="strip">
+  <!-- РЕГИСТРАЦИЯ -->
+  <div class="mob tabwrap">
+    <div class="content">
+      <div class="mhead" style="margin:-16px -16px 4px;padding:14px 16px;"><div class="logo" style="gap:6px;"><div class="dot" style="width:8px;height:8px;"></div><div class="bs-med" style="font-size:16px;">ПУЛЬС</div></div><a class="bs-med" href="#">Войти</a></div>
+      <div class="chipAnn" style="align-self:flex-start;">C-02 · Mobile · US-01</div>
+      <div class="disp-m">Создать аккаунт</div>
+      <div class="field"><label>ФИО</label><div class="input">Анна Петрова</div></div>
+      <div class="field"><label>Email</label><div class="input">anna@pulse.fit</div></div>
+      <div class="field"><label>Телефон</label><div class="input">+7 900 000-00-00</div></div>
+      <div class="field"><label>Пароль</label><div class="input">••••••••••••</div></div>
+      <div class="row" style="display:flex;gap:10px;align-items:flex-start;"><div class="cbtn cb-on" style="flex:none;">✓</div><div class="cap t2">Согласие на обработку персональных данных (CON-02)</div></div>
+      <div class="btn btn-l btn-primary" style="width:100%;">Зарегистрироваться</div>
+      <div class="cap t3" style="text-align:center;">Минимум полей — достаточно 5 (FR-01)</div>
+    </div>
+    <div class="foot-sp"></div>
+    <div class="mtab"><div class="ti"><div class="ic" style="width:6px;"></div>нет</div></div>
+  </div>
+  <!-- РАСПОИСАНИЕ -->
+  <div class="mob tabwrap">
+    <div class="mhead"><div class="logo" style="gap:6px;"><div class="dot" style="width:8px;height:8px;"></div><div class="bs-med">ПУЛЬС</div></div><div class="avatar" style="width:30px;height:30px;font-size:11px;">АУ</div></div>
+    <div class="content">
+      <div class="chipAnn" style="align-self:flex-start;">C-09 · Mobile · UC-02</div>
+      <div class="row chips" style="display:flex;gap:8px;"><div class="pill on">27.11 Пт</div><div class="pill">28</div><div class="pill">29</div><div class="pill">30</div></div>
+      <div class="chipsc"><div class="pill on">Все</div><div class="pill">Йога</div><div class="pill">HIIT</div><div class="pill">Пилатес</div></div>
+      <div class="mkcard">
+        <img src="https://www.figma.com/api/mcp/asset/fd85379d-5406-4473-94cb-a428681ed927.png">
+        <div class="in">
+          <div class="bm-med">HIIT</div>
+          <div class="cap t2">Пт · 18:30–19:30 · Зал 2 · Иванов Д.</div>
+          <div class="bar"><i style="width:40%;"></i></div>
+          <div class="cap t2">Осталось 8 из 20 мест</div>
+          <div class="btn btn-m btn-primary" style="width:100%;">Записаться</div>
+        </div>
+      </div>
+      <div class="mkcard">
+        <img src="https://www.figma.com/api/mcp/asset/5f96cf62-bd84-4d82-b4e4-1f2272113dfe.png">
+        <div class="in">
+          <div class="bm-med">Йога</div>
+          <div class="cap t2">Пт · 18:00–19:00 · Зал 2 · Соколова А.</div>
+          <div class="bar"><i style="width:40%;"></i></div>
+          <div class="cap t2">Осталось 12 из 20 мест</div>
+          <div class="btn btn-m btn-primary" style="width:100%;">Записаться</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-sp"></div>
+    <div class="mtab">
+      <div class="ti on"><div class="ic" style="width:18px;height:18px;border-radius:4px;background:var(--lime);"></div>Главная</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Распис-е</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Тарифы</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:9px;border:2px solid var(--text3);box-sizing:border-box;"></div>Записи</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:3px;border:2px solid var(--text3);box-sizing:border-box;"></div>Кабинет</div>
+    </div>
+  </div>
+  <!-- ЛИЧНЫЙ КАБИНЕТ -->
+  <div class="mob tabwrap">
+    <div class="mhead"><div class="logo" style="gap:6px;"><div class="dot" style="width:8px;height:8px;"></div><div class="bs-med">ПУЛЬС</div></div><div class="avatar" style="width:30px;height:30px;font-size:11px;">АУ</div></div>
+    <div class="content">
+      <div class="chipAnn" style="align-self:flex-start;">C-04/C-05 · Mobile · US-02</div>
+      <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="h-m">Кабинет</div><div class="btn btn-m btn-ghost">Выход</div></div>
+      <div class="panel" style="gap:12px;border:1px solid rgba(200,245,58,.35);background:linear-gradient(135deg,#223312,var(--elev));">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="bm-med">Базовый</div><span class="badge badge-solid">Активен</span></div>
+        <div class="bar" style="height:8px;"><i style="width:75%;"></i></div>
+        <div class="cap t2">9 из 12 посещений · до 30.11.2026</div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Продлить абонемент</div>
+      </div>
+      <div class="row chips" style="display:flex;gap:8px;"><div class="stat" style="flex:1;padding:12px;"><div class="cap">За месяц</div><div class="bm-med" style="font-weight:700;">8</div></div><div class="stat" style="flex:1;padding:12px;"><div class="cap">Пропущено</div><div class="bm-med" style="font-weight:700;">1</div></div></div>
+      <div class="panel" style="gap:10px;">
+        <div class="bs-med">Ближайшее занятие</div>
+        <div class="mcard">
+          <div class="dchip"><div class="dd" style="font-size:18px;">27</div><div class="mm">НОЯ</div></div>
+          <div class="col" style="display:flex;flex-direction:column;gap:2px;flex:1;"><div class="bs-med">Сайклинг · 19:00</div><div class="cap t3">Зал 1 · Ким С.</div></div>
+          <div class="badge badge-neutral" style="flex:none;">Билеты</div>
+        </div>
+        <div class="btn btn-m btn-secondary" style="width:100%;">Все записи</div>
+      </div>
+    </div>
+    <div class="foot-sp"></div>
+    <div class="mtab">
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Главная</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Распис-е</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Тарифы</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:9px;border:2px solid var(--text3);box-sizing:border-box;"></div>Записи</div>
+      <div class="ti on"><div class="ic" style="width:18px;height:18px;border-radius:3px;background:var(--lime);"></div>Кабинет</div>
+    </div>
+  </div>
+  <!-- ТАРИФЫ -->
+  <div class="mob tabwrap">
+    <div class="mhead"><div class="logo" style="gap:6px;"><div class="dot" style="width:8px;height:8px;"></div><div class="bs-med">ПУЛЬС</div></div><div class="badge badge-green" style="padding:4px 8px;font-size:11px;">Активен</div></div>
+    <div class="content">
+      <div class="chipAnn" style="align-self:flex-start;">C-06/07 · Mobile · UC-01</div>
+      <div class="h-m">Тарифы</div>
+      <div class="tariff" style="width:100%;padding:18px;">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="bm-med" style="font-weight:700;">Базовый</div><span class="badge badge-solid">Выбор</span></div>
+        <div class="price"><div class="n" style="font-size:30px;">2 990 ₽</div><div class="cap t2">/ 30 дней</div></div>
+        <div class="cap t2">12 посещений · все занятия · заморозка</div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Выбрать и оплатить</div>
+      </div>
+      <div class="tariff" style="width:100%;padding:18px;">
+        <div class="bm-med" style="font-weight:700;">Безлимит</div>
+        <div class="price"><div class="n" style="font-size:30px;">5 990 ₽</div><div class="cap t2">/ 30 дней</div></div>
+        <div class="cap t2">Без лимита · все занятия · заморозка</div>
+        <div class="btn btn-m btn-secondary" style="width:100%;">Выбрать и оплатить</div>
+      </div>
+      <div class="panel" style="gap:8px;">
+        <div class="cap t2">Оплата картой</div>
+        <div class="input" style="height:42px;font-size:14px;">4111 •••• 1234</div>
+        <div class="row" style="display:flex;gap:8px;"><div class="input" style="height:42px;font-size:14px;flex:1;">11/28</div><div class="input" style="height:42px;font-size:14px;flex:1;">•••</div></div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Оплатить 2 990 ₽</div>
+      </div>
+    </div>
+    <div class="foot-sp"></div>
+    <div class="mtab">
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Главная</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Распис-е</div>
+      <div class="ti on"><div class="ic" style="width:18px;height:18px;border-radius:4px;background:var(--lime);"></div>Тарифы</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:9px;border:2px solid var(--text3);box-sizing:border-box;"></div>Записи</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:3px;border:2px solid var(--text3);box-sizing:border-box;"></div>Кабинет</div>
+    </div>
+  </div>
+  <!-- ЗАПИСИ + ОТМЕНА -->
+  <div class="mob tabwrap">
+    <div class="mhead"><div class="logo" style="gap:6px;"><div class="dot" style="width:8px;height:8px;"></div><div class="bs-med">ПУЛЬС</div></div><div class="avatar" style="width:30px;height:30px;font-size:11px;">АУ</div></div>
+    <div class="content">
+      <div class="chipAnn" style="align-self:flex-start;">C-12/13 · Mobile · UC-03</div>
+      <div class="h-m">Мои записи</div>
+      <div class="chipsc"><div class="pill on">Предстоящие 3</div><div class="pill">Прошедшие</div></div>
+      <div class="panel" style="border:2px solid var(--lime);gap:10px;">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="bm-med">Йога · 24.11 18:00</div><span class="badge badge-solid" style="font-size:11px;">выбрана</span></div>
+        <div class="cap t2">Зал 2 · Соколова А.</div>
+        <div class="row" style="display:flex;gap:8px;"><div class="btn btn-m btn-secondary" style="flex:1;">Вернуться</div><div class="btn btn-m btn-primary" style="flex:1;">Да, отменить</div></div>
+        <div class="cap t3">Отмена не позднее чем за 2 часа (FR-06)</div>
+      </div>
+      <div class="banner banner-pend"><div class="ic">…</div><div><div class="tt" style="font-size:14px;">Ожидание</div><div class="sb">показать правило клуба</div></div></div>
+      <div class="panel banner-err" style="gap:8px;">
+        <div class="bm-med" style="font-size:14px;color:var(--danger);">Отмена недоступна</div>
+        <div class="cap t2">Срок отмены истёк или занятие началось (UC-03)</div>
+      </div>
+      <div class="panel" style="gap:10px;">
+        <div class="mcard">
+          <div class="dchip"><div class="dd" style="font-size:18px;">28</div><div class="mm">НОЯ</div></div>
+          <div class="col" style="display:flex;flex-direction:column;gap:2px;flex:1;"><div class="bs-med">Стретчинг 11:00</div><div class="cap t3">Зал 3</div></div>
+          <div class="btn btn-m btn-ghost" style="padding:8px 12px;">Отменить</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-sp"></div>
+    <div class="mtab">
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Главная</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Распис-е</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:4px;border:2px solid var(--text3);box-sizing:border-box;"></div>Тарифы</div>
+      <div class="ti on"><div class="ic" style="width:18px;height:18px;border-radius:9px;background:var(--lime);"></div>Записи</div>
+      <div class="ti"><div class="ic" style="width:18px;height:18px;border-radius:3px;border:2px solid var(--text3);box-sizing:border-box;"></div>Кабинет</div>
+    </div>
+  </div>
+</div>
+</body></html>

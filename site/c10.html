@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Карточка занятия</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.split{display:flex;padding:40px;gap:32px;align-items:flex-start;}
+.big{width:600px;border-radius:24px;overflow:hidden;position:relative;}
+.big img{width:600px;height:520px;object-fit:cover;}
+.side{flex:1;display:flex;flex-direction:column;gap:18px;}
+.kv{display:flex;flex-direction:column;gap:4px;padding:16px 20px;border-radius:14px;background:var(--card);border:1px solid var(--border);}
+.kv .k{font-size:12px;color:var(--text3);}
+.kv .v{font-size:16px;font-weight:500;}
+.kvs{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.alts{display:flex;gap:16px;align-items:stretch;}
+.alt{flex:1;display:flex;flex-direction:column;gap:10px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a href="#">Тарифы</a><a class="on" href="#">Расписание</a><a href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="split">
+    <div class="big"><img src="https://www.figma.com/api/mcp/asset/fd85379d-5406-4473-94cb-a428681ed927.png"></div>
+    <div class="side">
+      <div class="chipAnn" style="align-self:flex-start;">C-10 · Карточка занятия · UC-02 · BR-01 · NFR-04</div>
+      <div class="row" style="display:flex;align-items:center;gap:12px;">
+        <div class="h1">HIIT</div>
+        <div class="badge badge-green">Запланировано</div>
+      </div>
+      <div class="bs t2">Интервальная тренировка высокой интенсивности. Все зоны, без ограничений по тарифу.</div>
+      <div class="kvs">
+        <div class="kv"><div class="k">Дата и время (NFR-04)</div><div class="v">Пт · 27.11 · 18:30–19:30</div></div>
+        <div class="kv"><div class="k">Зал</div><div class="v">Зал 2 · 20 мест</div></div>
+        <div class="kv"><div class="k">Тренер</div><div class="v">Иванов Дмитрий</div></div>
+        <div class="kv"><div class="k">Длительность</div><div class="v">60 минут</div></div>
+      </div>
+      <div class="panel">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="bs-med">Свободные места</div>
+          <div class="bs-med">8 из 20</div>
+        </div>
+        <div class="bar" style="height:8px;"><i style="width:40%;"></i></div>
+        <div class="bs t3">Проверка BR-01: запись возможна при свободном месте и соблюдении условий абонемента</div>
+      </div>
+      <div class="row" style="display:flex;gap:12px;">
+        <div class="btn btn-l btn-primary">Записаться</div>
+        <div class="btn btn-l btn-secondary">Отложить</div>
+      </div>
+      <div class="bs t3">Абонемент: «Базовый» · осталось 9 из 12 посещений · до 30.11.2026</div>
+    </div>
+  </div>
+  <div class="sec" style="padding-bottom:48px;">
+    <div class="sect" style="display:flex;align-items:center;gap:14px;margin-bottom:14px;"><div class="chipAnn" style="background:#3A1410;">Альтернативные состояния UC-02</div></div>
+    <div class="alts">
+      <div class="panel alt">
+        <div class="badge badge-danger" style="align-self:flex-start;">Нет свободных мест</div>
+        <div class="bm-med t-white">Мест нет</div>
+        <div class="bs t2">Запись недоступна: все места заняты (BR-01). Система предлагает посмотреть другое время этого занятия.</div>
+        <div class="btn btn-m btn-secondary" style="align-self:flex-start;">Другие времена</div>
+      </div>
+      <div class="panel alt">
+        <div class="badge badge-warn" style="align-self:flex-start;">Абонемент истёк</div>
+        <div class="bm-med t-white">Условия абонемента не соблюдены</div>
+        <div class="bs t2">Абонемент истёк или лимит посещений исчерпан. Предложение — купить абонемент (переход к UC-01).</div>
+        <div class="btn btn-m btn-primary" style="align-self:flex-start;">Выбрать тариф</div>
+      </div>
+      <div class="panel alt">
+        <div class="badge badge-info" style="align-self:flex-start;">Уже записаны</div>
+        <div class="bm-med t-white">Вы уже записаны на это занятие</div>
+        <div class="bs t2">Активная запись на HIIT · Пт 18:30 уже существует (уникальный индекс ux_booking_active).</div>
+        <div class="btn btn-m btn-ghost" style="align-self:flex-start;">Перейти в «Мои записи»</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

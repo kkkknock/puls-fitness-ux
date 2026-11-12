@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Управление расписанием</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.sec2{padding:36px 40px 48px;display:flex;flex-direction:column;gap:20px;}
+.formrow{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Обзор</a><a class="on" href="#">Расписание</a><a href="#">Тарифы</a><a href="#">Клиенты</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-info">Администратор · Меликова Д.</div>
+    <div class="avatar">МД</div>
+  </div>
+  <div class="sec2">
+    <div class="row" style="display:flex;align-items:center;gap:14px;">
+      <div class="chipAnn">A-02 · Управление расписанием · FR-04 · статусы занятия</div>
+    </div>
+    <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="h1">Управление расписанием</div>
+      <div class="btn btn-m btn-primary">Добавить занятие</div>
+    </div>
+    <div class="panel">
+      <div class="bs-med t2">Новое занятие — предзаполнено (создание дубликата)</div>
+      <div class="formrow">
+        <div class="field"><label>Вид занятия</label><div class="input">Сайклинг</div></div>
+        <div class="field"><label>Тренер</label><div class="input">Ким Сергей</div></div>
+        <div class="field"><label>Зал</label><div class="input">Зал 1</div></div>
+        <div class="field"><label>Мест всего (вместимость)</label><div class="input">20</div></div>
+        <div class="field"><label>Дата</label><div class="input">30.11.2026</div></div>
+        <div class="field"><label>Начало</label><div class="input">19:00</div></div>
+        <div class="field"><label>Окончание</label><div class="input">20:00</div></div>
+        <div class="field"><label>Статус</label><div class="input active">Запланировано</div></div>
+      </div>
+      <div class="row" style="display:flex;gap:12px;">
+        <div class="btn btn-m btn-primary">Создать занятие</div>
+        <div class="btn btn-m btn-ghost">Очистить</div>
+      </div>
+    </div>
+    <div class="tbl wrap">
+      <table class="tbl">
+        <tr><th>Вид занятия</th><th>Тренер</th><th>Зал</th><th>Дата и время</th><th>Мест занято</th><th style="width:150px;">Статус</th><th style="width:180px;">Действия</th></tr>
+        <tr><td>HIIT</td><td>Иванов Д.</td><td>Зал 2</td><td>27.11 · 18:30–19:30</td><td>12/20</td><td><span class="badge badge-green">Запланировано</span></td><td><span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;">Изменить</span> <span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;color:var(--danger);">Отменить</span></td></tr>
+        <tr><td>Сайклинг</td><td>Ким С.</td><td>Зал 1</td><td>27.11 · 19:00–20:00</td><td>10/20</td><td><span class="badge badge-green">Запланировано</span></td><td><span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;">Изменить</span> <span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;color:var(--danger);">Отменить</span></td></tr>
+        <tr><td>Пилатес</td><td>Орлова М.</td><td>Зал 3</td><td>27.11 · 19:00–20:00</td><td>6/20</td><td><span class="badge badge-green">Запланировано</span></td><td><span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;">Изменить</span> <span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;color:var(--danger);">Отменить</span></td></tr>
+        <tr><td>Силовая</td><td>Иванов Д.</td><td>Зал 4</td><td>27.11 · 17:30–18:30</td><td>7/20</td><td><span class="badge badge-warn">Занятие идёт</span></td><td><span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;">Изменить</span></td></tr>
+        <tr style="opacity:.55;"><td>Йога</td><td>Соколова А.</td><td>Зал 2</td><td>27.11 · 18:00–19:00</td><td>0/20</td><td><span class="badge badge-danger">Отменено админом</span></td><td><span class="btn btn-m btn-ghost" style="height:36px;font-size:14px;">Изменить</span></td></tr>
+      </table>
+    </div>
+    <div class="bs t3">При отмене занятия администратором все записи клиентов получают уведомление; записи о будущем занятии сбрасываются (FR-04 актуальность расписания).</div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС» · Панель администратора</div>
+</div>
+</body></html>

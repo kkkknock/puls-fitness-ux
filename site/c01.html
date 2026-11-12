@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Главная</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.hero{display:flex;gap:60px;padding:64px 56px;align-items:flex-start;}
+.heroL{display:flex;flex-direction:column;gap:22px;padding-top:8px;}
+.heroL .sub{font-size:18px;line-height:26px;color:var(--text2);max-width:520px;}
+.hero img{width:640px;height:568px;object-fit:cover;border-radius:24px;}
+.dirs{padding:24px 40px 0;}
+.dirhead{display:flex;align-items:center;margin-bottom:18px;}
+.dirgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.dc{display:flex;flex-direction:column;gap:10px;padding:0;border-radius:20px;background:var(--surface);border:1px solid var(--border);overflow:hidden;}
+.dc img{height:180px;object-fit:cover;width:100%;}
+.dc .in{padding:14px 16px 18px;display:flex;flex-direction:column;gap:8px;}
+.cta{display:flex;align-items:center;gap:24px;margin:48px 40px 0;padding:36px 48px;border-radius:24px;background:var(--lime);}
+.cta .t{font-size:28px;font-weight:700;color:var(--ondark);max-width:880px;letter-spacing:-.5px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a class="on" href="#">Главная</a><a href="#">Тарифы</a><a href="#">Расписание</a><a href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="btn btn-m btn-primary">Записаться</div>
+    <div class="avatar">АП</div>
+  </div>
+  <div class="hero">
+    <div class="heroL">
+      <div class="chipAnn">C-01 · Главная · US-01 · FR-01</div>
+      <div class="disp" style="max-width:580px;">Сила начинается здесь</div>
+      <div class="sub">Расписание, абонементы и записи — в единой системе клуба «ПУЛЬС». Выбирайте тариф и записывайтесь на занятия онлайн.</div>
+      <div class="row" style="gap:14px;align-items:center;">
+        <div class="btn btn-l btn-primary">Выбрать тариф</div>
+        <div class="btn btn-l btn-secondary">Смотреть расписание</div>
+      </div>
+      <div class="row" style="gap:16px;margin-top:6px;">
+        <div class="stat" style="width:200px;"><div class="l">Занятий в неделю</div><div class="v">40+</div><div class="d">утро и вечер</div></div>
+        <div class="stat" style="width:200px;"><div class="l">Клиентов клуба</div><div class="v">1 200+</div><div class="d">активных</div></div>
+        <div class="stat" style="width:200px;"><div class="l">Тренеров</div><div class="v">12</div><div class="d">у каждого своя специализация</div></div>
+      </div>
+    </div>
+    <img src="https://www.figma.com/api/mcp/asset/ac466c04-3598-4ece-8032-2ec7f701e588.png">
+  </div>
+  <div class="dirs">
+    <div class="dirhead"><div class="h2">Направления</div><div class="sp"></div><a class="bm-med" href="#">Все виды занятий ›</a></div>
+    <div class="dirgrid">
+      <div class="dc"><img src="https://www.figma.com/api/mcp/asset/5f96cf62-bd84-4d82-b4e4-1f2272113dfe.png"><div class="in"><div class="h3">Йога</div><div class="bs t2">24 занятия в неделю</div></div></div>
+      <div class="dc"><img src="https://www.figma.com/api/mcp/asset/fd85379d-5406-4473-94cb-a428681ed927.png"><div class="in"><div class="h3">HIIT</div><div class="bs t2">30 занятий в неделю</div></div></div>
+      <div class="dc"><img src="https://www.figma.com/api/mcp/asset/b7123c3a-20e0-40f4-9328-00661e1c5a4e.png"><div class="in"><div class="h3">Пилатес</div><div class="bs t2">18 занятий в неделю</div></div></div>
+      <div class="dc"><img src="https://www.figma.com/api/mcp/asset/278ae665-00c4-46bb-9644-51dd7322e8bf.png"><div class="in"><div class="h3">Сайклинг</div><div class="bs t2">28 занятий в неделю</div></div></div>
+    </div>
+  </div>
+  <div class="cta"><div class="t">Присоединяйтесь — выберите тариф и начните тренировки</div><div class="sp"></div><div class="btn btn-l btn-dark">Выбрать тариф</div></div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС» · Единая система: абонементы · расписание · записи · посещаемость</div>
+</div>
+</body></html>

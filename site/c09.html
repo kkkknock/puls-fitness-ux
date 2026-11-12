@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Расписание</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.daytabs{display:flex;gap:10px;margin-bottom:20px;}
+.dt{width:64px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 0;border-radius:14px;background:var(--card);border:1px solid var(--border);}
+.dt .dd{font-size:20px;font-weight:600;}
+.dt .mm{font-size:12px;color:var(--text3);}
+.dt.on{background:var(--lime);border-color:var(--lime);}
+.dt.on .dd,.dt.on .mm{color:var(--ondark);}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.prog{display:flex;flex-direction:column;gap:6px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a href="#">Тарифы</a><a class="on" href="#">Расписание</a><a href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="sec" style="padding-top:36px;">
+    <div class="row" style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <div class="chipAnn">C-09 · Расписание · FR-04 · US-04 · UC-02 · BR-01</div>
+      <div class="sp"></div>
+      <div class="bs t3">Свободные места — представление v_session_free_seats</div>
+    </div>
+    <div class="daytabs">
+      <div class="dt"><div class="dd">Пн</div><div class="mm">23.11</div></div>
+      <div class="dt"><div class="dd">Ср</div><div class="mm">25.11</div></div>
+      <div class="dt on"><div class="dd">Пт</div><div class="mm">27.11</div></div>
+      <div class="dt"><div class="dd">Сб</div><div class="mm">28.11</div></div>
+      <div class="dt"><div class="dd">Вс</div><div class="mm">29.11</div></div>
+    </div>
+    <div class="chips" style="margin-bottom:20px;">
+      <div class="pill on">Все</div><div class="pill">Йога</div><div class="pill">HIIT</div><div class="pill">Пилатес</div><div class="pill">Сайклинг</div><div class="pill">Стретчинг</div>
+    </div>
+    <div class="grid">
+      <div class="cc">
+        <div class="ph"><img src="https://www.figma.com/api/mcp/asset/5f96cf62-bd84-4d82-b4e4-1f2272113dfe.png"></div>
+        <div class="h3">Йога</div>
+        <div class="meta"><div>Пт · 18:00–19:00</div><div>Зал 2</div><div>Соколова А.</div></div>
+        <div class="prog"><div class="bar"><i style="width:40%;"></i></div><div class="bs t2">Осталось 12 из 20 мест</div></div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Записаться</div>
+      </div>
+      <div class="cc">
+        <div class="ph"><img src="https://www.figma.com/api/mcp/asset/fd85379d-5406-4473-94cb-a428681ed927.png"></div>
+        <div class="h3">HIIT</div>
+        <div class="meta"><div>Пт · 18:30–19:30</div><div>Зал 2</div><div>Иванов Д.</div></div>
+        <div class="prog"><div class="bar"><i style="width:60%;"></i></div><div class="bs t2">Осталось 8 из 20 мест</div></div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Записаться</div>
+      </div>
+      <div class="cc">
+        <div class="ph"><img src="https://www.figma.com/api/mcp/asset/b7123c3a-20e0-40f4-9328-00661e1c5a4e.png"></div>
+        <div class="h3">Пилатес</div>
+        <div class="meta"><div>Пт · 19:00–20:00</div><div>Зал 3</div><div>Орлова М.</div></div>
+        <div class="prog"><div class="bar"><i style="width:28%;"></i></div><div class="bs t2">Осталось 14 из 20 мест</div></div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Записаться</div>
+      </div>
+      <div class="cc">
+        <div class="ph"><img src="https://www.figma.com/api/mcp/asset/278ae665-00c4-46bb-9644-51dd7322e8bf.png"></div>
+        <div class="h3">Сайклинг</div>
+        <div class="meta"><div>Пт · 19:00–20:00</div><div>Зал 1</div><div>Ким С.</div></div>
+        <div class="prog"><div class="bar"><i style="width:52%;"></i></div><div class="bs t2">Осталось 10 из 20 мест</div></div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Записаться</div>
+      </div>
+      <div class="cc">
+        <div class="ph"><img src="https://www.figma.com/api/mcp/asset/273a1bd4-db10-413f-896a-77ce1dab92f3.png"></div>
+        <div class="h3">Стретчинг</div>
+        <div class="meta"><div>Пт · 20:00–21:00</div><div>Зал 3</div><div>Соколова А.</div></div>
+        <div class="prog"><div class="bar"><i style="width:75%;"></i></div><div class="bs t2">Осталось 5 из 20 мест</div></div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Записаться</div>
+      </div>
+      <div class="cc">
+        <div class="ph"><img src="https://www.figma.com/api/mcp/asset/be0fcbb4-23a2-4a1d-a99b-0561e01e16c5.png"></div>
+        <div class="h3">Силовая тренировка</div>
+        <div class="meta"><div>Пт · 17:30–18:30</div><div>Зал 4</div><div>Иванов Д.</div></div>
+        <div class="prog"><div class="bar"><i style="width:100%;"></i></div><div class="bs t-danger" style="color:var(--danger);">Мест нет</div></div>
+        <div class="btn btn-m btn-secondary" style="width:100%;opacity:.5;">Мест нет</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

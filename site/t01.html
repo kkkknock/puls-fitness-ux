@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Кабинет тренера</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.sec2{position:relative;padding:36px 40px 48px;display:flex;flex-direction:column;gap:20px;}
+.list{display:flex;flex-direction:column;gap:12px;}
+.trainer{display:flex;gap:24px;align-items:center;padding:24px;border-radius:24px;background:linear-gradient(135deg,#223312 0%,var(--elev) 70%);border:1px solid var(--border2);}
+.tav{width:72px;height:72px;border-radius:50%;background:var(--lime);color:var(--ondark);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a class="on" href="#">Сегодня</a><a href="#">Расписание</a><a href="#">Посещаемость</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-neutral">Тренер · Иванов Д.</div>
+    <div class="avatar">ИД</div>
+  </div>
+  <div class="sec2">
+    <div class="row" style="display:flex;align-items:center;gap:14px;">
+      <div class="chipAnn">T-01 · Кабинет тренера · UC-04 · NFR-02</div>
+      <div class="sp"></div>
+      <div class="bs t3">Доступ по роли: тренер видит только свои занятия (NFR-02)</div>
+    </div>
+    <div class="trainer">
+      <div class="tav">ИД</div>
+      <div class="col" style="display:flex;flex-direction:column;gap:6px;flex:1;">
+        <div class="h2">Иванов Дмитрий</div>
+        <div class="bs t2">Специализация: силовая подготовка и HIIT · стаж 7 лет</div>
+      </div>
+      <div class="row chips" style="display:flex;gap:10px;">
+        <div class="pill on">Пт · 27.11</div>
+        <div class="pill">Сб · 28.11</div>
+        <div class="pill">Вс · 29.11</div>
+      </div>
+    </div>
+    <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="h2">Мои занятия сегодня</div>
+      <div class="badge badge-solid">4 занятия · 21 клиент</div>
+    </div>
+    <div class="list">
+      <div class="brow">
+        <div class="dchip" style="background:rgba(200,245,58,.15);"><div class="dd">17:30</div><div class="mm">18:30</div></div>
+        <div class="mid"><div class="bm-med">Силовая тренировка · Зал 4</div><div class="bs t2">7 клиентов записано · занятие завершится сегодня</div></div>
+        <div class="badge badge-neutral">Занятие идёт</div>
+        <div class="btn btn-m btn-primary">Отметить посещение</div>
+        <div class="chev">›</div>
+      </div>
+      <div class="brow">
+        <div class="dchip"><div class="dd">18:30</div><div class="mm">19:30</div></div>
+        <div class="mid"><div class="bm-med">HIIT · Зал 2</div><div class="bs t2">18 клиентов записано</div></div>
+        <div class="badge badge-warn">Скоро начнётся</div>
+        <div class="btn btn-m btn-secondary">Отметить посещение</div>
+        <div class="chev">›</div>
+      </div>
+      <div class="brow">
+        <div class="dchip"><div class="dd">20:00</div><div class="mm">21:00</div></div>
+        <div class="mid"><div class="bm-med">Силовая тренировка · Зал 4</div><div class="bs t2">6 клиентов записано</div></div>
+        <div class="badge badge-neutral">Запланировано</div>
+        <div class="btn btn-m btn-secondary">Отметить посещение</div>
+        <div class="chev">›</div>
+      </div>
+      <div class="brow" style="opacity:.6;">
+        <div class="dchip"><div class="dd">07:30</div><div class="mm">08:30</div></div>
+        <div class="mid"><div class="bm-med">Силовая тренировка · Зал 4</div><div class="bs t2">10 клиентов · 9 пришёл · 1 не пришёл</div></div>
+        <div class="badge badge-green">Отметки сохранены</div>
+        <div class="chev">›</div>
+      </div>
+    </div>
+    <div class="bs t3">Альтернатива UC-04: тренер пытается отметить чужое занятие — доступ запрещён (NFR-02). Пришёл клиент без записи — правило решает заказчик (в MVP не определено).</div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС» · Кабинет тренера</div>
+</div>
+</body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Подтверждение записи</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.stack{position:relative;padding:40px 40px 56px;display:flex;flex-direction:column;gap:32px;}
+.dim{position:relative;display:flex;justify-content:center;}
+.dim .bgc{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;filter:blur(0px);opacity:.25;}
+.dim .bgc .cc{pointer-events:none;}
+.shadow{position:absolute;inset:0;background:rgba(11,13,12,.55);display:flex;align-items:center;justify-content:center;border-radius:16px;}
+.modal{width:520px;display:flex;flex-direction:column;gap:16px;padding:32px;border-radius:24px;background:var(--elev);border:1px solid var(--border2);}
+.kv{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed var(--border2);}
+.kv .k{font-size:14px;color:var(--text2);}
+.kv .v{font-size:15px;color:var(--text);font-weight:500;}
+.kv:last-of-type{border-bottom:none;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a href="#">Тарифы</a><a class="on" href="#">Расписание</a><a href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="stack">
+    <div class="chipAnn" style="align-self:flex-start;">C-11 · Подтверждение записи · UC-02 · US-04 · NFR-04</div>
+    <div class="dim">
+      <div class="bgc">
+        <div class="cc"><div class="ph"><img src="https://www.figma.com/api/mcp/asset/5f96cf62-bd84-4d82-b4e4-1f2272113dfe.png"></div><div class="h3">Йога</div><div class="meta"><div>Пт · 18:00</div><div>Зал 2</div></div></div>
+        <div class="cc"><div class="ph"><img src="https://www.figma.com/api/mcp/asset/fd85379d-5406-4473-94cb-a428681ed927.png"></div><div class="h3">HIIT</div><div class="meta"><div>Пт · 18:30</div><div>Зал 2</div></div></div>
+        <div class="cc"><div class="ph"><img src="https://www.figma.com/api/mcp/asset/b7123c3a-20e0-40f4-9328-00661e1c5a4e.png"></div><div class="h3">Пилатес</div><div class="meta"><div>Пт · 19:00</div><div>Зал 3</div></div></div>
+      </div>
+      <div class="shadow">
+        <div class="modal">
+          <div class="row" style="display:flex;align-items:center;gap:10px;">
+            <div class="h3">Подтвердить запись</div>
+          </div>
+          <div class="kv"><div class="k">Занятие</div><div class="v">HIIT</div></div>
+          <div class="kv"><div class="k">Время (NFR-04)</div><div class="v">Пт · 27.11 · 18:30–19:30</div></div>
+          <div class="kv"><div class="k">Зал</div><div class="v">Зал 2</div></div>
+          <div class="kv"><div class="k">Тренер</div><div class="v">Иванов Дмитрий</div></div>
+          <div class="kv"><div class="k">Абонемент</div><div class="v">«Базовый» · 9 посещений осталось</div></div>
+          <div class="bs t3">Проверки BR-01 пройдены: свободное место есть, условия абонемента соблюдены</div>
+          <div class="row" style="display:flex;gap:12px;">
+            <div class="btn btn-m btn-primary" style="flex:1;">Подтвердить запись</div>
+            <div class="btn btn-m btn-ghost">Отмена</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="flex-direction:row;gap:16px;align-items:center;">
+      <div class="banner banner-ok" style="background:transparent;padding:0;flex:1;"><div class="ic" style="width:40px;height:40px;border-radius:20px;font-size:18px;">✓</div><div><div class="h3">Успешная запись</div><div class="sb">Запись подтверждена. Место зарезервировано за вами.</div></div></div>
+      <div class="row" style="display:flex;gap:12px;">
+        <div class="btn btn-m btn-primary">Мои записи</div>
+        <div class="btn btn-m btn-ghost">В расписание</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

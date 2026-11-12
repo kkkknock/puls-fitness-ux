@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Презентация</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+body{background:#080908;}
+.slide{width:1920px;height:1080px;position:relative;overflow:hidden;background:var(--bg);margin:0 auto;padding:96px 120px;flex:none;}
+.slide h1{font-size:120px;line-height:116px;font-weight:900;letter-spacing:-4px;}
+.h-slide{font-size:64px;font-weight:700;letter-spacing:-1.5px;margin-bottom:12px;}
+.stag{font-size:24px;color:var(--text2);margin-bottom:48px;}
+.tag{position:absolute;top:48px;right:120px;font-size:20px;color:var(--text3);}
+.tago{position:absolute;top:48px;left:120px;font-size:20px;color:var(--text3);}
+.grid-g{display:grid;gap:24px;}
+.card-big{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:12px;}
+.card-big .v{font-size:20px;line-height:30px;color:var(--text2);}
+.big-num{font-size:96px;font-weight:900;color:var(--lime);line-height:1;}
+.photo-band{position:absolute;right:0;top:0;bottom:0;width:760px;object-fit:cover;}
+.ovl{position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 35%,rgba(11,13,12,.35) 75%);}
+.footnote{position:absolute;bottom:48px;left:120px;font-size:18px;color:var(--text3);}
+.mini-t{border:1px solid var(--border);border-radius:20px;overflow:hidden;background:var(--card);}
+.mini-t .content{padding:20px;display:flex;flex-direction:column;gap:10px;}
+.tbt{display:flex;color:var(--text3);font-size:14px;border-top:1px solid var(--border);}
+.tbt div{flex:1;text-align:center;padding:12px 0;}
+.tbt .on{color:var(--lime);background:rgba(200,245,58,.08);}
+.pill-l{display:inline-flex;padding:10px 24px;border-radius:100px;border:1px solid var(--border2);font-size:20px;color:var(--text2);margin-right:12px;}
+.chipslide{display:flex;flex-direction:column;gap:16px;}
+.chipslide>div{display:flex;align-items:center;gap:20px;}
+</style></head>
+<body style="display:flex;flex-direction:column;gap:80px;padding:80px 0;">
+  <!-- SLIDE 1 -->
+  <div class="slide" id="s1">
+    <img class="photo-band" src="https://www.figma.com/api/mcp/asset/ac466c04-3598-4ece-8032-2ec7f701e588.png">
+    <div class="ovl"></div>
+    <div class="tago">UI/UX ПРОЕКТ · КОМПОНОВКА МАКЕТОВ И РАЗВИТИЯ ИС ФИТНЕС-КЛУБА</div>
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:960px;margin-top:80px;">
+      <div class="lg row" style="display:flex;align-items:center;gap:10px;"><div style="width:14px;height:14px;border-radius:7px;background:var(--lime);"></div><div class="h3" style="font-size:28px;">ПУЛЬС</div></div>
+      <h1 style="max-width:900px;">Информационная система фитнес-клуба</h1>
+      <div class="stag">Единая платформа: абонементы · расписание · записи · посещаемость</div>
+      <div class="row" style="display:flex;gap:12px;"><div class="badge badge-solid" style="font-size:18px;">20 экранов</div><div class="badge badge-neutral" style="font-size:18px;">US-01–06</div><div class="badge badge-neutral" style="font-size:18px;">UC-01–04</div><div class="badge badge-neutral" style="font-size:18px;">6 страниц трассировки</div></div>
+    </div>
+    <div class="footnote">Тёмная тема · акцент лайм · шрифт Golos Text · Desktop / Tablet / Mobile</div>
+  </div>
+  <!-- SLIDE 2 -->
+  <div class="slide" id="s2">
+    <div class="tago">S2 · ПРОБЛЕМА И ЦЕЛЬ</div>
+    <div class="h-slide">Проблема и цель проекта</div>
+    <div class="stag">Постановка бизнес-задачи (ТЗ, ГОСТ 34.602, ISO/IEC/IEEE 29148)</div>
+    <div class="grid-g" style="grid-template-columns:1fr 1fr;max-width:1680px;">
+      <div class="card-big" style="border-color:rgba(255,93,81,.4);">
+        <div class="hl bm-med" style="font-size:22px;color:var(--danger);">Проблема</div>
+        <div class="v">Расписание, абонементы и записи ведутся разрозненно. Клиентам трудно получать актуальную информацию, сотрудникам — управлять процессами.</div>
+        <div class="v t3">Статусы платежей и мест не скоординированы; записи и отметки посещений теряются.</div>
+      </div>
+      <div class="card-big" style="border-color:rgba(200,245,58,.4);">
+        <div class="hl bm-med" style="font-size:22px;color:var(--lime);">Цель</div>
+        <div class="v">Единая система для управления абонементами, расписанием занятий, записями клиентов и посещаемостью в онлайне.</div>
+        <div class="v t3">Границы MVP: регистрация, абонементы, расписание, запись и отмена. Умные часы и геймификация — вне MVP (CON-01).</div>
+      </div>
+    </div>
+    <div class="grid-g" style="grid-template-columns:repeat(3,1fr);max-width:1680px;">
+      <div class="card-big" style="padding:24px;"><div class="big-num">40+</div><div class="v">занятий в неделю публикуется в расписании</div></div>
+      <div class="card-big" style="padding:24px;"><div class="big-num">200</div><div class="v">записей в сутки удержит профиль (BR-01, места)</div></div>
+      <div class="card-big" style="padding:24px;"><div class="big-num">30</div><div class="v">платежей в сутки обрабатывает платёжный провайдер</div></div>
+    </div>
+    <div class="footnote">Числа — иллюстративный профиль нагрузки slide 14 исходной ТЗ-презентации</div>
+  </div>
+  <!-- SLIDE 3 -->
+  <div class="slide" id="s3">
+    <div class="tago">S3 · ПОЛЬЗОВАТЕЛИ И РОЛИ</div>
+    <div class="h-slide">Кто работает в системе</div>
+    <div class="stag">Три роли · права разграничены по плану (NFR-02)</div>
+    <div class="grid-g" style="grid-template-columns:repeat(3,1fr);max-width:1680px;">
+      <div class="card-big">
+        <div class="big-num" style="font-size:64px;">Клиент</div>
+        <div class="v">Регистрация · покупка тарифа · запись на занятия · отмена · история посещений</div>
+        <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;"><div class="badge badge-green">US-01</div><div class="badge badge-green">US-02</div><div class="badge badge-green">US-03</div><div class="badge badge-green">US-04</div><div class="badge badge-neutral">US-05, US-06</div></div>
+        <div class="v t3">Экраны: главная, регистрация/авторизация, личный кабинет, абонемент, тарифы, оплата, расписание, мои записи, история</div>
+      </div>
+      <div class="card-big">
+        <div class="big-num" style="font-size:64px;">Тренер</div>
+        <div class="v">Расписание своих занятий · список клиентов · отметки посещений</div>
+        <div class="row" style="display:flex;gap:10px;"><div class="badge badge-info">UC-04</div><div class="badge badge-neutral">US-06 источник</div></div>
+        <div class="v t3">Экраны: кабинет тренера, клиенты занятия, отметка посещения. Чужие занятия недоступны (NFR-02)</div>
+      </div>
+      <div class="card-big">
+        <div class="big-num" style="font-size:64px;">Админ</div>
+        <div class="v">Панель обзора · управление расписанием и тарифами · контроль платежей</div>
+        <div class="row" style="display:flex;gap:10px;"><div class="badge badge-solid">FR-03</div><div class="badge badge-solid">FR-04</div></div>
+        <div class="v t3">Экраны: панель администратора, расписание, тарифы. Публикация тарифов — предусловие UC-01</div>
+      </div>
+    </div>
+    <div class="footnote">Роли в БД: role (client / trainer / admin) · app_user.role_id</div>
+  </div>
+  <!-- SLIDE 4 -->
+  <div class="slide" id="s4">
+    <div class="tago">S4 · USER STORIES</div>
+    <div class="h-slide">User Stories и функциональные возможности</div>
+    <div class="stag">Реестр MoSCoW · Must → Should → Could, Won't вне MVP (CON-01)</div>
+    <div class="tbl wrap" style="max-width:1680px;">
+      <table class="tbl">
+        <tr><th style="font-size:18px;width:110px;">ID</th><th style="font-size:18px;">Формулировка</th><th style="font-size:18px;width:140px;">MoSCoW</th><th style="font-size:18px;width:420px;">Экраны</th></tr>
+        <tr><td style="font-size:18px;color:var(--lime);font-weight:700;">US-01</td><td style="font-size:18px;">Создать аккаунт, чтобы пользоваться онлайн-сервисами</td><td style="font-size:18px;">Must</td><td style="font-size:18px;">C-01 · C-02 · C-03</td></tr>
+        <tr><td style="font-size:18px;color:var(--lime);font-weight:700;">US-02</td><td style="font-size:18px;">Видеть статус и срок действия абонемента</td><td style="font-size:18px;">Must</td><td style="font-size:18px;">C-04 · C-05</td></tr>
+        <tr><td style="font-size:18px;color:var(--lime);font-weight:700;">US-03</td><td style="font-size:18px;">Выбрать и оплатить тариф</td><td style="font-size:18px;">Must</td><td style="font-size:18px;">C-06 · C-07 · C-08</td></tr>
+        <tr><td style="font-size:18px;color:var(--lime);font-weight:700;">US-04</td><td style="font-size:18px;">Записаться на занятие, чтобы зарезервировать место</td><td style="font-size:18px;">Must</td><td style="font-size:18px;">C-09 · C-10 · C-11 · C-12</td></tr>
+        <tr><td style="font-size:18px;">US-05</td><td style="font-size:18px;">Отменить запись по правилам, чтобы освободить место</td><td style="font-size:18px;">Should</td><td style="font-size:18px;">C-12 · C-13</td></tr>
+        <tr><td style="font-size:18px;">US-06</td><td style="font-size:18px;">Видеть историю посещений, чтобы отслеживать регулярность</td><td style="font-size:18px;">Could</td><td style="font-size:18px;">C-14 (отдельного FR нет)</td></tr>
+      </table>
+    </div>
+    <div class="footnote">FR-01..06, BR-01, NFR-02..05 полножизнены на странице Traceability</div>
+  </div>
+  <!-- SLIDE 5 -->
+  <div class="slide" id="s5">
+    <div class="tago">S5 · СТРУКТУРА</div>
+    <div class="h-slide">Общая структура интерфейса</div>
+    <div class="stag">20 экранов · 6 зон интерфейса · единый top-bar / tab-bar</div>
+    <div class="grid-g" style="grid-template-columns:repeat(4,1fr);max-width:1680px;">
+      <div class="card-big" style="padding:24px;gap:8px;"><div class="h3">Аутентификация</div><div class="v">C-01 Главная<br>C-02 Регистрация<br>C-03 Авторизация</div></div>
+      <div class="card-big" style="padding:24px;gap:8px;"><div class="h3">Абонемент</div><div class="v">C-04 Личный кабинет<br>C-05 Абонемент (3 состояния)<br>C-06 Каталог тарифов<br>C-07 Оформление · C-08 Результат</div></div>
+      <div class="card-big" style="padding:24px;gap:8px;"><div class="h3">Записи</div><div class="v">C-09 Расписание<br>C-10 Карточка занятия (4 состояния)<br>C-11 Подтверждение<br>C-12 Мои записи · C-13 Отмена</div></div>
+      <div class="card-big" style="padding:24px;gap:8px;"><div class="h3">История</div><div class="v">C-14 История посещений<br>Регулярность · статистика</div></div>
+      <div class="card-big" style="padding:24px;gap:8px;border-color:rgba(90,169,248,.4);"><div class="h3" style="color:var(--info);">Тренер</div><div class="v">T-01 Кабинет тренера<br>T-02 Клиенты занятия<br>T-03 Отметка посещения</div></div>
+      <div class="card-big" style="padding:24px;gap:8px;border-color:rgba(90,169,248,.4);"><div class="h3" style="color:var(--info);">Админ</div><div class="v">A-01 Панель<br>A-02 Расписание<br>A-03 Тарифы</div></div>
+      <div class="card-big" style="padding:24px;gap:8px;"><div class="h3">Адаптив</div><div class="v">Desktop 1440<br>Tablet 768<br>Mobile 390 (крупные цели нажатия)</div></div>
+      <div class="card-big" style="padding:24px;gap:8px;border-color:rgba(200,245,58,.4);"><div class="h3" style="color:var(--lime);">Основа</div><div class="v">Design System page<br>компоненты · токены<br>Traceability page</div></div>
+    </div>
+  </div>
+  <!-- SLIDE 6 -->
+  <div class="slide" id="s6">
+    <div class="tago">S6 · СЦЕНАРИИ</div>
+    <div class="h-slide">Пользовательские сценарии UC-01–UC-04</div>
+    <div class="stag">Флоу-карта · основные потоки и альтернативы</div>
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:1680px;">
+      <div class="panel" style="flex-direction:row;align-items:center;gap:16px;">
+        <div class="badge badge-solid" style="flex:none;">UC-01</div>
+        <div class="tag-l" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="pill on">C-06 Каталог</span>→<span class="pill on">C-07 Оформление</span>→<span class="pill on">C-08 Результат</span>→<span class="pill on">C-04 Кабинет · абонемент активен</span>
+          <span style="font-size:16px;font-style:italic;color:var(--text3);">альтернативы: C-08 Error / C-08 Pending</span>
+        </div>
+      </div>
+      <div class="panel" style="flex-direction:row;align-items:center;gap:16px;">
+        <div class="badge badge-solid" style="flex:none;">UC-02</div>
+        <div class="tag-l" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="pill on">C-09 Расписание</span>→<span class="pill on">C-10 Карточка (BR-01)</span>→<span class="pill on">C-11 Подтверждение</span>→<span class="pill on">Успешная запись — C-12</span>
+          <span style="font-size:16px;font-style:italic;color:var(--text3);">альтернат: C-10 «нет мест» · «абонемент истёк» · «уже записаны»</span>
+        </div>
+      </div>
+      <div class="panel" style="flex-direction:row;align-items:center;gap:16px;">
+        <div class="badge badge-solid" style="flex:none;">UC-03</div>
+        <div class="tag-l" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="pill on">C-12 Мои записи</span>→<span class="pill on">C-13 Диалог отмены</span>→<span class="pill on">Место освобожено</span>
+          <span style="font-size:16px;font-style:italic;color:var(--text3);">альтернат: «срок истёк» · «занятие началось» · «ошибка сохранения» — C-13</span>
+        </div>
+      </div>
+      <div class="panel" style="flex-direction:row;align-items:center;gap:16px;">
+        <div class="badge badge-solid" style="flex:none;">UC-04</div>
+        <div class="tag-l" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="pill on">T-01 Кабинет</span>→<span class="pill on">T-02 Клиенты</span>→<span class="pill on">T-03 Отметка пришёл/не пришёл</span>→<span class="pill on">История C-14 обновлена</span>
+          <span style="font-size:16px;font-style:italic;color:var(--text3);">альтернат: сбой сохранения — T-03</span>
+        </div>
+      </div>
+    </div>
+    <div class="footnote">Все переходы связаны в прототипе; альтернативы оформлены состояниями одного экрана</div>
+  </div>
+  <!-- SLIDE 7 -->
+  <div class="slide" id="s7">
+    <div class="tago">S7 · АДАПТИВНОСТЬ</div>
+    <div class="h-slide">Адаптивный дизайн</div>
+    <div class="stag">Auto Layout идеи: Desktop 1440 → Tablet 768 → Mobile 390</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div class="card-big" style="width:560px;">
+        <div class="bm-med">Desktop · 1440</div>
+        <div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <div class="mini-t" style="width:190px;"><div style="height:70px;background:linear-gradient(120deg,#223312,#0B0D0C);"></div><div class="content"><div class="t3" style="font-size:11px;">HERO · CTA · список</div></div><div class="tbt"><div class="on">1440</div></div></div>
+            <div class="mini-t" style="width:190px;"><div style="height:70px;background:var(--elev);"></div><div class="content"><div class="t3" style="font-size:11px;">МАКЕТЫ GRID 3–4 КОл</div></div><div class="tbt"><div class="on">FILL</div></div></div>
+            <div class="mini-t" style="width:190px;"><div style="height:70px;background:#223312;"></div><div class="content"><div class="t3" style="font-size:11px;">TABLES · LISTS</div></div><div class="tbt"><div class="on">960</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-big" style="width:420px;">
+        <div class="bm-med">Tablet · 768</div>
+        <div class="row" style="display:flex;gap:8px;margin-top:8px;">
+          <div class="mini-t" style="width:180px;"><div style="height:70px;background:var(--elev);"></div><div class="content"><div class="t3" style="font-size:11px;">GRID 2 КОл</div></div><div class="tbt"><div class="on">768</div></div></div>
+          <div class="mini-t" style="width:180px;"><div style="height:70px;background:#223312;"></div><div class="content"><div class="t3" style="font-size:11px;">LIST ROW</div></div><div class="tbt"><div class="on">2-кол</div></div></div>
+        </div>
+      </div>
+      <div class="card-big" style="width:420px;">
+        <div class="bm-med">Mobile · 390</div>
+        <div class="row" style="display:flex;gap:8px;margin-top:8px;">
+          <div class="mini-t" style="width:120px;"><div style="height:70px;background:var(--elev);"></div><div class="content"><div class="t3" style="font-size:10px;">СТЕК · ТАББАР 5 ИК-ОК</div></div><div class="tbt"><div class="on">390</div></div></div>
+          <div class="mini-t" style="width:120px;"><div style="height:70px;background:#223312;"></div><div class="content"><div class="t3" style="font-size:10px;">КРУПНЫЕ ЦЕЛИ</div></div><div class="tbt"><div class="on">TAB</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="max-width:1680px;">
+      <div class="v">Все списки переезжают в вертикальный стек, навигация — в таб-бар 5 иконок, интерактивные цели ≥ 44 px. Расписание, запись, оплата и кабинет адаптированы.</div>
+    </div>
+  </div>
+  <!-- SLIDE 8 -->
+  <div class="slide" id="s8">
+    <div class="tago">S8 · ДИЗАЙН-СИСТЕМА</div>
+    <div class="h-slide">Design System</div>
+    <div class="stag">Тёмная тема · лаймовый акцент · Golos Text · отступы 4/8/12/16/24/32/48</div>
+    <div class="grid-g" style="grid-template-columns:1fr 1fr 1fr;max-width:1680px;">
+      <div class="card-big">
+        <div class="bm-med">Палитра</div>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px;">
+          <div style="width:64px;height:64px;border-radius:12px;background:#0B0D0C;border:1px solid var(--border2);"></div>
+          <div style="width:64px;height:64px;border-radius:12px;background:#191D1A;"></div>
+          <div style="width:64px;height:64px;border-radius:12px;background:#232925;"></div>
+          <div style="width:64px;height:64px;border-radius:12px;background:#C8F53A;"></div>
+          <div style="width:64px;height:64px;border-radius:12px;background:#5FD068;"></div>
+          <div style="width:64px;height:64px;border-radius:12px;background:#F0B429;"></div>
+          <div style="width:64px;height:64px;border-radius:12px;background:#FF5D51;"></div>
+          <div style="width:64px;height:64px;border-radius:12px;background:#5AA9F8;"></div>
+        </div>
+        <div class="cap t3">#0B0D0C · #191D1A · #232925 · #C8F53A · статусы success/warning/danger/info</div>
+      </div>
+      <div class="card-big">
+        <div class="bm-med">Типографика</div>
+        <div style="font-size:44px;font-weight:900;letter-spacing:-1px;">Сила в движении</div>
+        <div style="font-size:24px;font-weight:700;">Твой результат · Display/H1</div>
+        <div class="bm">Body 16 · подписи 14 · caption 12</div>
+        <div class="cap t3">Golos Text: 900/700/600/500/400</div>
+      </div>
+      <div class="card-big">
+        <div class="bm-med">Компоненты</div>
+        <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;"><div class="btn btn-m btn-primary">Primary</div><div class="btn btn-m btn-secondary">Secondary</div><div class="btn btn-m btn-ghost">Ghost</div></div>
+        <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;"><span class="badge badge-green">Активен</span><span class="badge badge-warn">Ожидание</span><span class="badge badge-danger">Отменено</span><span class="badge badge-info">Новое</span></div>
+        <div class="input" style="background:var(--czk-bg);">Поле ввода</div>
+        <div class="cap t3">Кнопка 3×3 состояний · Input 5 состояний · Badge 6 · Banner 3 · Dialog · TopBar · TabBar</div>
+      </div>
+    </div>
+    <div class="footnote">Переменные Figma (collection Colors, mode Dark) + paint styles + 12 текстовых стилей</div>
+  </div>
+  <!-- SLIDE 9 -->
+  <div class="slide" id="s9">
+    <div class="tago">S9 · ТРАССИРУЕМОСТЬ</div>
+    <div class="h-slide">Трассировка требований</div>
+    <div class="stag">US → Экран → UC → Действие → Результат · по матрице Excel</div>
+    <div class="tbl wrap" style="max-width:1680px;">
+      <table class="tbl">
+        <tr><th style="font-size:18px;width:110px;">US</th><th style="font-size:18px;width:110px;">FR</th><th style="font-size:18px;">Экран</th><th style="font-size:18px;width:110px;">UC</th><th style="font-size:18px;width:360px;">Действие</th><th style="font-size:18px;width:360px;">Результат</th></tr>
+        <tr><td style="color:var(--lime);font-weight:700;font-size:18px;">US-01</td><td style="font-size:18px;">FR-01</td><td style="font-size:18px;">C-02 · C-03</td><td style="font-size:18px;">—</td><td style="font-size:18px;">ввод данных + ПДн</td><td style="font-size:18px;">аккаунт создан</td></tr>
+        <tr><td style="color:var(--lime);font-weight:700;font-size:18px;">US-02</td><td style="font-size:18px;">FR-02</td><td style="font-size:18px;">C-05</td><td style="font-size:18px;">—</td><td style="font-size:18px;">открывает абонемент</td><td style="font-size:18px;">статус + срок</td></tr>
+        <tr><td style="color:var(--lime);font-weight:700;font-size:18px;">US-03</td><td style="font-size:18px;">FR-03</td><td style="font-size:18px;">C-06→C-08</td><td style="font-size:18px;color:var(--green);">UC-01</td><td style="font-size:18px;">выбор → оплата</td><td style="font-size:18px;">активирован</td></tr>
+        <tr><td style="color:var(--lime);font-weight:700;font-size:18px;">US-04</td><td style="font-size:18px;">FR-04/05 · BR-01</td><td style="font-size:18px;">C-09→C-11</td><td style="font-size:18px;color:var(--green);">UC-02</td><td style="font-size:18px;">подтверждение</td><td style="font-size:18px;">место зарезервировано</td></tr>
+        <tr><td style="font-size:18px;">US-05</td><td style="font-size:18px;">FR-06</td><td style="font-size:18px;">C-12→C-13</td><td style="font-size:18px;color:var(--green);">UC-03</td><td style="font-size:18px;">отмена по правилам</td><td style="font-size:18px;">место освобождено</td></tr>
+        <tr><td style="font-size:18px;">US-06</td><td style="font-size:18px;">(Could)</td><td style="font-size:18px;">C-14 · T-03</td><td style="font-size:18px;color:var(--green);">UC-04</td><td style="font-size:18px;">просмотр</td><td style="font-size:18px;">регулярность</td></tr>
+      </table>
+    </div>
+    <div class="footnote">Полная матрица + NFR + критерии «Дано—Когда—Тогда» — страница Traceability</div>
+  </div>
+  <!-- SLIDE 10 -->
+  <div class="slide" id="s10">
+    <img class="photo-band" src="https://www.figma.com/api/mcp/asset/fd85379d-5406-4473-94cb-a428681ed927.png">
+    <div class="ovl"></div>
+    <div class="tago">S10 · ИТОГ</div>
+    <div class="h-slide">Итог и результат проектирования</div>
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:900px;">
+      <div class="card-big" style="background:transparent;padding:0;border:none;">
+        <div class="chipslide">
+          <div><div class="big-num" style="font-size:60px;">✓</div><div class="v" style="font-size:22px;">20 экранов трёх ролей с единым стилем</div></div>
+          <div><div class="big-num" style="font-size:60px;">✓</div><div class="v" style="font-size:22px;">User Stories US-01–06 покрыты (MoSCoW)</div></div>
+          <div><div class="big-num" style="font-size:60px;box-sizing:content-box;">✓</div><div class="v" style="font-size:22px;">UC-01–04 с альтернативами отражены</div></div>
+          <div><div class="big-num" style="font-size:60px;">✓</div><div class="v" style="font-size:22px;">Адаптив 1440 / 768 / 390</div></div>
+          <div><div class="big-num" style="font-size:60px;">✓</div><div class="v" style="font-size:22px;">Design System + трассировка + презентация</div></div>
+        </div>
+      </div>
+      <div class="panel" style="max-width:820px;">
+        <div class="v">Следующий шаг: интерактивные ссылки прототипа Figma (Prototype Panel) — финальная сборка после снятия лимита плана; альтернативные сценарии уже оформлены состояниями на экранах.</div>
+      </div>
+    </div>
+    <div class="footnote">Готов пакет материалов к защите: презентация · макеты · трассировка · дизайн-система</div>
+  </div>
+</body></html>

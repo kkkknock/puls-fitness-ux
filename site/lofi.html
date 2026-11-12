@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ПУЛЬС — Lo-Fi вайрфрейм (структура)</title>
+<style>
+/* ===== WIREFRAME STYLE (dark): только структура, без дизайна ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#141414;color:#ccc;font-size:14px}
+a{color:#ccc;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+/* topbar */
+.top{display:flex;align-items:center;gap:16px;border:2px solid #555;padding:10px 16px;margin-top:12px}
+.logo{font-weight:bold;font-size:16px;padding:6px 10px;background:#242424;border:1px solid #666;color:#eee}
+.nav{display:flex;gap:12px;flex:1}
+.nav a{padding:6px 10px;border:1px dashed #555;background:#1a1a1a}
+.nav a.on{background:#3a3a3a;border-style:solid;border-color:#888;color:#fff;font-weight:bold}
+.who{padding:6px 10px;background:#242424;border:1px solid #666;color:#ddd}
+/* generic blocks */
+.blk{border:1px solid #555;background:#1e1e1e;padding:12px;margin-top:12px}
+.blk.w{background:#222}
+.dash{border:1px dashed #4a4a4a;background:#191919}
+h1{font-size:20px;margin:18px 0 0;color:#eee}
+h2{font-size:15px;margin-bottom:8px;color:#eee}
+.row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.col{flex:1;min-width:200px}
+/* image placeholder: box with X */
+.ph{position:relative;border:1px dashed #555;background:#191919;display:flex;align-items:center;justify-content:center;color:#777;font-size:12px;min-height:80px}
+.ph:before,.ph:after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#333}
+.ph:after{transform:rotate(0deg)}
+/* buttons */
+.btn{display:inline-block;padding:8px 14px;border:2px solid #888;background:#2e2e2e;color:#eee;font-weight:bold;cursor:pointer;margin-top:10px}
+.btn.lm{background:#1a1a1a}
+.btn:hover{background:#444}
+/* forms */
+.fld{margin-top:10px}
+.fld .lb{font-size:12px;color:#999;margin-bottom:4px}
+.fld .in{border:1px solid #666;height:34px;background:#262626}
+/* table */
+table{border-collapse:collapse;width:100%;margin-top:8px}
+td,th{border:1px solid #555;padding:6px 8px;font-size:12px;text-align:left;background:#1e1e1e;color:#ccc}
+th{background:#2a2a2a;color:#eee}
+/* steps / annotations */
+.ann{display:inline-block;padding:3px 8px;border:1px dashed #666;font-size:11px;color:#aaa;background:#1a1a1a}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.foot{margin:24px 0 40px;font-size:11px;color:#888;border-top:1px dashed #333;padding-top:8px}
+ul{margin:6px 0 0 18px}
+.note{font-size:11px;color:#909090;font-style:italic}
+/* чистый режим: без технических аннотаций и подсказок */
+.ann,.note{display:none}
+.blk.dash{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="#/home" class="logo">ПУЛЬС</a>
+    <div class="nav" id="nav"></div>
+    <div class="who" id="who">Войти</div>
+  </div>
+  <div id="view"></div>
+  <div class="foot">Lo-Fi вайрфрейм · ИС фитнес-клуба «ПУЛЬС» · <a href="/index.html">→ Hi-Fi рабочая версия</a></div>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function ph(h){return '<div class="ph" style="min-height:'+(h||80)+'px">[ изображение ]</div>';}
+function txt(l){return '<div class="dash" style="padding:6px 10px;margin-top:8px">'+esc(l)+'</div>';}
+function btn(l,go){return '<a class="btn" href="'+go+'">'+esc(l)+'</a>';}
+function ann(l){return '<span class="ann">'+esc(l)+'</span>';}
+
+/* роли: гость/клиент/тренер/админ — переключаются в шапке для просмотра структуры */
+let ROLE=localStorage.getItem('lofi_role')||'guest';
+function setRole(r){ROLE=r;localStorage.setItem('lofi_role',r);route();}
+
+const NAVS={
+ guest:[['#/home','Главная'],['#/tariffs','Тарифы'],['#/schedule','Расписание'],['#/login','Вход']],
+ client:[['#/home','Главная'],['#/tariffs','Тарифы'],['#/schedule','Расписание'],['#/bookings','Мои записи'],['#/cabinet','Кабинет']],
+ trainer:[['#/t1','Мои занятия'],['#/t3','Отметка посещения']],
+ admin:[['#/a1','Обзор'],['#/a2','Расписание'],['#/a3','Тарифы']]
+};
+
+const S={};
+
+/* ==== СТРУКТУРА ЭКРАНОВ ==== */
+
+S.home=()=>`
+ <h1>Главная <span class="ann">US-01 · FR-01</span></h1>
+ <div class="row"><div class="col" style="flex:1.2">
+   ${txt('Заголовок: «Сила начинается здесь»')}${txt('Подзаголовок: описание клуба')}
+   <div>${btn('Выбрать тариф','#/tariffs')}${btn('Смотреть расписание','#/schedule')}</div>
+ </div><div class="col">${ph(140)}</div></div>
+ <h2>Направления <span class="ann">FR-01</span></h2>
+ <div class="grid4">${[1,2,3,4].map(i=>'<div class="blk">'+ph(60)+txt('Направление '+(i+1))+btn('К занятиям','#/schedule')+'</div>').join('')}</div>`;
+
+S.tariffs=()=>`
+ <h1>Каталог тарифов <span class="ann">UC-01 · US-02 · FR-03</span></h1>
+ <p class="note">Предусловие: клиент зарегистрирован (US-01)</p>
+ <div class="grid3">${['Разовый 990₽','Базовый 2990₽ (хит)','Безлимит 5990₽'].map(t=>
+   '<div class="blk w"><b>'+t+'</b>'+txt('Список возможностей тарифа')+btn('Выбрать и оплатить','#/pay')+'</div>').join('')}</div>
+ <div class="blk dash">Альтернативный поток: гость нажал «оплатить» → переход на регистрацию/вход</div>`;
+
+S.pay=()=>`
+ <h1>Оформление оплаты <span class="ann">UC-01 · FR-03</span></h1>
+ <div class="row"><div class="col">
+   <div class="blk w"><h2>Форма оплаты</h2>
+     <div class="fld"><div class="lb">Номер карты</div><div class="in"></div></div>
+     <div class="fld"><div class="lb">Срок / CVC</div><div class="in" style="width:45%;display:inline-block"></div><div class="in" style="width:45%;display:inline-block"></div></div>
+     ${btn('Оплатить N ₽','#/payres')}
+   </div></div>
+ <div class="col"><div class="blk"><h2>Выбранный тариф</h2>${txt('Название, период, цена')}${txt('Текущий абонемент (если есть)')}</div></div></div>`;
+
+S.payres=()=>`
+ <h1>Результат оплаты <span class="ann">UC-01 · альтернативы</span></h1>
+ <div class="blk w"><b>[ Статус: успех / ожидание / отказ ]</b>
+  ${txt('Успех → абонемент активируется автоматически')}
+  ${txt('Ожидание → платёж обрабатывается')}${txt('Отказ → вернуть на выбор тарифа')}
+  <div>${btn('К расписанию','#/schedule')}${btn('В кабинет','#/cabinet')}</div></div>`;
+
+S.schedule=()=>`
+ <h1>Расписание <span class="ann">UC-02 · US-04 · FR-04 · BR-01</span></h1>
+ <div class="row">${[1,2,3,4,5,6,7].map(d=>'<div class="blk" style="width:60px;padding:8px;text-align:center">Д'+d+'</div>').join('')}</div>
+ <div>${['Все','Йога','HIIT','Пилатес','Сайклинг'].map(x=>'<span class="ann" style="margin-right:6px">'+x+'</span>').join('')} <span class="note">← фильтр направлений</span></div>
+ <div class="grid3">${[1,2,3].map(i=>
+   '<div class="blk w">'+ph(60)+txt('Занятие '+(i+1)+' · время · зал · тренер')+txt('Свободные места: N из M')+btn('Записаться','#/session')+'</div>').join('')}</div>
+ <div class="blk dash">Альтернативы BR-01: нет мест → кнопка недоступна · нет абонемента → к оплате · уже записан → в «Мои записи»</div>`;
+
+S.session=()=>`
+ <h1>Карточка занятия <span class="ann">UC-02 · BR-01</span></h1>
+ <div class="row"><div class="col">${ph(120)}</div><div class="col">
+   ${txt('Название · дата · время · зал · тренер')}${txt('Свободные места (v_session_free_seats)')}
+   ${txt('Проверка: активный абонемент? есть места? не записан ли уже?')}
+   <div>${btn('Записаться','#/booked')}${btn('К расписанию','#/schedule')}</div></div></div>`;
+
+S.booked=()=>`
+ <h1>Запись подтверждена <span class="ann">UC-02 · FR-05</span></h1>
+ <div class="blk w"><b>[ Успех записи ]</b>${txt('Занятие, дата, зал, тренер')}${txt('Списание 1 посещения абонемента')}
+ ${txt('Напоминание: отмена не позднее 2 часов')}
+ <div>${btn('Ещё занятие','#/schedule')}${btn('Мои записи','#/bookings')}</div></div>`;
+
+S.bookings=()=>`
+ <h1>Мои записи <span class="ann">UC-03 · US-05</span></h1>
+ <div class="blk w"><table><tr><th>Дата</th><th>Занятие</th><th>Статус</th><th></th></tr>
+ <tr><td>—</td><td>—</td><td>—</td><td>${btn('Отменить','#/cancel')}</td></tr>
+ <tr><td>—</td><td>—</td><td>—</td><td><span class="note">менее 2ч → отмена недоступна</span></td></tr></table></div>
+ ${btn('История посещений','#/history')}`;
+
+S.cancel=()=>`
+ <h1>Отмена записи <span class="ann">UC-03 · BR-01</span></h1>
+ <div class="blk w">${txt('Занятие · до начала: N часов')}
+   ${txt('Проверка правила 2 часов: ≥2ч → доступна, <2ч → блок')}
+   ${txt('Успех → посещение возвращается на абонемент')}
+   <div>${btn('Подтвердить отмену','#/bookings')}${btn('Назад','#/bookings')}</div></div>`;
+
+S.history=()=>`
+ <h1>История посещений <span class="ann">US-06 · FR-06 (из отметок тренера)</span></h1>
+ <div class="blk w"><table><tr><th>Дата</th><th>Занятие</th><th>Тренер</th><th>Был / Не был</th></tr>
+ ${[1,2,3].map(i=>'<tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>').join('')}</table></div>`;
+
+S.login=()=>`
+ <h1>Вход <span class="ann">US-01 · FR-02</span></h1>
+ <div class="blk w" style="max-width:380px">
+   <div class="fld"><div class="lb">Email</div><div class="in"></div></div>
+   <div class="fld"><div class="lb">Пароль</div><div class="in"></div></div>
+   ${btn('Войти','#/cabinet')}${btn('Регистрация','#/register')}
+ </div>`;
+
+S.register=()=>`
+ <h1>Регистрация <span class="ann">US-01 · FR-02: уникальный email</span></h1>
+ <div class="blk w" style="max-width:380px">
+   <div class="fld"><div class="lb">Имя</div><div class="in"></div></div>
+   <div class="fld"><div class="lb">Email (уникальный)</div><div class="in"></div></div>
+   <div class="fld"><div class="lb">Пароль</div><div class="in"></div></div>
+   ${btn('Создать аккаунт','#/tariffs')}
+   <p class="note">После регистрации → выбор тарифа (UC-01)</p></div>`;
+
+S.cabinet=()=>`
+ <h1>Личный кабинет <span class="ann">US-02 · US-06</span></h1>
+ <div class="row"><div class="col"><div class="blk">${ph(60)}${txt('Имя · email · роль')}</div></div>
+ <div class="col"><div class="blk w"><h2>Абонемент</h2>${txt('Тариф · посещения осталось N из M')}${txt('Действует до · статус')}
+   ${btn('Сменить тариф','#/tariffs')}</div></div></div>
+ <div class="grid3">
+   <div class="blk">${txt('Активные записи')}${btn('Мои записи','#/bookings')}</div>
+   <div class="blk">${txt('История посещений')}${btn('История','#/history')}</div>
+   <div class="blk">${txt('Текущий тариф')}</div></div>`;
+
+S.t1=()=>`
+ <h1>Кабинет тренера <span class="ann">UC-04 · US-03</span></h1>
+ <div class="blk w"><table><tr><th>Дата</th><th>Занятие</th><th>Записано</th><th></th></tr>
+ ${[1,2,3].map(i=>'<tr><td>—</td><td>—</td><td>N из M</td><td>'+btn('Клиенты','#/t2')+'</td></tr>').join('')}</table></div>`;
+
+S.t2=()=>`
+ <h1>Клиенты занятия <span class="ann">UC-04</span></h1>
+ <div class="blk w"><table><tr><th>Клиент</th><th>Записан</th><th>Статус</th></tr>
+ ${[1,2,3].map(i=>'<tr><td>—</td><td>—</td><td>ожидает</td></tr>').join('')}</table>
+ ${btn('Открыть отметку посещения','#/t3')}</div>`;
+
+S.t3=()=>`
+ <h1>Отметка посещения <span class="ann">UC-04 · FR-06 → история клиента</span></h1>
+ <div class="blk w">${['Клиент 1','Клиент 2','Клиент 3'].map(n=>
+   '<div style="margin-top:8px">'+n+' <span class="ann">Был</span> <span class="ann">Не был</span></div>').join('')}
+ ${btn('Сохранить отметки','#/t1')}
+ <p class="note">Результат → записи в историю посещений клиента (US-06)</p></div>`;
+
+S.a1=()=>`
+ <h1>Панель администратора <span class="ann">FR-01…06</span></h1>
+ <div class="grid4">${['Клиентов','Абонементов','Выручка','Занятий сегодня'].map(l=>
+   '<div class="blk"><b>'+l+'</b>${txt}</div>'.replace('${txt}',txt('—'))).join('')}</div>
+ <div class="row"><div class="col"><div class="blk w"><h2>Платежи</h2><table><tr><th>Дата</th><th>Сумма</th><th>Статус</th></tr>${[1,2].map(i=>'<tr><td>—</td><td>—</td><td>—</td></tr>').join('')}</table></div></div>
+ <div class="col"><div class="blk w"><h2>Занятость мест</h2>${txt('Занятие · N/M · прогресс-бар')}</div></div></div>`;
+
+S.a2=()=>`
+ <h1>Управление расписанием <span class="ann">FR-04</span></h1>
+ <div class="blk w"><h2>Добавить занятие</h2>
+ <div class="row">${['День','Направление','Время','Зал','Тренер','Мест'].map(f=>
+   '<div class="col"><div class="fld"><div class="lb">'+f+'</div><div class="in"></div></div></div>').join('')}</div>
+ ${btn('Добавить','#/a2')}</div>
+ <div class="blk w"><table><tr><th>Дата</th><th>Время</th><th>Занятие</th><th>Тренер</th><th></th></tr>
+ ${[1,2,3].map(i=>'<tr><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="note">удалить</span></td></tr>').join('')}</table></div>`;
+
+S.a3=()=>`
+ <h1>Управление тарифами <span class="ann">FR-03: публикация в каталог</span></h1>
+ <div class="blk w"><h2>Добавить тариф</h2>
+ <div class="row">${['Название','Цена','Дней','Посещений'].map(f=>
+   '<div class="col"><div class="fld"><div class="lb">'+f+'</div><div class="in"></div></div></div>').join('')}</div>
+ ${btn('Опубликовать','#/a3')}</div>
+ <div class="blk w"><table><tr><th>Тариф</th><th>Цена</th><th>Период</th><th></th></tr>
+ ${[1,2,3].map(i=>'<tr><td>—</td><td>—</td><td>—</td><td><span class="note">снять с публикации</span></td></tr>').join('')}</table></div>`;
+
+/* ==== РОУТЕР ==== */
+const GUARD={cabinet:'client',bookings:'client',cancel:'client',history:'client',booked:'client',t1:'trainer',t2:'trainer',t3:'trainer',a1:'admin',a2:'admin',a3:'admin'};
+function route(){
+  const p=(location.hash||'#/home').slice(2).split('/')[0];
+  const fn=S[p]||S.home;
+  $('#nav').innerHTML=(NAVS[ROLE]||NAVS.guest).map(([h,l])=>'<a href="'+h+'" class="'+(location.hash===h?'on':'')+'">'+l+'</a>').join('');
+  $('#who').innerHTML='Роль: <b>'+({guest:'гость',client:'клиент',trainer:'тренер',admin:'админ'}[ROLE])+'</b> '+
+    ['guest','client','trainer','admin'].map(r=>'<a href="#" onclick="setRole(\''+r+'\');return false" style="'+(r===ROLE?'font-weight:bold':'color:#999')+'">'+({guest:'гость',client:'клиент',trainer:'тренер',admin:'админ'}[r])+'</a>').join(' | ');
+  $('#view').innerHTML=fn();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+route();
+</script>
+</body>
+</html>

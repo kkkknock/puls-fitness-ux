@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Адаптив — Tablet 768</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+body{background:var(--bg);}
+.strip{display:flex;gap:40px;padding:40px;align-items:flex-start;}
+.tab7{width:768px;flex:none;background:var(--bg);border:1px solid var(--border2);border-radius:28px;overflow:hidden;display:flex;flex-direction:column;}
+.thead{display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 24px;border-bottom:1px solid var(--border);}
+.tcont{padding:24px;display:flex;flex-direction:column;gap:16px;}
+.h-t{font-size:28px;line-height:34px;font-weight:700;letter-spacing:-.5px;}
+.grid2t{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sched{display:flex;flex-direction:column;gap:12px;}
+.sc{display:flex;gap:12px;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border);}
+.sc img{width:150px;height:100%;object-fit:cover;}
+.sc .in{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1;}
+</style></head>
+<body>
+<div class="strip">
+  <!-- РАСПОИСАНИЕ -->
+  <div class="tab7">
+    <div class="thead"><div class="logo" style="gap:7px;"><div class="dot" style="width:9px;height:9px;"></div><div class="bs-med" style="font-size:17px;">ПУЛЬС</div></div><nav class="row" style="display:flex;gap:14px;"><a class="bs-med t2" href="#">Тарифы</a><a class="bs-med" href="#">Расписание</a><a class="bs-med t2" href="#">Кабинет</a></nav><div class="avatar" style="width:32px;height:32px;font-size:12px;">АУ</div></div>
+    <div class="tcont">
+      <div class="chipAnn" style="align-self:flex-start;">C-09 · Tablet 768 · UC-02</div>
+      <div class="h-t">Расписание</div>
+      <div class="row chips" style="display:flex;gap:8px;"><div class="pill on">27.11 Пт</div><div class="pill">28</div><div class="pill">29</div><div class="pill">30</div></div>
+      <div class="chipsc" style="display:flex;gap:8px;"><div class="pill on">Все</div><div class="pill">Йога</div><div class="pill">HIIT</div><div class="pill">Пилатес</div><div class="pill">Стретчинг</div></div>
+      <div class="sched">
+        <div class="sc"><img src="https://www.figma.com/api/mcp/asset/fd85379d-5406-4473-94cb-a428681ed927.png">
+          <div class="in"><div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="bm-med" style="font-weight:600;">HIIT</div><span class="badge badge-green">8 мест</span></div><div class="cap t2">Пт 18:30–19:30 · Зал 2 · Иванов Д.</div><div class="bar"><i style="width:40%;"></i></div><div class="btn btn-m btn-primary" style="align-self:flex-start;">Записаться</div></div></div>
+        <div class="sc"><img src="https://www.figma.com/api/mcp/asset/5f96cf62-bd84-4d82-b4e4-1f2272113dfe.png">
+          <div class="in"><div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="bm-med" style="font-weight:600;">Йога</div><span class="badge badge-green">12 мест</span></div><div class="cap t2">Пт 18:00–19:00 · Зал 2 · Соколова А.</div><div class="bar"><i style="width:40%;"></i></div><div class="btn btn-m btn-primary" style="align-self:flex-start;">Записаться</div></div></div>
+        <div class="sc"><img src="https://www.figma.com/api/mcp/asset/278ae665-00c4-46bb-9644-51dd7322e8bf.png">
+          <div class="in"><div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="bm-med" style="font-weight:600;">Сайклинг</div><span class="badge badge-green">10 мест</span></div><div class="cap t2">Пт 19:00–20:00 · Зал 1 · Ким С.</div><div class="bar"><i style="width:52%;"></i></div><div class="btn btn-m btn-primary" style="align-self:flex-start;">Записаться</div></div></div>
+      </div>
+    </div>
+  </div>
+  <!-- ЛИЧНЫЙ КАБИНЕТ -->
+  <div class="tab7">
+    <div class="thead"><div class="logo" style="gap:7px;"><div class="dot" style="width:9px;height:9px;"></div><div class="bs-med" style="font-size:17px;">ПУЛЬС</div></div><nav class="row" style="display:flex;gap:14px;"><a class="bs-med t2" href="#">Тарифы</a><a class="bs-med t2" href="#">Расписание</a><a class="bs-med" href="#">Кабинет</a></nav><div class="avatar" style="width:32px;height:32px;font-size:12px;">АУ</div></div>
+    <div class="tcont">
+      <div class="chipAnn" style="align-self:flex-start;">C-04 · Tablet 768 · US-02/US-05</div>
+      <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="h-t">Кабинет</div><div class="badge badge-green">Клиент · Умарова А.</div></div>
+      <div class="grid2t">
+        <div class="panel" style="border:1px solid rgba(200,245,58,.35);">
+          <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="bs-med">Абонемент «Базовый»</div><span class="badge badge-solid">Активен</span></div>
+          <div class="bar" style="height:8px;"><i style="width:75%;"></i></div>
+          <div class="cap t2">9 из 12 посещений · до 30.11.2026</div>
+          <div class="btn btn-m btn-secondary">Подробнее</div>
+        </div>
+        <div class="panel">
+          <div class="bs-med">Ближайшее занятие</div>
+          <div class="row" style="display:flex;gap:10px;align-items:center;"><div class="dchip" style="padding:10px 12px;"><div class="dd" style="font-size:18px;">27</div><div class="mm">НОЯ</div></div><div class="col" style="display:flex;flex-direction:column;gap:2px;"><div class="bs-med">Сайклинг 19:00</div><div class="cap t3">Зал 1 · Ким С.</div></div></div>
+          <div class="row" style="display:flex;gap:8px;"><div class="btn btn-m btn-secondary" style="flex:1;">Отменить</div><div class="btn btn-m btn-ghost" style="flex:1;">Открыть</div></div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="dchip" style="padding:10px 12px;"><div class="dd">24</div><div class="mm">НОЯ</div></div>
+        <div class="mid" style="display:flex;flex-direction:column;gap:4px;flex:1;"><div class="bs-med">Йога · Соколова Анна</div><div class="cap t2">Пт · 18:00 · Зал 2</div></div>
+        <div class="badge badge-neutral">Запланировано</div>
+        <div class="btn btn-m btn-ghost">Отменить</div>
+      </div>
+      <div class="brow">
+        <div class="dchip" style="padding:10px 12px;"><div class="dd">20</div><div class="mm">НОЯ</div></div>
+        <div class="mid" style="display:flex;flex-direction:column;gap:4px;flex:1;"><div class="bs-med">Пилатес · Орлова М.</div><div class="cap t2">Ср · 10:00 · Зал 3</div></div>
+        <div class="badge badge-green">Пришёл</div>
+      </div>
+    </div>
+  </div>
+  <!-- ОПЛАТА -->
+  <div class="tab7">
+    <div class="thead"><div class="logo" style="gap:7px;"><div class="dot" style="width:9px;height:9px;"></div><div class="bs-med" style="font-size:17px;">ПУЛЬС</div></div><nav class="row" style="display:flex;gap:14px;"><a class="bs-med" href="#">Тарифы</a><a class="bs-med t2" href="#">Расписание</a><a class="bs-med t2" href="#">Кабинет</a></nav><div class="avatar" style="width:32px;height:32px;font-size:12px;">АУ</div></div>
+    <div class="tcont">
+      <div class="chipAnn" style="align-self:flex-start;">C-07/08 · Tablet 768 · UC-01</div>
+      <div class="h-t">Оформление заказа</div>
+      <div class="panel" style="border:1px solid rgba(200,245,58,.35);background:linear-gradient(135deg,#223312,var(--elev));">
+        <div class="row" style="display:flex;justify-content:space-between;"><div><div class="bm-med">Тариф «Базовый»</div><div class="cap t2">30 дней · 12 посещений</div></div><div class="h2 t-lime">2 990 ₽</div></div>
+      </div>
+      <div class="panel">
+        <div class="bs-med">Карта</div>
+        <div class="field"><label>Номер</label><div class="input">4111 •••• 1234</div></div>
+        <div class="grid2t"><div class="field"><label>Срок</label><div class="input">11/28</div></div><div class="field"><label>CVC</label><div class="input">•••</div></div></div>
+        <div class="btn btn-l btn-primary" style="width:100%;">Оплатить 2 990 ₽</div>
+        <div class="banner banner-pend"><div class="ic">…</div><div><div class="tt" style="font-size:14px;">Ожидание подтверждения (состояние)</div><div class="sb">или Success/Error — UC-01</div></div></div>
+      </div>
+      <div class="cap t3" style="text-align:center;">После подтверждения абонемент активируется автоматически (NFR-03)</div>
+    </div>
+  </div>
+</div>
+</body></html>

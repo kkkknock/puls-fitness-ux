@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Управление тарифами</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.sec2{padding:36px 40px 48px;display:flex;flex-direction:column;gap:20px;}
+.edit{display:flex;gap:32px;align-items:flex-start;}
+.short{display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:16px;background:var(--card);border:1px solid var(--border);}
+.short .rowi{display:flex;justify-content:space-between;align-items:center;}
+.formrow2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Обзор</a><a href="#">Расписание</a><a class="on" href="#">Тарифы</a><a href="#">Клиенты</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-info">Администратор · Меликова Д.</div>
+    <div class="avatar">МД</div>
+  </div>
+  <div class="sec2">
+    <div class="row" style="display:flex;align-items:center;gap:14px;">
+      <div class="chipAnn">A-03 · Управление тарифами · FR-03 · предусловие UC-01</div>
+    </div>
+    <div class="h1">Управление тарифами</div>
+    <div class="edit">
+      <div class="panel" style="flex:1;">
+        <div class="h3">Карточка тарифа «Базовый»</div>
+        <div class="formrow2">
+          <div class="field" style="grid-column:1/-1;"><label>Название</label><div class="input active">Базовый</div></div>
+          <div class="field"><label>Цена, ₽</label><div class="input">2 990 </div></div>
+          <div class="field"><label>Срок действия, дней</label><div class="input">30</div></div>
+          <div class="field"><label>Лимит посещений (0 = безлимит)</label><div class="input">12</div></div>
+          <div class="field"><label>Описание</label><div class="input">12 посещений в месяц</div></div>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:16px;">
+          <label class="row" style="display:flex;gap:10px;align-items:center;"><label class="cbtn cb-on" style="width:20px;height:20px;">✓</label><span class="bs">Опубликован (предусловие UC-01)</span></label>
+          <div class="sp"></div>
+          <div class="btn btn-m btn-primary">Сохранить</div>
+          <div class="btn btn-m btn-ghost">Отмена</div>
+        </div>
+      </div>
+      <div class="col3" style="width:330px;display:flex;flex-direction:column;gap:14px;">
+        <div class="chipAnn" style="align-self:flex-start;">Все тарифы клуба</div>
+        <div class="short">
+          <div class="rowi"><div class="bm-med">Разовый</div><span class="badge badge-green">опубликован</span></div>
+          <div class="bs t2">990 ₽ · 1 день · без лимита</div>
+          <div class="btn btn-m btn-ghost" style="align-self:flex-start;">Изменить</div>
+        </div>
+        <div class="short" style="border:2px solid var(--lime);">
+          <div class="rowi"><div class="bm-med">Базовый</div><span class="badge badge-solid">редактируется</span></div>
+          <div class="bs t2">2 990 ₽ · 30 дней · 12 посещений</div>
+          <div class="bs t3">Активных абонементов: 412</div>
+        </div>
+        <div class="short">
+          <div class="rowi"><div class="bm-med">Безлимит</div><span class="badge badge-green">опубликован</span></div>
+          <div class="bs t2">5 990 ₽ · 30 дней · без лимита</div>
+          <div class="btn btn-m btn-ghost" style="align-self:flex-start;">Изменить</div>
+        </div>
+        <div class="short" style="opacity:.6;">
+          <div class="rowi"><div class="bm-med">Ночной (ч)</div><span class="badge badge-warn">не опубликован</span></div>
+          <div class="bs t2">1 490 ₽ · 30 дней · 8 посещений</div>
+          <div class="btn btn-m btn-ghost" style="align-self:flex-start;">Опубликовать</div>
+        </div>
+      </div>
+    </div>
+    <div class="bs t3">Неопубликованный тариф недоступен клиентам в каталоге (C-06) и не может быть куплен (UC-01). Изменение цены не влияет на уже купленные абонементы.</div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС» · Панель администратора</div>
+</div>
+</body></html>

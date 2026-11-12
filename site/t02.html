@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Список клиентов занятия</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.sec2{padding:36px 40px 48px;display:flex;flex-direction:column;gap:20px;}
+.list{display:flex;flex-direction:column;gap:10px;}
+.prow{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:var(--card);border:1px solid var(--border);}
+.pav{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--ondark);background:var(--lime);flex:none;}
+.mk{display:flex;gap:8px;}
+.mk .opt{padding:10px 18px;border-radius:100px;font-size:14px;font-weight:500;background:var(--card);border:1px solid var(--border2);color:var(--text2);}
+.mk .opt.on-came{background:var(--green);border-color:var(--green);color:var(--ondark);font-weight:600;}
+.mk .opt.on-miss{background:var(--danger);border-color:var(--danger);color:var(--ondark);font-weight:600;}
+.sumbar{position:sticky;bottom:0;display:flex;align-items:center;gap:16px;margin-top:8px;padding:16px 20px;border-radius:16px;background:var(--elev);border:1px solid var(--border2);}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Сегодня</a><a class="on" href="#">Отметка посещения</a><a href="#">Посещаемость</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-neutral">Тренер · Иванов Д.</div>
+    <div class="avatar">ИД</div>
+  </div>
+  <div class="sec2">
+    <div class="row" style="display:flex;align-items:center;gap:14px;">
+      <div class="chipAnn">T-02 · Список клиентов занятия · UC-04 · attendance</div>
+    </div>
+    <div class="row" style="display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div class="h1">Силовая тренировка</div>
+        <div class="bm t2">Пт · 27.11 · 17:30–18:30 · Зал 4</div>
+      </div>
+      <div class="row" style="display:flex;gap:12px;align-items:center;">
+        <div class="badge badge-solid">7 клиентов</div>
+        <div class="btn btn-m btn-ghost">К расписанию</div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="prow">
+        <div class="pav">АУ</div>
+        <div class="col" style="display:flex;flex-direction:column;gap:2px;flex:1;"><div class="bm-med">Умарова Анна</div><div class="bs t3">запись #b-204 · абонемент 9/12</div></div>
+        <div class="mk"><div class="opt on-came">Пришёл</div><div class="opt">Не пришёл</div></div>
+      </div>
+      <div class="prow">
+        <div class="pav" style="background:var(--info);">МС</div>
+        <div class="col" style="display:flex;flex-direction:column;gap:2px;flex:1;"><div class="bm-med">Мирзаев Сунар</div><div class="bs t3">запись #b-205 · тариф «Безлимит»</div></div>
+        <div class="mk"><div class="opt on-came">Пришёл</div><div class="opt">Не пришёл</div></div>
+      </div>
+      <div class="prow">
+        <div class="pav" style="background:var(--warn);">КР</div>
+        <div class="col" style="display:flex;flex-direction:column;gap:2px;flex:1;"><div class="bm-med">Ковалёва Рита</div><div class="bs t3">запись #b-206 · абонемент 2/12</div></div>
+        <div class="mk"><div class="opt">Пришёл</div><div class="opt on-miss">Не пришёл</div></div>
+      </div>
+      <div class="prow">
+        <div class="pav" style="background:var(--text2);">ДГ</div>
+        <div class="col" style="display:flex;flex-direction:column;gap:2px;flex:1;"><div class="bm-med">Докуев Гассан</div><div class="bs t3">запись #b-207 · тариф «Разовый»</div></div>
+        <div class="mk"><div class="opt on-came">Пришёл</div><div class="opt">Не пришёл</div></div>
+      </div>
+      <div class="prow">
+        <div class="pav">ЮС</div>
+        <div class="col" style="display:flex;flex-direction:column;gap:2px;flex:1;"><div class="bm-med">Юсупова Лейла</div><div class="bs t3">запись #b-208 · абонемент 7/12</div></div>
+        <div class="mk"><div class="opt on-came">Пришёл</div><div class="opt">Не пришёл</div></div>
+      </div>
+    </div>
+    <div class="sumbar">
+      <div class="sp"></div>
+      <div class="bs t2">Отмечено: 4 пришёл · 1 не пришёл · 2 не отмечено</div>
+      <div class="sp"></div>
+      <div class="btn btn-m btn-primary">Сохранить отметки</div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС» · Кабинет тренера</div>
+</div>
+</body></html>

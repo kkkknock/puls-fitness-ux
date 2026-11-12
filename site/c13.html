@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Отмена записи</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.up{position:relative;padding:40px;display:flex;gap:32px;align-items:flex-start;}
+.list{flex:1;display:flex;flex-direction:column;gap:12px;}
+.shadow{position:absolute;left:150px;top:120px;width:520px;z-index:5;display:flex;align-items:center;}
+.alt3{display:flex;gap:16px;padding:0 40px 48px;align-items:stretch;}
+.alt{flex:1;display:flex;flex-direction:column;gap:10px;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a href="#">Главная</a><a href="#">Тарифы</a><a href="#">Расписание</a><a class="on" href="#">Личный кабинет</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-green">Клиент · Умарова А.</div>
+    <div class="avatar">АУ</div>
+  </div>
+  <div class="up">
+    <div class="list" style="max-width:640px;">
+      <div class="chipAnn" style="align-self:flex-start;">C-13 · Отмена записи · UC-03 · FR-06 · club_rule</div>
+      <div class="h1">Отмена записи</div>
+      <div class="brow">
+        <div class="dchip"><div class="dd">24</div><div class="mm">НОЯ</div></div>
+        <div class="mid"><div class="bm-med">Йога · Соколова Анна</div><div class="bs t2">Пт · 18:00–19:00 · Зал 2</div></div>
+        <div class="badge badge-green" style="background:#3A1410;color:var(--danger);">Выбрана для отмены</div>
+      </div>
+      <div class="brow" style="opacity:.55;">
+        <div class="dchip"><div class="dd">27</div><div class="mm">НОЯ</div></div>
+        <div class="mid"><div class="bm-med">Сайклинг · Ким Сергей</div><div class="bs t2">Пт · 19:00–20:00 · Зал 1</div></div>
+        <div class="badge badge-neutral">Запланировано</div>
+      </div>
+    </div>
+    <div class="shadow">
+      <div class="dialog">
+        <div class="h3">Отменить запись?</div>
+        <div class="bs t2">Место вернётся в расписание (запись получит статус «отменена», фиксируется время отмены). По правилам клуба (club_rule) отмена доступна не позднее 2 часов до начала.</div>
+        <div class="btns row" style="display:flex;gap:12px;">
+          <div class="btn btn-m btn-ghost" style="flex:1;">Вернуться</div>
+          <div class="btn btn-m btn-primary" style="flex:1;">Да, отменить</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sec" style="padding-bottom:24px;">
+    <div class="chipAnn" style="background:#3A1410;">Альтернативные состояния UC-03</div>
+  </div>
+  <div class="alt3">
+    <div class="panel alt">
+      <div class="badge badge-danger" style="align-self:flex-start;">Срок отмены истёк</div>
+      <div class="bm-med">Отмена недоступна</div>
+      <div class="bs t2">До начала занятия осталось меньше 2 часов (правило клуба, значение в club_rule). Отмена по правилам «Should» недоступна клиенту.</div>
+      <div class="btn btn-m btn-ghost" style="align-self:flex-start;">Понятно</div>
+    </div>
+    <div class="panel alt">
+      <div class="badge badge-danger" style="align-self:flex-start;">Занятие уже началось</div>
+      <div class="bm-med">Отмена закрыта</div>
+      <div class="bs t2">Занятие началось — отмена недоступна (UC-03). Отметку посещения сделает тренер (UC-04).</div>
+      <div class="btn btn-m btn-ghost" style="align-self:flex-start;">Понятно</div>
+    </div>
+    <div class="panel alt">
+      <div class="badge badge-warn" style="align-self:flex-start;">Ошибка сохранения</div>
+      <div class="bm-med">Не удалось отменить запись</div>
+      <div class="bs t2">Сбой при сохранении: показать сообщение, запись оставить прежней (booking остаётся в статусе «booked»). Попробуйте позже.</div>
+      <div class="row" style="display:flex;gap:10px;"><div class="btn btn-m btn-secondary">Повторить</div><div class="btn btn-m btn-ghost">Отмена</div></div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС»</div>
+</div>
+</body></html>

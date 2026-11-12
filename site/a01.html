@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Панель администратора</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ui.css"><link rel="stylesheet" href="/ui2.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+.content{display:flex;gap:32px;padding:40px;align-items:flex-start;}
+.main2{flex:1;display:flex;flex-direction:column;gap:20px;}
+.side2{width:340px;display:flex;flex-direction:column;gap:16px;}
+.kvrow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+.kvrow:last-child{border-bottom:none;}
+</style></head>
+<body>
+<div class="scr">
+  <div class="topbar">
+    <div class="logo"><div class="dot"></div><div class="h3">ПУЛЬС</div></div>
+    <nav class="nav"><a class="on" href="#">Обзор</a><a href="#">Расписание</a><a href="#">Тарифы</a><a href="#">Клиенты</a></nav>
+    <div class="sp"></div>
+    <div class="badge badge-info">Администратор · Меликова Д.</div>
+    <div class="avatar">МД</div>
+  </div>
+  <div class="content">
+    <div class="main2">
+      <div class="row" style="display:flex;align-items:center;gap:14px;">
+        <div class="chipAnn">A-01 · Панель администратора · NFR-02 · роли</div>
+      </div>
+      <div class="grid4">
+        <div class="stat"><div class="l">Клиентов в системе</div><div class="v">1 842</div><div class="d">+118 за месяц</div></div>
+        <div class="stat"><div class="l">Активных абонементов</div><div class="v">964</div><div class="d">52% от базы</div></div>
+        <div class="stat"><div class="l">Записей сегодня</div><div class="v">280</div><div class="d">пик: будни 18–21</div></div>
+        <div class="stat"><div class="l">Платежей за неделю</div><div class="v">214</div><div class="d" style="color:var(--danger);">3 неуспешных</div></div>
+      </div>
+      <div class="panel">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="h3">Последние платежи</div><a class="bs-med" href="#">Все платежи ›</a></div>
+        <div class="tbl wrap">
+          <table class="tbl">
+            <tr><th>Номер</th><th>Клиент</th><th>Тариф</th><th style="width:120px;">Сумма</th><th style="width:140px;">Статус</th></tr>
+            <tr><td>PAY-2411-0941</td><td>Умарова Анна</td><td>Базовый</td><td>2 990 ₽</td><td><span class="badge badge-green">succeeded</span></td></tr>
+            <tr><td>PAY-2411-0940</td><td>Мирзаев Сунар</td><td>Безлимит</td><td>5 990 ₽</td><td><span class="badge badge-warn">pending</span></td></tr>
+            <tr><td>PAY-2411-0939</td><td>Ковалёва Рита</td><td>Разовый</td><td>990 ₽</td><td><span class="badge badge-danger">failed</span></td></tr>
+            <tr><td>PAY-2411-0938</td><td>Юсупова Лейла</td><td>Базовый</td><td>2 990 ₽</td><td><span class="badge badge-green">succeeded</span></td></tr>
+            <tr><td>PAY-2411-0937</td><td>Докуев Гассан</td><td>Безлимит</td><td>5 990 ₽</td><td><span class="badge badge-green">succeeded</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;"><div class="h3">Занятия сегодня</div><a class="bs-med" href="#">Управление расписанием ›</a></div>
+        <div class="grid3" style="margin-top:4px;">
+          <div class="stat"><div class="l">HIIT · Зал 2 · 18:30</div><div class="v" style="font-size:22px;">8/20</div><div class="d">Иванов Д.</div></div>
+          <div class="stat"><div class="l">Сайклинг · Зал 1 · 19:00</div><div class="v" style="font-size:22px;">10/20</div><div class="d">Ким С.</div></div>
+          <div class="stat"><div class="l">Пилатес · Зал 3 · 19:00</div><div class="v" style="font-size:22px;">14/20</div><div class="d">Орлова М.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="side2">
+      <div class="panel" style="gap:10px;">
+        <div class="bs-med t2">Быстрые действия</div>
+        <div class="btn btn-m btn-primary" style="width:100%;">Добавить занятие</div>
+        <div class="btn btn-m btn-secondary" style="width:100%;">Создать тариф</div>
+        <div class="btn btn-m btn-ghost" style="width:100%;">Проверить неоплаченные</div>
+      </div>
+      <div class="panel">
+        <div class="bs-med t2">Права роли (NFR-02)</div>
+        <div class="kvrow"><div class="bs">Управление расписанием</div><span class="badge badge-green">доступно</span></div>
+        <div class="kvrow"><div class="bs">Управление тарифами</div><span class="badge badge-green">доступно</span></div>
+        <div class="kvrow"><div class="bs">Отметки посещений</div><span class="badge badge-neutral">нет (тренер)</span></div>
+        <div class="kvrow"><div class="bs">Данные клиентов</div><span class="badge badge-neutral">по правилам CON-02</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">© 2026 Фитнес-клуб «ПУЛЬС» · Панель администратора</div>
+</div>
+</body></html>
