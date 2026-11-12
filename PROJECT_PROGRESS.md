@@ -101,6 +101,20 @@
 - Проверка стрелок в Figma UI (0 лимита): открыть фрейм → Prototype tab → увидеть синие стрелки; Play-режим C-06 (18:5) стартует UC-01.
 - Flow start points НЕ заданы (prototypeStartNodeID не поддержан плагин-апи) — при необходимости выставить вручную: C-06/C-09/C-12/T-01.
 
+## 13.11.2026 — GitHub + сверка исходников
+- GitHub: репо https://github.com/kkkknock/puls-fitness-ux (public), git 2.56 + gh 2.103 установлены, авторизация device-flow.
+  ВАЖНО: email в git config — $uid+kkkknock@users.noreply.github.com (GH007 email privacy).
+- Wiki: страницы Home / ТЗ-и-требования / База-данных / Журнал-проекта готовы локально в
+  C:\Users\komro\AppData\Local\Temp\opencode\puls-wiki (пуш после активации wiki в UI — нужен 1 клик пользователем).
+- Сверка исходников (Drive + Telegram-вложения):
+  • ТЗ_презентация_v2-1.pptx = ИДЕНТИЧЕН tz.pptx (хэш MD5 совпал)
+  • БД_словарь_и_трассировка.xlsx = ИДЕНТИЧЕН db.xlsx
+  • НОВОЕ: schema_БД_PostgreSQL.pdf (DDL, 16 таблиц) и Краткое_ТЗ.docx (v1.0, 29.10) → добавлены в docs/
+  • Drive-файл (PDF 14 слайдов) = базовая версия презентации ТЗ; наш tz.pptx v2-1 (28 слайдов) полнее и новее
+    (реестр FR-01..06/BR-01/CON-01 в обоих совпадает дословно) → оставлен как архив в docs/ТЗ_презентация_краткая_14слайдов.pdf
+- Пайплайн чтения PDF (без python/node): Word COM не перегоняет → рендер страниц через WinRT Windows.Data.Pdf
+  (PdfDocument + RenderToStreamAsync; IAsyncAction через AsTask-хелпер) → PNG → чтение изображений моделью.
+
 ## Ручной путь прототипа (Figma UI, 0 лимита, ~10 мин) — если не ждать сброса
 - Выделить фрейм → Prototype tab → «+» на элементе (или на фрейме) → On click → Navigate to → целевой фрейм → Dissolve 200ms:
   C-06→C-07→C-08 · C-09→C-10→C-11 · C-12→C-13 · T-01→T-02→T-03.
